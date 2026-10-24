@@ -1,5 +1,5 @@
 /* Carnet — service worker : l’app s’ouvre hors ligne, la mise à jour se fait en arrière-plan. */
-const CACHE = 'carnet-v2';
+const CACHE = 'carnet-v3';
 const ASSETS = [
   './',
   './index.html',
