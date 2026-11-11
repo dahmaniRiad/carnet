@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta name="carnet-version" content="2026-11-11 21:40 6c77a1c">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Carnet d’entraînement</title>
 <meta name="description" content="Programme Riad 3.0 : séances, séries, repos, pesées et progression.">
@@ -453,6 +454,7 @@ input[type="date"].input,input[type="time"].input{display:flex;align-items:cente
 .sdot.error{background:var(--danger)}
 .sdot.busy{background:transparent;border:2px solid var(--muted);border-top-color:transparent;animation:spin .8s linear infinite}
 .sdot.off{background:var(--faint);box-shadow:none}
+.ver-d{font-size:19px;font-weight:750;letter-spacing:-.01em;margin:8px 0 6px}
 
 /* historique, progrès */
 .month{margin-top:16px}
@@ -921,6 +923,7 @@ const isoDay = (ts = Date.now()) => { const d = new Date(ts); return `${d.getFul
 const parseIso = (s) => { const [y, m, d] = String(s).split('-').map(Number); return new Date(y, (m || 1) - 1, d || 1).getTime(); };
 const dowOf = (ts) => (new Date(ts).getDay() + 6) % 7;
 const isIsoDay = (s) => /^\d{4}-\d{2}-\d{2}$/.test(s || '');
+const isRealDay = (s) => isIsoDay(s) && isoDay(parseIso(s)) === s;
 const hhmm = (ts) => { const d = new Date(ts); return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
 const localTs = (day, time) => { const d = new Date(parseIso(day)); const [h, m] = String(time || '0:0').split(':').map(Number); d.setHours(h || 0, m || 0, 0, 0); return d.getTime(); };
 function relDay(ts) {
@@ -1107,17 +1110,35 @@ function normDaily(d) {
   if (d && typeof d === 'object') for (const k of Object.keys(d).sort()) if (/^\d{4}-\d{2}-\d{2}$/.test(k) && d[k] && typeof d[k] === 'object') out[k] = normDay(d[k]);
   return out;
 }
+/* Mensurations : une entrée par jour, clé = date AAAA-MM-JJ. Les entrées d’avant, une par semaine du programme,
+   gardent leur clé S<n> et leur date libre. Une clé d’une autre forme est ignorée. */
 function normMeasures(m) {
   const out = {};
   if (m && typeof m === 'object') for (const k of Object.keys(m).sort()) {
-    if (!/^S\d+$/.test(k) || !m[k] || typeof m[k] !== 'object') continue;
-    const o = { date: String(m[k].date || ''), at: +m[k].at || 0 };
+    if (!(/^S\d+$/.test(k) || isRealDay(k)) || !m[k] || typeof m[k] !== 'object') continue;
+    const o = { date: isIsoDay(k) ? k : String(m[k].date || ''), at: +m[k].at || 0 };
     for (const [f] of MEASURES) o[f] = numOrNull(m[k][f]);
     out[k] = o;
   }
   return out;
 }
 const hasMeasure = (m) => !!m && MEASURES.some(([f]) => m[f] != null);
+/* jour d’une mesure : sa clé, sinon sa date libre, sinon le début de sa semaine (entrée S<n> sans date) */
+const measureDated = (k, m) => isIsoDay(k) || !!(m && isRealDay(m.date));
+function measureDay(k, m) {
+  if (isIsoDay(k)) return k;
+  if (m && isRealDay(m.date)) return m.date;
+  const n = +k.slice(1);
+  return isoDay(Math.min(n ? weekRange(n).s : addDays(weekStart(programStart()), -1), Date.now()));
+}
+const measureName = (k, m) => (measureDated(k, m) ? `du ${fmtDay(parseIso(measureDay(k, m)))}` : `de la semaine ${k}`);
+/* mesures non vides, de la plus ancienne à la plus récente : { k clé, d jour, n semaine du programme, dated, m } */
+function measureList() {
+  return Object.keys(db.measures).filter((k) => hasMeasure(db.measures[k])).map((k) => {
+    const m = db.measures[k], d = measureDay(k, m);
+    return { k, d, dated: measureDated(k, m), n: isIsoDay(k) ? programWeek(parseIso(d)) : +k.slice(1), m };
+  }).sort((a, b) => (a.d < b.d ? -1 : a.d > b.d ? 1 : a.k < b.k ? -1 : a.k > b.k ? 1 : 0));
+}
 function freshDB() {
   return { v: 2, program: normProgram(riadProgram()), programUpdatedAt: 0, settings: Object.assign({}, DEFAULT_SETTINGS), settingsUpdatedAt: 0, logs: [], deletedLogs: [], daily: {}, measures: {}, active: null };
 }
@@ -1534,6 +1555,7 @@ function afterRender() {
     scrollToNext = false;
   }
   if (view.name === 'progress') { const w = $('.ms-wrap'); if (w) { w.classList.toggle('scrolls', w.scrollWidth > w.clientWidth + 1); w.scrollLeft = w.scrollWidth; } }
+  if (view.name === 'settings') verPeek();
   if (justLoaded && view.name === 'home') { const id = justLoaded; setTimeout(() => { if (justLoaded === id) justLoaded = null; }, 1600); }
   coachAfterRender();
   justChecked = null; justDoneEi = null;
@@ -2064,22 +2086,23 @@ function checkpointWeight(k, rows) {
   return r && r.avg != null ? Math.round(r.avg * 10) / 10 : null;
 }
 function measuresCard() {
-  const m = db.measures;
-  const keys = Object.keys(m).filter((k) => hasMeasure(m[k])).sort((a, b) => a.slice(1) - b.slice(1));
+  const list = measureList();
   const btn = `<div class="stack" style="margin-top:14px"><button class="btn quiet" data-act="measures">${I.plus} Ajouter des mensurations</button></div>`;
   const tip = `conseillé${NB}: S0, S6, S12, S18, S24`;
-  if (!keys.length) return `<section class="card sec"><div class="card-head"><h2 class="h2">Mensurations</h2><p class="muted small">${cap(tip)}</p></div><p class="muted small">Le matin, à jeun, muscles froids, toujours au même endroit, à la date de ton choix. Repères à S12${NB}: bras ≈${NB}+1${NB}cm, poitrine ≈${NB}+1,5-2${NB}cm, cuisses ≈${NB}+1-2${NB}cm, taille +1,5${NB}cm maximum.</p>${btn}</section>`;
+  if (!list.length) return `<section class="card sec"><div class="card-head"><h2 class="h2">Mensurations</h2><p class="muted small">${cap(tip)}</p></div><p class="muted small">Le matin, à jeun, muscles froids, toujours au même endroit. Aussi souvent que tu veux, à la date de ton choix. Repères à S12${NB}: bras ≈${NB}+1${NB}cm, poitrine ≈${NB}+1,5-2${NB}cm, cuisses ≈${NB}+1-2${NB}cm, taille +1,5${NB}cm maximum.</p>${btn}</section>`;
   const review = weeklyReview();
-  const rows = [['poids', 'Poids moyen', (k) => checkpointWeight(k, review)]].concat(MEASURES.map(([f, l]) => [f, l, (k) => (m[k] ? m[k][f] : null)]));
-  const heads = keys.map((k) => `<th><button class="ms-k" data-act="measures" data-k="${k}" aria-label="Modifier les mensurations ${k}"><span>${k} ${I.edit}</span>${isIsoDay(m[k].date) ? `<small>${esc(dfShort.format(new Date(parseIso(m[k].date))))}</small>` : ''}</button></th>`).join('');
+  const rows = [['poids', 'Poids moyen', (e) => checkpointWeight('S' + e.n, review)]].concat(MEASURES.map(([f, l]) => [f, l, (e) => e.m[f]]));
+  /* une colonne par mesure : sa date, et sa semaine du programme en petit */
+  const heads = list.map((e) => `<th><button class="ms-k" data-act="measures" data-k="${esc(e.k)}" aria-label="Modifier les mensurations ${esc(measureName(e.k, e.m))}"><span>${e.dated ? esc(dfShort.format(new Date(parseIso(e.d)))) : `S${e.n}`} ${I.edit}</span>${e.dated ? `<small>S${e.n}</small>` : ''}</button></th>`).join('');
   const body = rows.map(([f, l, get]) => {
-    const vals = keys.map(get);
+    const vals = list.map(get);
     const filled = vals.filter((v) => v != null);
     const ev = filled.length >= 2 ? filled[filled.length - 1] - filled[0] : null;
     if (!filled.length) return '';
     return `<tr><td>${esc(l)}</td>${vals.map((v) => `<td>${v != null ? fmtN(v) : '<span class="faint">–</span>'}</td>`).join('')}<td class="ev" style="color:${ev == null ? 'var(--faint)' : f === 'taille' ? (ev > 1.5 ? 'var(--danger)' : 'var(--ink)') : ev > 0 ? 'var(--ok)' : 'var(--ink)'}">${ev != null ? fmtSigned(ev) : ''}${f === 'taille' && ev > 1.5 ? `<span class="ev-warn">${I.alert}<span class="sr">, au-delà des +1,5${NB}cm conseillés</span></span>` : ''}</td></tr>`;
   }).join('');
-  return `<section class="card sec"><div class="card-head"><h2 class="h2">Mensurations</h2><p class="muted small">en cm, poids en kg</p></div><div class="ms-wrap"><table class="ms-table"><thead><tr><th></th>${heads}<th>${keys.length > 1 ? `${keys[0]}→${keys[keys.length - 1]}` : 'Évol.'}</th></tr></thead><tbody>${body}</tbody></table></div><p class="hint">Touche une semaine pour la modifier ou la supprimer, ${tip}.</p>${btn}</section>`;
+  const a = list[0], b = list[list.length - 1];
+  return `<section class="card sec"><div class="card-head"><h2 class="h2">Mensurations</h2><p class="muted small">en cm, poids en kg</p></div><div class="ms-wrap"><table class="ms-table"><thead><tr><th></th>${heads}<th>${a.n !== b.n ? `S${a.n}→S${b.n}` : 'Évol.'}</th></tr></thead><tbody>${body}</tbody></table></div><p class="hint">Touche une date pour la modifier ou la supprimer. Ajoutes-en aussi souvent que tu veux${NB}; bilan complet ${tip}.</p>${btn}</section>`;
 }
 function viewProgress() {
   const cur = programWeek();
@@ -2135,6 +2158,32 @@ function syncStatusHTML(st) {
     : c.lastSyncAt ? `À jour, dernière synchro ${relTime(c.lastSyncAt)}` : 'À jour';
   return `<i class="sdot ${st}"></i><span>${txt}</span>`;
 }
+/* ============ Version ============
+   build.py écrit la version dans <meta name="carnet-version"> : date de la dernière modification du code
+   (heure de Paris) et empreinte courte de la page. La carte dit laquelle tourne et si une autre attend. */
+const verParse = (s) => { const m = /^(\d{4}-\d{2}-\d{2}) (\d{2}):(\d{2}) ([0-9a-f]{7})$/.exec(String(s || '').trim()); return m ? { raw: m[0], d: m[1], h: m[2], mi: m[3], c: m[4] } : null; };
+const BUILD = verParse((document.querySelector('meta[name="carnet-version"]') || {}).content);
+const verLabel = (v) => `${dfDayY.format(new Date(parseIso(v.d)))} à ${+v.h}${NB}h${NB}${v.mi}`;
+let verNext = null; /* autre version déjà en cache : elle s’affichera au prochain lancement */
+let verBusy = false;
+let verMsg = ''; /* résultat de la dernière recherche : same, wait ou off */
+function versionBody() {
+  if (!BUILD) return '<h2 class="h2">Version</h2><p class="muted small" style="margin-top:6px">Version inconnue.</p>';
+  const nx = verNext;
+  const newer = nx && `${nx.d} ${nx.h}:${nx.mi}` > `${BUILD.d} ${BUILD.h}:${BUILD.mi}`;
+  const st = verBusy ? ['busy', 'Recherche d’une mise à jour…']
+    : nx ? ['pending', `${newer ? 'Une version plus récente' : 'Une autre version'} est prête${NB}: ${verLabel(nx)}, code ${nx.c}.`]
+      : verMsg === 'same' ? ['ok', 'Tu as la dernière version en ligne.']
+        : verMsg === 'wait' ? ['pending', `Une autre version est en ligne, mais son téléchargement n’est pas terminé${NB}: réessaie dans un instant.`]
+          : verMsg === 'off' ? ['off', `Impossible de vérifier${NB}: pas de réseau, ou le site ne répond pas.`]
+            : null;
+  return `<div class="card-head"><h2 class="h2">Version</h2><span class="muted small">code ${BUILD.c}</span></div>
+    <p class="ver-d">${verLabel(BUILD)}</p>
+    <p class="muted small">C’est la version affichée en ce moment sur cet appareil.</p>
+    ${st ? `<div class="sync-status" role="status"><i class="sdot ${st[0]}"></i><span>${st[1]}</span></div>` : ''}
+    <div class="stack" style="margin-top:14px">${nx ? '<button class="btn primary" data-act="ver-show">Afficher la nouvelle version</button>' : ''}<button class="btn quiet" data-act="ver-check"${verBusy ? ' disabled' : ''}>Chercher une mise à jour</button></div>`;
+}
+function versionCard() { return `<section class="card sec" id="version" data-ver>${versionBody()}</section>`; }
 function viewSettings() {
   const S = db.settings;
   const snaps = snapshots();
@@ -2167,6 +2216,7 @@ function viewSettings() {
     <div class="stack" style="margin-top:14px"><button class="btn quiet" data-act="export">Exporter mes données</button><label class="btn quiet file-btn">Importer une sauvegarde<input type="file" accept="application/json,.json" id="f-import"></label></div>
   </section>
   ${snaps.length ? `<section class="card sec"><h2 class="h2">Versions de secours</h2><p class="muted small" style="margin-top:6px">Copies faites automatiquement sur cet appareil avant chaque opération risquée.</p><ul class="rows" style="margin-top:8px">${snaps.map((s, i) => `<li class="row"><span class="grow"><span class="name">${esc(s.reason)}</span><span class="sub">${cap(relTime(s.at))}, ${plural(s.n, 'séance', 'séances')}</span></span><button class="btn sm quiet" data-act="restore-snap" data-i="${i}">Restaurer</button></li>`).join('')}</ul></section>` : ''}
+  ${versionCard()}
   <div class="stack" style="margin-top:22px"><button class="btn danger-line" data-act="wipe">Tout effacer sur cet appareil</button></div>
   ${store.ok ? '' : `<p class="warn">Le stockage local est indisponible ici${NB}: les données seront perdues à la fermeture de la page.</p>`}`;
 }
@@ -2525,19 +2575,16 @@ function coachDigestBuild(o, maxHist, maxJournal) {
     L.push(`- ${l.week ? `S${l.week} ` : ''}${coachDay(l.startedAt)} à ${hhmm(l.startedAt)} : ${l.name}, ${fmtDur(l.duration)}${l.kind === 'cross' ? '' : `, ${countSets(l)} séries`}${v ? `, tonnage ${fmtN(v)} ${u}` : ''}${l.notes ? ` ; notes de l’athlète : « ${l.notes.replace(/\s+/g, ' ')} »` : ''}`);
   }
 
-  const mk = Object.keys(db.measures).filter((k) => hasMeasure(db.measures[k])).sort((a, b) => a.slice(1) - b.slice(1));
+  const ml = measureList();
   const repere = 'Repères du programme à S12 : bras ≈ +1 cm, poitrine ≈ +1,5 à 2 cm, cuisses ≈ +1 à 2 cm, taille +1,5 cm maximum.';
   L.push('', '## Mensurations (cm)');
-  if (!mk.length) L.push(`Aucune mensuration enregistrée. ${repere}`);
+  if (!ml.length) L.push(`Aucune mensuration enregistrée. ${repere}`);
   else {
-    for (const k of mk) {
-      const m = db.measures[k];
-      L.push(`- ${k}${isIsoDay(m.date) ? `, ${coachDay(parseIso(m.date))}` : ''} : ${MEASURES.filter(([f]) => m[f] != null).map(([f, l]) => `${l.toLowerCase()} ${fmtN(m[f])}`).join(', ')}.`);
-    }
-    if (mk.length > 1) {
-      const a = db.measures[mk[0]], b = db.measures[mk[mk.length - 1]];
-      const ev = MEASURES.filter(([f]) => a[f] != null && b[f] != null).map(([f, l]) => `${l.toLowerCase()} ${fmtSigned(b[f] - a[f])}`);
-      if (ev.length) L.push(`- Évolution de ${mk[0]} à ${mk[mk.length - 1]} : ${ev.join(', ')}.`);
+    for (const e of ml) L.push(`- S${e.n}${e.dated ? `, ${coachDay(parseIso(e.d))}` : ''} : ${MEASURES.filter(([f]) => e.m[f] != null).map(([f, l]) => `${l.toLowerCase()} ${fmtN(e.m[f])}`).join(', ')}.`);
+    if (ml.length > 1) {
+      const a = ml[0], b = ml[ml.length - 1];
+      const ev = MEASURES.filter(([f]) => a.m[f] != null && b.m[f] != null).map(([f, l]) => `${l.toLowerCase()} ${fmtSigned(b.m[f] - a.m[f])}`);
+      if (ev.length) L.push(`- Évolution entre la première et la dernière mesure${a.n !== b.n ? ` (S${a.n} à S${b.n})` : ''} : ${ev.join(', ')}.`);
     }
     L.push(`- ${repere}`);
   }
@@ -3829,7 +3876,7 @@ function coachKnowCard() {
   const p = db.program;
   const nEx = p.sessions.reduce((n, s) => n + s.exercises.length, 0);
   const nW = Object.values(db.daily).filter((d) => d.w != null).length;
-  const nM = Object.keys(db.measures).filter((k) => hasMeasure(db.measures[k])).length;
+  const nM = measureList().length;
   const rows = [
     ['Programme', `${esc(p.name)}${NB}: ${plural(p.sessions.length, 'séance', 'séances')} et ${plural(nEx, 'exercice', 'exercices')} avec cibles et consignes, les règles et les phases, et le reste du PDF (feuille de route, nutrition, compléments, sommeil)`],
     ['Historique', db.logs.length ? `${plural(db.logs.length, 'séance', 'séances')}, série par série, avec tes notes et tes reps en réserve` : 'Aucune séance enregistrée pour l’instant'],
@@ -4565,41 +4612,47 @@ function openCross(id) {
     cancel: closeSheet,
   });
 }
-/* Mensurations : une entrée par semaine du programme (clé S<n>), à la date de ton choix.
-   Ajouter dans une semaine déjà mesurée la complète : les champs laissés vides gardent leur valeur.
+/* Mensurations : une entrée par jour, aussi souvent que tu veux. La clé est la date (AAAA-MM-JJ) ;
+   les entrées d’avant, une par semaine du programme, gardent leur clé S<n>.
+   Ajouter à une date déjà mesurée la complète : les champs laissés vides gardent leur valeur.
    Supprimer = entrée vide plus récente, pour que la suppression gagne aussi à la synchro. */
 function openMeasures(k) {
   const today = isoDay();
   const editKey = k && hasMeasure(db.measures[k]) ? k : null;
   const ex = editKey ? db.measures[editKey] : {};
   const ex0 = canon(editKey ? ex : null);
-  const weekDate = (key) => { const n = +key.slice(1); return isoDay(Math.min(n ? weekRange(n).s : addDays(weekStart(programStart()), -1), Date.now())); };
-  let date = editKey ? (isIsoDay(ex.date) && ex.date <= today ? ex.date : weekDate(editKey)) : today;
-  let dateTouched = false;
-  const target = () => (editKey && !dateTouched ? editKey : 'S' + programWeek(parseIso(date)));
+  const name0 = editKey ? measureName(editKey, ex) : '';
+  const day0 = editKey ? measureDay(editKey, ex) : today;
+  let date = day0 <= today ? day0 : today;
+  const date0 = date;
+  /* date inchangée : la mesure garde sa clé ; sinon elle rejoint celle du jour choisi, ou en ouvre une nouvelle */
+  const target = () => {
+    if (editKey && date === date0) return editKey;
+    const same = measureList().find((e) => e.d === date && e.k !== editKey);
+    return same ? same.k : date;
+  };
   const atFor = (key) => Math.max(Date.now(), ((db.measures[key] && db.measures[key].at) || 0) + 1);
   const info = () => {
-    const key = target(), n = +key.slice(1), cw = checkpointWeight(key), old = db.measures[key];
-    const rec = CHECKPOINTS.some(([c]) => c === key);
-    const merge = key !== editKey && hasMeasure(old) ? `<span class="warn-t"> Cette semaine a déjà une mesure${isIsoDay(old.date) ? ' (' + fmtDay(parseIso(old.date)) + ')' : ''}${NB}: les champs laissés vides gardent leur valeur.</span>` : '';
-    return `${n ? `Semaine ${key}` : 'Avant le début du programme (S0)'}${rec ? ', bilan conseillé' : ''}. ${n ? 'Poids moyen' : 'Poids de départ'}${NB}: ${cw != null ? `${fmt1(cw)}${NB}kg` : 'pas encore de pesée cette semaine'}.${merge}`;
+    const key = target(), n = programWeek(parseIso(date)), cw = checkpointWeight('S' + n), old = key !== editKey ? db.measures[key] : null;
+    const rec = CHECKPOINTS.some(([, c]) => c === n);
+    const merge = hasMeasure(old) ? `<span class="warn-t"> Ce jour a déjà une mesure${NB}: les champs laissés vides gardent leur valeur.</span>` : '';
+    return `${n ? `Semaine S${n}` : 'Avant le début du programme (S0)'}${rec ? ', bilan conseillé' : ''}. ${n ? 'Poids moyen' : 'Poids de départ'}${NB}: ${cw != null ? `${fmt1(cw)}${NB}kg` : 'pas encore de pesée cette semaine'}.${merge}`;
   };
-  openSheet(`<div class="sheet-head"><h2 class="sheet-title">${editKey ? `Mensurations ${editKey}` : 'Ajouter des mensurations'}</h2><button class="link-btn muted" data-sact="cancel">Annuler</button></div><p class="muted small">Le matin, à jeun, muscles froids, toujours au même endroit.</p>
+  openSheet(`<div class="sheet-head"><h2 class="sheet-title">${editKey ? `Mensurations ${esc(name0)}` : 'Ajouter des mensurations'}</h2><button class="link-btn muted" data-sact="cancel">Annuler</button></div><p class="muted small">Le matin, à jeun, muscles froids, toujours au même endroit.</p>
     <label class="field"><span>Date de la mesure</span><input class="input" type="date" id="f-mdate" value="${date}" max="${today}"></label>
     <p class="hint" data-mweek>${info()}</p>
     <div class="field-row">${MEASURES.map(([f, l]) => `<label class="field"><span>${esc(l)}</span><span class="ci-in"><input class="input" type="text" inputmode="decimal" autocomplete="off" data-m="${f}" value="${fmtIn(ex[f])}" placeholder="–" style="padding-right:40px"><em>cm</em></span></label>`).join('')}</div>
     <details class="rule" style="margin-top:14px"><summary>Comment mesurer</summary>${MEASURES.map(([, l, h]) => `<p><b>${esc(l)}</b>${NB}: ${esc(h)}</p>`).join('')}</details>
-    <div class="sheet-foot${editKey ? ' two' : ''}">${editKey ? '<button class="btn danger-line" data-sact="delete">Supprimer</button>' : ''}<button class="btn primary" data-sact="save" data-msave>Enregistrer ${target()}</button></div>`, {
+    <div class="sheet-foot${editKey ? ' two' : ''}">${editKey ? '<button class="btn danger-line" data-sact="delete">Supprimer</button>' : ''}<button class="btn primary" data-sact="save" data-msave>Enregistrer</button></div>`, {
     change: (e) => {
-      if (e.target.id !== 'f-mdate' || !isIsoDay(e.target.value)) return;
-      date = e.target.value; dateTouched = true;
+      if (e.target.id !== 'f-mdate' || !isRealDay(e.target.value)) return;
+      date = e.target.value;
       sheet.querySelector('[data-mweek]').innerHTML = info();
-      sheet.querySelector('[data-msave]').textContent = `Enregistrer ${target()}`;
     },
     save: () => {
       const di = sheet.querySelector('#f-mdate');
-      if (di && isIsoDay(di.value) && di.value !== date) { date = di.value; dateTouched = true; }
-      if (!isIsoDay(date) || date > isoDay()) { flagEl(di); toast('Choisis une date passée ou aujourd’hui'); return; }
+      if (di && isIsoDay(di.value) && di.value !== date) date = di.value;
+      if (!isRealDay(date) || date > isoDay()) { flagEl(di); toast('Choisis une date passée ou aujourd’hui'); return; }
       const key = target();
       const old = key !== editKey && hasMeasure(db.measures[key]) ? db.measures[key] : null;
       const o = { date, at: atFor(key) };
@@ -4610,20 +4663,93 @@ function openMeasures(k) {
         if (editKey && editKey !== key) db.measures[editKey] = normMeasures({ [editKey]: { date: ex.date, at: atFor(editKey) } })[editKey];
         save(true); touchData(800);
         closeSheet(); render(true);
-        toast(`Mensurations ${key} enregistrées`);
+        toast(`Mensurations du ${fmtDay(parseIso(date))} enregistrées`);
       };
       /* la synchro a changé cette mesure pendant la saisie : on demande avant d’écraser */
       if (editKey && canon(db.measures[editKey] || null) !== ex0) confirmSheet({ title: 'Modifiées sur un autre appareil', text: `Ces mensurations ont changé ailleurs pendant ta saisie. Garder ta version à la place${NB}?`, ok: 'Garder ma version', danger: false, onOk: commit });
       else commit();
     },
-    delete: () => confirmSheet({ title: `Supprimer les mensurations ${editKey}${NB}?`, text: 'Elles seront aussi retirées de ta sauvegarde GitHub à la prochaine synchro.', ok: 'Supprimer', onOk: () => {
+    delete: () => confirmSheet({ title: `Supprimer les mensurations ${name0}${NB}?`, text: 'Elles seront aussi retirées de ta sauvegarde GitHub à la prochaine synchro.', ok: 'Supprimer', onOk: () => {
       db.measures[editKey] = normMeasures({ [editKey]: { date: ex.date, at: atFor(editKey) } })[editKey];
       save(true); touchData(800); render(true);
-      toast(`Mensurations ${editKey} supprimées`);
+      toast(`Mensurations ${name0} supprimées`);
     } }),
     cancel: closeSheet,
   });
 }
+
+/* ============ Version : laquelle tourne, laquelle attend ============
+   Le service worker affiche la page en cache et la remplace en arrière-plan : après une mise à jour,
+   la nouvelle version n’apparaît qu’au lancement suivant. On lit donc la copie en cache pour savoir
+   si une autre version attend, et « Chercher une mise à jour » demande au réseau s’il y a plus récent.
+   Jamais d’adresse avec « ? » ici : le worker rangerait la réponse sous une clé à part. */
+const verUrl = () => new URL('./index.html', location.href).href;
+const verSig = (r) => r.headers.get('last-modified') || (r.headers.get('etag') || '').replace(/^W\//, '').replace(/"/g, '');
+async function verOf(r) {
+  /* la version est dans les premiers octets de la page : inutile d’en décoder la totalité */
+  const b = (await r.blob()).slice(0, 2048);
+  const t = b.text ? await b.text() : await new Response(b).text();
+  const m = /<meta name="carnet-version" content="([^"]*)"/.exec(t);
+  return m ? verParse(m[1]) : null;
+}
+async function verCached() {
+  if (!('caches' in window) || !(navigator.serviceWorker && navigator.serviceWorker.controller)) return null;
+  const r = await caches.match(verUrl(), { ignoreVary: true });
+  return r ? { sig: verSig(r), dt: r.headers.get('date') || '', v: await verOf(r) } : null;
+}
+function verPaint() {
+  const el = $('[data-ver]');
+  if (!el) return;
+  const act = document.activeElement && el.contains(document.activeElement) ? document.activeElement.dataset.act : null;
+  el.innerHTML = versionBody();
+  if (act) { const b = el.querySelector(`[data-act="${act}"]:not([disabled])`) || el.querySelector('button:not([disabled])'); if (b) b.focus({ preventScroll: true }); }
+}
+/* sans réseau : la copie en cache est-elle une autre version que celle affichée ? */
+async function verPeek() {
+  try {
+    if (!BUILD || verBusy) return;
+    const c = await verCached();
+    const nx = c && c.v && c.v.raw !== BUILD.raw ? c.v : null;
+    if ((nx ? nx.raw : '') !== (verNext ? verNext.raw : '')) { verNext = nx; verPaint(); }
+  } catch (e) { /* pas de cache ici : la carte garde son état */ }
+}
+async function verCheck() {
+  if (verBusy || !BUILD) return;
+  verBusy = true; verMsg = ''; verPaint();
+  let msg = 'same';
+  try {
+    const url = verUrl();
+    /* le service worker laisse passer HEAD : c’est le réseau qui répond, pas le cache */
+    const head = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+    if (!head.ok) throw new Error('http');
+    const want = verSig(head);
+    let c = await verCached();
+    if (!c) {
+      /* page ouverte sans service worker : rien en cache, la page en ligne se lit directement */
+      const r = await fetch(url, { cache: 'no-store' });
+      const v = r.ok ? await verOf(r) : null;
+      if (!v) throw new Error('page');
+      verNext = v.raw !== BUILD.raw ? v : null;
+    } else {
+      if (!want || c.sig !== want) {
+        /* le worker répond avec sa copie, puis la remplace par celle du réseau : on attend qu’elle soit rangée */
+        const dt0 = c.dt, t0 = performance.now(), max = want ? 25000 : 6000;
+        fetch(url, { cache: 'no-store' }).then((r) => r.blob()).catch(() => {});
+        let done = false;
+        while (!done && performance.now() - t0 < max) {
+          await new Promise((res) => setTimeout(res, 500));
+          c = (await verCached()) || c;
+          done = (!!want && c.sig === want) || (!!c.dt && c.dt !== dt0);
+        }
+        /* le réseau annonce une autre page que celle qui vient d’être rangée : elle n’est pas encore arrivée */
+        if (want && c.sig !== want) msg = 'wait';
+      }
+      verNext = c.v && c.v.raw !== BUILD.raw ? c.v : null;
+    }
+  } catch (e) { msg = 'off'; }
+  verBusy = false; verMsg = verNext ? '' : msg; verPaint();
+}
+
 
 /* ============ Historique : modifier ou ajouter une séance passée ============ */
 const draftTs = (d) => (isIsoDay(d.date) && /^\d{1,2}:\d{2}$/.test(d.time || '') ? localTs(d.date, d.time) : NaN);
@@ -5083,7 +5209,7 @@ function commitMsg(r, m) {
   if (dk.length === 1) return `Suivi du ${dfc(parseIso(dk[0]))}`;
   if (dk.length > 1) return `Suivi quotidien (${dk.length} jours)`;
   const mk = Object.keys(m.measures).filter((k) => canon(m.measures[k]) !== canon(r.measures[k] || null));
-  if (mk.length === 1) return `Mensurations ${mk[0]}${hasMeasure(m.measures[mk[0]]) ? '' : ' supprimées'}`;
+  if (mk.length === 1) return `Mensurations ${isIsoDay(mk[0]) ? 'du ' : ''}${mk[0]}${hasMeasure(m.measures[mk[0]]) ? '' : ' supprimées'}`;
   if (mk.length > 1) return 'Mensurations';
   if (canon(m.program) !== canon(r.program)) return 'Programme mis à jour';
   if (canon(m.settings) !== canon(r.settings)) return 'Réglages mis à jour';
@@ -5469,6 +5595,8 @@ const ACT = {
   'w-add-ex': () => openExerciseEditor(db.active.sessionId, -1, 'workout'),
   'ci-cr': () => { const e = dayEntry(isoDay()); ciUpdate('cr', !(e && e.cr), true); },
   measures: (b) => openMeasures(b.dataset.k || null),
+  'ver-check': () => { verCheck(); },
+  'ver-show': () => { save(true); location.reload(); },
   'le-session': (b) => {
     const d = logDraft, s = findSession(b.dataset.id);
     if (!d || !s || s.id === d.sessionId) return;
@@ -5701,6 +5829,8 @@ try { if (navigator.storage && navigator.storage.persist) navigator.storage.pers
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost') && window.self === window.top) {
   window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
 }
+/* le worker remplace la page en cache quelques secondes après le lancement : on regarde alors si c’est une autre version */
+setTimeout(verPeek, 6000);
 if (syncCfg) scheduleSync(1500);
 
 })();
