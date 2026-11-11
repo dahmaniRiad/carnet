@@ -768,6 +768,31 @@ const MEASURES = [
 ];
 const CHECKPOINTS = [['S0', 0], ['S6', 6], ['S12', 12], ['S18', 18], ['S24', 24]];
 
+/* Le reste du PDF (sections 03 à 08) : feuille de route, logique de la semaine, nutrition, compléments, sommeil, suivi.
+   Ce texte est lu par le coach, pas affiché tel quel : il résume la méthode du programme, à partir du poids de départ.
+   Il ne doit rien dire de la personne (âge, corps, santé, habitudes, horaires) : le dépôt de l’app est public.
+   Ce qui est personnel s’écrit dans l’app (settings.coachProfile). */
+function programGuide(sw) {
+  const kg = (d) => String(Math.round((sw + d) * 10) / 10).replace('.', ',');
+  return [
+    ['Feuille de route sur un an', `Phase 1, masse propre, S1 à S24 : de ${kg(0)} à ≈ ${kg(6)} kg, +0,2 à +0,35 kg par semaine, gros gain de volume en haut du corps et jambes qui rattrapent. Phase 2, mini-sèche, ≈ 6 semaines à ≈ −0,5 kg par semaine : affiner le bas-ventre et faire ressortir les abdos en gardant le muscle. Phase 3, masse propre 2, ≈ 5 mois à +0,15 à +0,25 kg par semaine : finir vers ${kg(6)}-${kg(7)} kg avec plus de muscle et moins de gras. On construit d’abord, on affine ensuite : pas de sèche avant d’avoir le muscle. Le programme détaille les 12 premières semaines ; à la fin de S6 et de S12, bilan complet (poids moyens, tour de taille, mensurations, charges clés, sommeil), puis ajustement des calories, du volume et des exercices.`],
+    ['Repères réalistes à 12 semaines, plan suivi à 80 % ou plus', `Poids moyen ≈ ${kg(3)}-${kg(4)} kg, dont ≈ 1 kg d’eau et de glycogène pris les 2-3 premières semaines (normal avec la créatine). Tour de bras ≈ +1 cm, poitrine ≈ +1,5 à 2 cm, cuisses ≈ +1 à 2 cm, tour de taille +1,5 cm maximum (au-delà, on réduit le surplus). Force : +10 à 20 % sur les exercices de base, en répétitions ou en charge.`],
+    ['Logique de la semaine', 'Jamais de haut du corps le lendemain du cross, qui fatigue épaules, dos et bras : les séances prioritaires doivent arriver fraîches. Upper A après le repos du dimanche, Upper B après un jour de repos ou deux jours après le cross. Au moins 48 h, le plus souvent 72 h, entre deux séances de la même zone. Épaules latérales 3 fois par semaine et abdos 2 fois : ils dessinent le physique et récupèrent vite. Jamais plus de 3 jours d’entraînement d’affilée.'],
+    ['Volume par muscle, en séries difficiles par semaine, bloc 1 puis bloc 2', 'Pectoraux 12 puis 14 ; dos 12 puis 14 ; épaules latérales 10 puis 13 ; biceps 6 puis 8 et triceps 6 puis 8, plus ≈ 12 séries de tirages et de développés qui les travaillent indirectement ; abdos 10 ; quadriceps 12 puis 14 ; ischios 9 ; fessiers 6 (hip thrust et fentes bulgares, sans compter la presse et le soulevé de terre roumain) ; mollets 6 ; adducteurs 2.'],
+    ['Abdos', 'On les entraîne comme n’importe quel muscle, lourd et progressif (crunch à la poulie 10-15 reps avec une charge qui monte), 2 fois par semaine. Les faire ressortir, c’est le rôle de la mini-sèche. Les circuits de 50 reps sans charge n’apportent presque rien.'],
+    ['Nutrition : la méthode', 'Le frein n’est pas de savoir quoi manger mais de réussir à manger assez : repas denses et peu volumineux, un repas qui se boit, le plus gros repas après la séance, quand l’appétit est là. 4 repas, plus un bonus le soir les jours d’entraînement. Glucides ≈ 320-345 g les jours d’entraînement et 300-330 g au repos ; lipides ≈ 100 g au palier 1 puis 120 g au palier 2 à l’entraînement, 85 g puis 105 g au repos. Le passage au palier 2, c’est 1 c. à s. d’huile d’olive en plus au déjeuner et au dîner. Dépenses inutiles à limiter : pas de cardio en plus du cross, 6 000 à 8 000 pas par jour, séances de 75 à 80 min.'],
+    ['Nutrition : contre le manque d’appétit', 'Boire une partie des calories : le shake se boit en 20-30 min. Densifier sans agrandir l’assiette : huile d’olive, beurre de cacahuète, fromage, oléagineux, lait entier. Moins d’aliments coupe-faim : ≈ 100 g de légumes cuits par repas, pas 300 g. Le plus gros repas après la séance. Horaires fixes et rappels. Protéines et féculents d’abord, légumes à la fin. Pas d’eau à volonté à table : 2,5 à 3 L par jour, entre les repas. Tout préparer à l’avance, avec un batch cooking le dimanche et un plus court en milieu de semaine. Manger ce qu’on aime.'],
+    ['Nutrition : journée type et menus', 'Jour d’entraînement : petit-déjeuner ≈ 730 kcal ; déjeuner ≈ 730 kcal, 820 au palier 2 ; repas pré-training ≈ 500 kcal, digeste, environ 2 h 30 avant la séance ; repas d’après séance, le plus gros, ≈ 830 kcal, 920 au palier 2 ; bonus du soir ≈ 250 kcal. Jour de repos : la même journée sans le bonus. Options du petit-déjeuner : salé (3 œufs, pain complet, emmental, banane, jus d’orange), shake express, ou porridge (flocons d’avoine, lait entier, whey, beurre de cacahuète, banane). Déjeuner : bowl poulet-riz, wraps au poulet ou à la dinde, pâtes au thon. Pré-training : skyr et granola, ou tartines à la confiture et whey. Après la séance : pâtes bolognaise, saumon-riz, burger maison avec frites au four. Bonus : lait entier et amandes, ou fromage blanc, miel et noix.'],
+    ['Nutrition : le shake, les boosters, les équivalences', 'Shake « accélérateur », ≈ 725 kcal et 46 g de protéines : 300 ml de lait entier, 40 g de flocons d’avoine, 1 banane, 20 g de beurre de cacahuète, 1 dose de whey, 10 g de miel. Il remplace n’importe quel repas qui ne passe pas ; version XL ≈ 850 kcal avec 400 ml de lait et 30 g de beurre de cacahuète. Boosters de ≈ 100 kcal sans volume : 1 c. à s. d’huile d’olive, 15 g de beurre de cacahuète, 15 g d’amandes ou de noix de cajou, 25 g de fromage râpé, 150 ml de lait entier à la place de l’eau, 30 g de miel, 2 dattes, un demi-avocat, 2 carrés de chocolat noir, 200 ml de jus d’orange. Un palier de +200 kcal = 2 boosters. Équivalences : 150 g de poulet ou de dinde = 165 g de bœuf haché 5 % = 190 g de cabillaud = 135 g de thon au naturel = 170 g de saumon = 330 g de skyr, soit ≈ 35 g de protéines ; 100 g de riz, de pâtes ou de semoule crus = 440 g de pommes de terre = 140 g de pain = 95 g de flocons d’avoine = 2 wraps, soit ≈ 350 kcal.'],
+    ['Nutrition : ajuster, la balance décide', 'Pesée chaque matin à jeun, après les toilettes ; un chiffre isolé ne veut rien dire, seule la moyenne de la semaine compte. S1-S2 : +1 à +2 kg d’un coup est normal (eau, glycogène, créatine), on ne change rien. Moins de +0,15 kg par semaine deux semaines de suite : +200 kcal par jour, soit 2 boosters. +0,2 à +0,35 kg par semaine : parfait. Plus de +0,5 kg par semaine deux semaines de suite : −200 kcal par jour, en retirant les 2 boosters d’huile d’olive ou le bonus du soir. Tour de taille +1 cm en 2 semaines avec un poids qui monte vite : −100 à −200 kcal par jour. Poids qui ne bouge pas après 2 hausses : remplacer le cross par la séance 5 et refaire le point 2 semaines plus tard. Un jour où tout ne passe pas, priorité dans l’ordre : le shake, le repas d’après séance, le déjeuner, puis le reste ; un jour raté ne se rattrape pas le lendemain.'],
+    ['Compléments', 'Essentiels : créatine monohydrate 5 g par jour, tous les jours, repos compris, sans phase de charge (+1 à 2 kg d’eau dans le muscle les premières semaines, normal) ; whey, 1 à 2 doses par jour selon les menus ; vitamine D3, 1 000 à 2 000 UI par jour au déjeuner, surtout d’octobre à avril. Utiles : magnésium bisglycinate, 200 à 250 mg le soir ; glycine, 3 g, 30 à 60 min avant de dormir ; oméga-3, 1 à 2 g d’EPA et DHA par jour, seulement avec moins de 2 poissons gras par semaine. En option : citrulline malate, 6 à 8 g, 45 à 60 min avant la séance. À éviter : pré-workout caféiné ou boisson énergisante le soir, brûleurs de graisse, BCAA, boosters de testostérone, gainers du commerce (le shake maison fait mieux), mélatonine et ashwagandha en première intention.'],
+    ['Sommeil et récupération', 'Même horaire 7 jours sur 7, lever à heure fixe à 30 min près. 10 à 20 min de lumière du jour dans l’heure qui suit le lever. Dernier café, thé ou boisson énergisante avant 14 h. 5 min de retour au calme en fin de séance, puis douche tiède. Dîner environ 3 h avant le coucher. Fin du travail et lumières tamisées 1 h 30 avant le coucher, écrans coupés 30 min avant, puis lecture, étirements ou respiration lente (inspirer 4 s, expirer 6 s). Chambre fraîche (17-19 °C), noire et calme ; le lit ne sert qu’à dormir. Pas endormi après 20-30 min : se lever, activité calme, revenir quand la fatigue arrive. Sieste : 20 min maximum, avant 15 h, seulement si besoin. Si le sommeil reste mauvais après 3-4 semaines de routine : consulter. Pauses actives pour qui travaille assis, 2 fois 5 min par jour : étirement des fléchisseurs de hanche 30 s par côté, extension du haut du dos ×10, écartés à l’élastique ×15, 10 squats au poids du corps.'],
+    ['Suivi', 'Poids chaque matin ; tour de taille une fois par semaine, le dimanche ; mensurations et photos en S0, S6 et S12, le matin, à jeun, muscles froids (photos de face, de profil, de dos, bras contractés, même lieu et même lumière) ; chaque série notée « charge × reps » : pas noté, pas fait ; sommeil et appétit notés de 1 à 5 chaque matin. La régularité bat l’intensité : 80 % du plan appliqué pendant 12 semaines vaut mieux que 100 % pendant 2 semaines.'],
+    ['Checklist', 'Chaque jour : pesée notée, créatine, lumière du jour le matin, 4 repas (le shake si l’appétit manque), 2,5 à 3 L d’eau entre les repas, pas de caféine après 14 h, 2 pauses actives, écrans coupés 30 min avant le coucher, au lit à l’heure. Jours d’entraînement : repas pré-training, échauffement complet, chaque série notée, gros repas après la séance, bonus du soir ; +300 kcal après le cross. Chaque semaine : tour de taille, bilan hebdo et décision calories, batch cooking, courses.'],
+    ['Hypothèses du programme', 'Salle complète : machines, poulies, haltères, hack squat. Aucune blessure ni douleur au départ : si une douleur apparaît (pas une courbature), prendre l’alternative indiquée et consulter si elle persiste. C’est un plan général d’entraînement et de nutrition, qui ne remplace pas un avis médical.'],
+  ];
+}
+
 /* ============ Utilitaires ============ */
 const NB = '\u00A0';
 const $ = (s, r = document) => r.querySelector(s);
@@ -943,7 +968,7 @@ const store = (() => {
     del(k) { try { if (ok) localStorage.removeItem(k); else delete mem[k]; } catch (e) { /* */ } },
   };
 })();
-const DEFAULT_SETTINGS = { unit: 'kg', weeklyGoal: 5, sound: true, defaultRest: 90, hideInstall: false, nudgeAfter: 0, coachGoal: '' };
+const DEFAULT_SETTINGS = { unit: 'kg', weeklyGoal: 5, sound: true, defaultRest: 90, hideInstall: false, nudgeAfter: 0, coachGoal: '', coachProfile: '' };
 const logOrder = (a, b) => a.startedAt - b.startedAt || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
 
 function normEx(e) {
@@ -1034,6 +1059,7 @@ function migrate(d) {
   out.settings = Object.assign({}, DEFAULT_SETTINGS, d.settings || {});
   out.settings.weeklyGoal = clamp(parseInt(out.settings.weeklyGoal, 10) || 5, 1, 7);
   out.settings.coachGoal = String(out.settings.coachGoal || '').slice(0, 1000);
+  out.settings.coachProfile = String(out.settings.coachProfile || '').slice(0, 3000);
   out.programUpdatedAt = +d.programUpdatedAt || 0;
   out.settingsUpdatedAt = +d.settingsUpdatedAt || 0;
   if (d.program && d.program.schedule) out.program = normProgram(d.program);
@@ -2092,12 +2118,12 @@ const COACH_ASKS = {
 const COACH_QUICK = [`La machine est prise${NB}: je remplace par quoi${NB}?`, `Je suis fatigué aujourd’hui${NB}: j’adapte comment${NB}?`, `J’ai une gêne sur cet exercice${NB}: je fais quoi${NB}?`];
 const COACH_RULES = `Tu es le coach de musculation personnel intégré à « Carnet », l’app de suivi d’entraînement de l’athlète. Tu lui parles directement, en français, en le tutoyant.
 
-Ce que tu sais : tout ce qui suit sous « DONNÉES DE L’ATHLÈTE » vient de l’app (programme, séances, charges, répétitions, pesées, sommeil, mensurations, objectif). Tu ne vois pas ses mouvements : pour la technique, appuie-toi sur les consignes du programme, sur ses notes et sur ce que les chiffres laissent deviner (répétitions qui chutent, charge qui stagne, repos trop courts), et dis-le quand c’est une hypothèse.
+Ce que tu sais : tout ce qui suit sous « DONNÉES DE L’ATHLÈTE » vient de l’app (objectif et profil écrits par l’athlète, programme, séances, charges, répétitions, pesées, sommeil, mensurations). Le programme ne se limite pas aux séances : sa feuille de route, sa méthode de nutrition, ses compléments et ses règles de sommeil y figurent aussi. Tu ne vois pas ses mouvements : pour la technique, appuie-toi sur les consignes du programme, sur ses notes et sur ce que les chiffres laissent deviner (répétitions qui chutent, charge qui stagne, repos trop courts), et dis-le quand c’est une hypothèse.
 
 Comment répondre :
 - Adapte chaque conseil à SES données et à SON objectif : cite les chiffres précis (charges, répétitions, dates, semaines) qui justifient ce que tu dis. Pas de généralités valables pour tout le monde.
 - Toute proposition d’amélioration ou de modification (charge, exercice, volume, repos, planning, nutrition) part de trois choses : son objectif, son programme (règles, phase en cours, cibles) et son historique. Dis en quelques mots sur lesquelles elle s’appuie. Si l’objectif n’est pas renseigné, dis-le et demande-le avant de proposer un changement de fond.
-- Reste dans le cadre du programme (double progression, RIR, phases, décharges). Si tu proposes de t’en écarter, explique pourquoi et ce que ça change.
+- Reste dans le cadre du programme (double progression, RIR, phases, décharges, feuille de route, méthode de nutrition, sommeil, compléments) : pars de ce qu’il prévoit avant toute recommandation générale. Si tu proposes de t’en écarter, explique pourquoi et ce que ça change.
 - Tes bilans de séance précédents figurent dans les données : reste cohérent avec ce que tu as déjà conseillé, et vérifie si ça a été appliqué.
 - Sois concret et priorisé : quoi faire, à quelle charge, combien de répétitions, quand. Une à trois actions valent mieux qu’une liste de dix.
 - Sois honnête : s’il manque des données (pas de pesée, séances manquantes, objectif non renseigné), dis-le au lieu d’inventer. Ne suppose jamais une valeur absente.
@@ -2243,10 +2269,12 @@ function coachDigestBuild(o, maxHist, maxJournal) {
   const logs = db.logs.filter((l) => l.startedAt < asOf && l.id !== o.skipId);
   const cur = programWeek(asOf), ph = phaseOf(cur);
   const goal = String(db.settings.coachGoal || '').trim().replace(/\s+/g, ' ');
+  const profile = String(db.settings.coachProfile || '').trim().replace(/\s+/g, ' ');
   const L = [];
   L.push('DONNÉES DE L’ATHLÈTE (extraites de l’app Carnet)', '');
   L.push('## Profil et objectif');
   L.push(`- Objectif écrit par l’athlète : ${goal ? `« ${goal} »` : 'non renseigné (demande-le-lui quand c’est utile).'}`);
+  L.push(`- Profil et contexte écrits par l’athlète : ${profile ? `« ${profile} »` : 'non renseignés (âge, taille, horaires, appétit, sommeil, blessures : demande ce qui te manque quand c’est utile).'}`);
   L.push(`- Programme suivi : ${p.name}${p.subtitle ? ` (${p.subtitle})` : ''}, 12 semaines, début le ${dfDayY.format(new Date(programStart()))}.`);
   L.push(`- Poids de départ : ${fmtN(p.startWeight)} kg. Séances visées par semaine : ${db.settings.weeklyGoal}, cross compris. Charges en ${u}.`);
   L.push(`- Date du jour : ${dfFull.format(new Date(asOf))}. ${cur ? `Semaine S${cur} du programme, phase ${ph.label} : ${ph.desc}` : 'Le programme n’a pas encore commencé.'}`);
@@ -2256,7 +2284,10 @@ function coachDigestBuild(o, maxHist, maxJournal) {
   L.push('- Phases : S1 prise en main (RIR 3 partout), S2 à S5 bloc 1, S6 décharge, S7 à S11 bloc 2 (séries du bloc 2, drop set sur la dernière série des isolations, isolations à RIR 0), S12 décharge et bilan complet.');
   const n1 = nutritionFor(1, 'muscu'), n1r = nutritionFor(1, 'repos'), n2 = nutritionFor(3, 'muscu'), n2r = nutritionFor(3, 'repos');
   L.push(`- Nutrition : palier 1 (S1-S2) ≈ ${n1.kcal} kcal les jours d’entraînement et ${n1r.kcal} au repos ; palier 2 (dès S3) ≈ ${n2.kcal} et ${n2r.kcal}. Protéines ${n2.prot} g les jours d’entraînement, ${n2r.prot} g au repos. Jour de cross : +300 kcal après la séance. Créatine : 5 g par jour.`);
-  L.push('- Poids : pesée à jeun chaque matin, on juge sur la moyenne de la semaine. Repère du programme : +0,6 kg par semaine en S1-S2, puis +0,25 kg par semaine. Cible dès S3 : +0,2 à +0,35 kg par semaine. Moins de +0,15 kg deux semaines de suite : +200 kcal par jour. Plus de +0,5 kg deux semaines de suite : −200 kcal par jour.');
+  L.push('- Repère de poids affiché par l’app dans le bilan hebdo : poids de départ +0,6 kg par semaine en S1-S2, puis +0,25 kg par semaine. Cible du programme dès S3 : +0,2 à +0,35 kg par semaine.');
+
+  L.push('', '## Le reste du programme : feuille de route, logique, nutrition, compléments, sommeil, suivi');
+  for (const [t, d] of programGuide(p.startWeight)) L.push(`- ${t} : ${d}`);
 
   const ids = p.schedule[crossVariant(cur)] || [];
   L.push('', '## Planning de la semaine en cours');
@@ -2917,7 +2948,7 @@ function coachSendBtn(busy) {
   return busy ? `<button class="csend stop" data-act="coach-stop" aria-label="Arrêter la réponse">${I.stop}</button>` : `<button class="csend" data-act="coach-send" aria-label="Envoyer au coach">${I.send}</button>`;
 }
 function coachGoalField() {
-  return `<label class="field" style="margin-top:0"><span>Mon objectif</span><textarea class="input" id="f-coachgoal" data-coachgoal rows="3" maxlength="1000" placeholder="Ex.${NB}: prendre 4${NB}kg d’ici mars, épaules et bras en priorité, sans dépasser 85${NB}cm de tour de taille.">${esc(db.settings.coachGoal || '')}</textarea></label><p class="hint">Le coach s’y réfère à chaque réponse. Plus c’est précis (chiffre, échéance, priorités), mieux il te guide. Tu peux aussi y noter une blessure ou une contrainte.</p>`;
+  return `<label class="field" style="margin-top:0"><span>Mon objectif</span><textarea class="input" id="f-coachgoal" data-coachgoal rows="3" maxlength="1000" placeholder="Ex.${NB}: prendre 4${NB}kg d’ici mars, épaules et bras en priorité, sans dépasser 85${NB}cm de tour de taille.">${esc(db.settings.coachGoal || '')}</textarea></label><p class="hint">Le coach s’y réfère à chaque réponse. Plus c’est précis (chiffre, échéance, priorités), mieux il te guide.</p><label class="field"><span>À savoir sur moi</span><textarea class="input" id="f-coachprofile" data-coachprofile rows="4" maxlength="3000" placeholder="Âge, taille, horaires de travail et de séance, appétit, sommeil, blessures, matériel de ta salle, aliments que tu évites…">${esc(db.settings.coachProfile || '')}</textarea></label><p class="hint">Ce que le programme ne dit pas de toi. Le coach en tient compte dans chaque réponse.</p>`;
 }
 /* Ce que le coach reçoit, en clair : l’objectif à écrire, ce que l’app y joint, et le résumé complet à la demande */
 function coachKnowCard() {
@@ -2926,7 +2957,7 @@ function coachKnowCard() {
   const nW = Object.values(db.daily).filter((d) => d.w != null).length;
   const nM = Object.keys(db.measures).filter((k) => hasMeasure(db.measures[k])).length;
   const rows = [
-    ['Programme', `${esc(p.name)}${NB}: ${plural(p.sessions.length, 'séance', 'séances')} et ${plural(nEx, 'exercice', 'exercices')}, avec cibles, consignes, phases et règles`],
+    ['Programme', `${esc(p.name)}${NB}: ${plural(p.sessions.length, 'séance', 'séances')} et ${plural(nEx, 'exercice', 'exercices')} avec cibles et consignes, les règles et les phases, et le reste du PDF (feuille de route, nutrition, compléments, sommeil)`],
     ['Historique', db.logs.length ? `${plural(db.logs.length, 'séance', 'séances')}, série par série, avec tes notes` : 'Aucune séance enregistrée pour l’instant'],
     ['Suivi', `${plural(nW, 'pesée', 'pesées')}, ${plural(nM, 'mensuration', 'mensurations')}, sommeil, appétit et créatine`],
   ];
@@ -3266,6 +3297,12 @@ function coachInput(t) {
   try {
     if (t.dataset.coachgoal != null) {
       db.settings.coachGoal = t.value.slice(0, 1000);
+      db.settingsUpdatedAt = Date.now();
+      save(); markDirty(8000);
+      return true;
+    }
+    if (t.dataset.coachprofile != null) {
+      db.settings.coachProfile = t.value.slice(0, 3000);
       db.settingsUpdatedAt = Date.now();
       save(); markDirty(8000);
       return true;
@@ -3877,7 +3914,7 @@ async function ghPutFile(text, sha, message) {
   if (res.status === 409 || res.status === 422) return false;
   throw await ghFail(res);
 }
-const SYNC_SETTINGS = ['unit', 'weeklyGoal', 'sound', 'defaultRest', 'coachGoal'];
+const SYNC_SETTINGS = ['unit', 'weeklyGoal', 'sound', 'defaultRest', 'coachGoal', 'coachProfile'];
 function coreOf(d) {
   const st = {};
   SYNC_SETTINGS.forEach((k) => { st[k] = d.settings[k]; });
