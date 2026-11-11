@@ -12,10 +12,10 @@ Contenu : index.html (toute l’app), sw.js (hors ligne), manifest.webmanifest e
 
 ## Coach IA (facultatif)
 
-- Réglages → Coach IA : avec une clé API Anthropic, un coach lit ton objectif, ton programme et ton historique, et te conseille avant, pendant et après la séance.
+- Réglages → Coach IA : avec une clé API Anthropic, un coach lit ton objectif, ton programme et ton historique. Il regarde chaque série, te propose des réglages avec ses raisons (repos, charge, séries, exercice, programme) et ne change rien sans ton accord. Chaque changement accepté s’annule depuis le journal du coach.
 - La clé reste sur l’iPhone : elle n’est ni exportée, ni envoyée sur GitHub.
-- À chaque question, l’app envoie ton historique d’entraînement à Anthropic (Claude) pour obtenir la réponse. Rien n’est envoyé tant qu’aucune clé n’est saisie.
-- L’usage est payant, à la demande, sur ton compte Anthropic.
+- À chaque question et, pendant une séance, après chaque série, l’app envoie ton historique d’entraînement à Anthropic (Claude) pour obtenir la réponse. Rien n’est envoyé tant qu’aucune clé n’est saisie.
+- L’usage est payant, à la demande, sur ton compte Anthropic : de l’ordre de quelques dizaines de centimes pour une séance suivie série par série.
 
 ## Mise en ligne
 

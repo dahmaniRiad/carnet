@@ -563,13 +563,78 @@ body.chat #toast{bottom:calc(var(--safe-b) + 96px + var(--kb,0px))}
 .wcoach-head{display:flex;align-items:center;gap:10px}
 .wcoach .ic{width:34px;height:34px;border-radius:11px}
 .wcoach .ic svg{width:20px;height:20px}
-.wcoach-txt{margin-top:10px;font-size:15px;line-height:1.4}
-.wcoach-fb{margin-top:8px;padding-top:8px;border-top:1px solid var(--stroke);font-size:14px;line-height:1.4;color:var(--muted)}
-.wcoach-fb b{color:var(--ink);font-weight:650}
+.wcoach-txt{margin-top:1px;font-size:14px;line-height:1.35;color:var(--muted)}
+.wcoach-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.wcoach-btns .btn{flex:1 1 auto;padding:0 12px}
+.wcoach-fb{margin-top:10px;padding-top:10px;border-top:1px solid var(--stroke);font-size:14px;line-height:1.4;color:var(--muted)}
+.wcoach-fb a{color:var(--ink);font-weight:600;text-underline-offset:3px}
 .hint-line.coach{background:rgba(255,255,255,.06);border-color:var(--stroke-2)}
 .hint-line.coach svg{width:18px;height:18px;color:var(--ink)}
-.tcoach{margin:12px 0 0;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.08);font-size:15px;line-height:1.35;text-align:left}
-.tcoach b{display:block;margin-bottom:2px;font-size:12px;font-weight:700;color:var(--muted)}
+/* coach : ressenti après une série, constat, proposition à valider */
+.feel{display:grid;grid-template-columns:repeat(4,1fr) 1.9fr;gap:6px}
+.feel button{height:44px;border-radius:12px;background:var(--field);border:1px solid transparent;font:850 17px/1 var(--display);font-stretch:70%;color:var(--muted);transition:transform .3s var(--spring),background .25s,color .25s}
+.feel button:active{transform:scale(.92)}
+.feel button.pain{font:650 14px/1 var(--text);font-stretch:normal}
+.feel button.on{color:var(--pbi);background:var(--pb)}
+.feel button.pain.on{color:#2B0D0C;background:var(--danger)}
+.feel-q{margin:0 0 6px;font-size:13px;font-weight:600;color:var(--muted)}
+.cst{font-size:14px;line-height:1.4}
+.cex{display:grid;gap:10px;margin-top:12px}
+.cex:empty{display:none}
+.cex .hint-line{margin-top:0}
+.cex .feel-q{margin-bottom:-4px}
+.cprop{padding:12px 14px;border-radius:16px;background:var(--raised);border:1px solid var(--stroke-2);text-align:left}
+.cprop-k{font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+.cprop-t{margin-top:4px;font-size:16px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
+.cprop-o{font-weight:500;color:var(--muted)}
+.cprop-w{display:grid;gap:6px;margin:10px 0 0}
+.cprop-w div{display:grid;grid-template-columns:84px 1fr;gap:8px;font-size:14px;line-height:1.4}
+.cprop-w dt{font-size:13px;font-weight:600;color:var(--muted)}
+.cprop-w dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.cprop-b{display:grid;grid-template-columns:1.4fr 1fr;gap:8px;margin-top:12px}
+.cprop-b .btn{width:100%}
+.cprop.done{padding:8px 14px;background:transparent;border-color:var(--stroke)}
+.cprop-s{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+.cprop-s .link-btn{flex:none}
+/* coach : listes à cocher (plan du jour, changements d’après-séance) */
+.clist{display:grid;gap:8px;margin-top:12px}
+.crow{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;min-height:44px;padding:12px;border-radius:14px;background:var(--field);border:1px solid var(--stroke)}
+.crow input{width:24px;height:24px;margin:1px 0 0;accent-color:var(--pb)}
+.crow.done{grid-template-columns:1fr;background:transparent}
+.crow-b{display:grid;gap:4px;min-width:0}
+.crow-t{font-size:15px;font-weight:650;line-height:1.3;overflow-wrap:anywhere}
+.crow-w{font-size:14px;line-height:1.4;color:var(--muted);overflow-wrap:anywhere}
+.crow-w b{font-weight:600;color:var(--ink)}
+.crow-st{font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+.crow .link-btn{justify-self:start}
+.cnext{margin-top:18px;padding-top:16px;border-top:1px solid var(--stroke)}
+.cnext .muted{margin-top:4px}
+.cdone{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px;font-size:14px;line-height:1.4}
+.cnotes,.cjour{list-style:none;margin:10px 0 0;padding:0}
+.cnotes li{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--stroke);font-size:15px;line-height:1.4}
+.cnotes li:first-child,.cjour li:first-child{border-top:0}
+.cnotes li span{flex:1;min-width:0;overflow-wrap:anywhere}
+.cnotes .icon-btn{color:var(--muted)}
+.cjour li{padding:12px 0;border-top:1px solid var(--stroke)}
+.cjour-t{font-size:15px;font-weight:650;line-height:1.3;overflow-wrap:anywhere}
+.cjour-w{margin-top:3px;font-size:14px;line-height:1.4;color:var(--muted);overflow-wrap:anywhere}
+.cjour li.off .cjour-t{color:var(--muted);text-decoration:line-through}
+.chip.txt.on{color:var(--pbi);background:var(--pb);border-color:transparent}
+.lfeel{margin-left:auto;font-size:13px;font-weight:600;color:var(--muted)}
+.lfeel.pain{color:var(--danger)}
+/* coach dans le panneau de repos : anneau réduit, contenu qui défile si l’écran est petit */
+.tcoach{display:grid;gap:10px;margin:12px 0 0;text-align:left}
+.tmot{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.08);font-size:15px;line-height:1.35}
+.tmot b{display:block;margin-bottom:2px;font-size:12px;font-weight:700;color:var(--muted)}
+.tpanel.coach{max-height:calc(100vh - var(--safe-t) - var(--safe-b) - 20px);max-height:calc(100dvh - var(--safe-t) - var(--safe-b) - 20px);padding-bottom:0;overflow-y:auto;overscroll-behavior:contain}
+.tpanel.coach .tring{width:min(44vw,172px);margin:4px auto 2px}
+.tpanel.coach .tnum{font-size:clamp(44px,14vw,62px)}
+.tpanel.coach .tload{font-size:22px}
+/* les boutons du minuteur restent sous le doigt : c’est la zone du coach qui défile au-dessus d’eux */
+.tpanel.coach .tbtns{position:sticky;bottom:0;z-index:2;margin:14px -18px 0;padding:10px 18px 16px;background:rgba(26,29,33,.97);border-top:1px solid var(--stroke)}
+.tpanel.coach.prop .tring{width:min(30vw,112px);margin:0 auto}
+.tpanel.coach.prop .tnum{font-size:clamp(32px,10vw,40px)}
+@media (max-height:700px){.tpanel.coach .tring{width:min(30vw,112px)}.tpanel.coach .tnum{font-size:clamp(32px,10vw,40px)}.tpanel.coach.prop .tring{width:84px}.tpanel.coach.prop .tnum{font-size:30px}}
 
 #toast{position:fixed;left:50%;bottom:calc(var(--tab-h) + var(--safe-b) + 22px);z-index:90;max-width:calc(100% - 32px);width:max-content;padding:12px 18px;border-radius:16px;font-weight:650;font-size:15px;color:var(--ink);background:rgba(40,45,51,.86);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid var(--stroke);box-shadow:0 14px 34px -10px rgba(0,0,0,.8);opacity:0;transform:translate(-50%,12px) scale(.96);transition:opacity .25s,transform .4s var(--spring);pointer-events:none}
 #toast.show{opacity:1;transform:translate(-50%,0)}
@@ -968,7 +1033,7 @@ const store = (() => {
     del(k) { try { if (ok) localStorage.removeItem(k); else delete mem[k]; } catch (e) { /* */ } },
   };
 })();
-const DEFAULT_SETTINGS = { unit: 'kg', weeklyGoal: 5, sound: true, defaultRest: 90, hideInstall: false, nudgeAfter: 0, coachGoal: '', coachProfile: '' };
+const DEFAULT_SETTINGS = { unit: 'kg', weeklyGoal: 5, sound: true, defaultRest: 90, hideInstall: false, nudgeAfter: 0, coachGoal: '', coachProfile: '', coachNotes: '', kcalAdjust: 0 };
 const logOrder = (a, b) => a.startedAt - b.startedAt || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
 
 function normEx(e) {
@@ -1011,6 +1076,9 @@ function normSet(s) {
   const o = { w: numOrNull(s.w), r: numOrNull(s.r), t: numOrNull(s.t), d: numOrNull(s.d) };
   if (s.tag) o.tag = String(s.tag);
   if (numOrNull(s.dw) != null || numOrNull(s.dr) != null) { o.dw = numOrNull(s.dw); o.dr = numOrNull(s.dr); }
+  /* ressenti noté après la série : reps en réserve (0 à 3, 3 = « 3 ou plus ») et douleur signalée */
+  if (numOrNull(s.rir) != null) o.rir = clamp(Math.round(+s.rir), 0, 3);
+  if (s.pain) o.pain = true;
   return o;
 }
 function normLog(l) {
@@ -1060,6 +1128,9 @@ function migrate(d) {
   out.settings.weeklyGoal = clamp(parseInt(out.settings.weeklyGoal, 10) || 5, 1, 7);
   out.settings.coachGoal = String(out.settings.coachGoal || '').slice(0, 1000);
   out.settings.coachProfile = String(out.settings.coachProfile || '').slice(0, 3000);
+  /* carnet du coach : une note par ligne, 30 au plus ; ajustement de calories accepté, par pas de 50 */
+  out.settings.coachNotes = String(out.settings.coachNotes || '').split('\n').map((x) => x.trim().slice(0, 200)).filter(Boolean).slice(-30).join('\n');
+  out.settings.kcalAdjust = clamp(Math.round((+out.settings.kcalAdjust || 0) / 50) * 50, -600, 800);
   out.programUpdatedAt = +d.programUpdatedAt || 0;
   out.settingsUpdatedAt = +d.settingsUpdatedAt || 0;
   if (d.program && d.program.schedule) out.program = normProgram(d.program);
@@ -1151,7 +1222,11 @@ function nutritionToday(info) {
   const sid = info.ids[info.dow];
   const s = sid ? findSession(sid) : null;
   const kind = !s ? 'repos' : s.kind === 'cross' ? 'cross' : 'muscu';
-  return Object.assign({ dayKind: kind }, nutritionFor(info.w, kind));
+  const n = Object.assign({ dayKind: kind }, nutritionFor(info.w, kind));
+  /* ajustement proposé par le coach et accepté : il s’ajoute aux calories du programme */
+  const adj = +db.settings.kcalAdjust || 0;
+  if (adj) { n.kcal += adj; n.adj = adj; }
+  return n;
 }
 
 /* ============ Historique d’un exercice, double progression ============ */
@@ -1185,6 +1260,8 @@ function setText(type, s) {
   if (s.dw != null || s.dr != null) t += ` + drop ${s.dw != null ? fmtN(s.dw) + NB + unit() : ''}${s.dr != null ? NB + '×' + NB + fmtN(s.dr) : ''}`;
   return t;
 }
+/* Ressenti d’une série, en clair : « RIR 1 », « RIR 3+ », « douleur » */
+const feelText = (s) => [s.rir != null ? `RIR${NB}${s.rir >= 3 ? '3+' : s.rir}` : '', s.pain ? 'douleur' : ''].filter(Boolean).join(', ');
 function perfText(e) {
   const S = e.sets.filter((s) => s.done !== false);
   if (!S.length) return '';
@@ -1252,7 +1329,8 @@ function progressionFor(ex, ph, beforeTs) {
 }
 function placeholders(ex, si, prog) {
   const s = ex.sets[si];
-  const back = (f) => { for (let j = si - 1; j >= 0; j--) { const x = ex.sets[j]; if (!x.tag && x[f] != null) return x[f]; } return null; };
+  /* c : cible du coach de la série d’avant (cw), reprise tant que cette série n’a pas de valeur saisie */
+  const back = (f, c) => { for (let j = si - 1; j >= 0; j--) { const x = ex.sets[j]; if (x.tag) continue; if (x[f] != null) return x[f]; if (c && x[c] != null) return x[c]; } return null; };
   const t = ex.target || {};
   const st = STEPS[ex.step] || STEPS.machine;
   if (s.tag === 'backoff') {
@@ -1262,7 +1340,8 @@ function placeholders(ex, si, prog) {
   }
   const prevR = prog.prevReps ? (prog.prevReps[si] != null ? prog.prevReps[si] : prog.prevReps[prog.prevReps.length - 1]) : null;
   const pick = (...v) => { for (const x of v) if (x != null) return x; return null; };
-  return { w: pick(back('w'), prog.weight, t.weight), r: pick(prevR, t.rmin), t: pick(back('t'), t.time), d: pick(t.dist) };
+  /* une cible acceptée du coach (cw, cr) passe avant la règle de progression */
+  return { w: pick(s.cw, back('w', 'cw'), prog.weight, t.weight), r: pick(s.cr, prevR, t.rmin), t: pick(back('t'), t.time), d: pick(t.dist) };
 }
 function maxW(ex) { const ws = ex.sets.filter((s) => !s.tag && s.w != null).map((s) => s.w); return ws.length ? Math.max(...ws) : null; }
 function warmupRamp(ex, prog) {
@@ -1408,7 +1487,7 @@ function parseRoute() {
 }
 function go(h) { if (location.hash === h) render(); else location.hash = h; }
 /* Sélecteur de l’élément qui a le focus, pour le retrouver après la reconstruction de #app (VoiceOver, clavier) */
-const FOCUS_ATTRS = ['act', 'id', 'e', 's', 'f', 'i', 'd', 'le', 'ls', 'lf', 'ld', 'ci', 'rate', 'v', 'k', 'step'];
+const FOCUS_ATTRS = ['act', 'id', 'e', 's', 'f', 'i', 'd', 'le', 'ls', 'lf', 'ld', 'ci', 'rate', 'v', 'k', 'step', 'cprop'];
 function focusKey(el) {
   if (!el || !app.contains(el) || el === app) return null;
   if (el.id) return '#' + CSS.escape(el.id);
@@ -1550,7 +1629,7 @@ function weekAvgText() {
 function nutritionCard(info) {
   const n = nutritionToday(info);
   const label = n.dayKind === 'repos' ? 'Jour de repos' : n.dayKind === 'cross' ? 'Jour de cross' : 'Jour d’entraînement';
-  return `<section class="card sec nutri"><span class="ic">${I.leaf}</span><div class="grow"><p class="small muted">${label}, palier ${n.palier}</p><p><b>≈${NB}${fmtN(n.kcal)}${NB}kcal</b> <span class="muted">et ${n.prot}${NB}g de protéines</span></p>${n.extra ? `<p class="small muted" style="margin-top:4px">${esc(n.extra)}</p>` : ''}</div></section>`;
+  return `<section class="card sec nutri"><span class="ic">${I.leaf}</span><div class="grow"><p class="small muted">${label}, palier ${n.palier}</p><p><b>≈${NB}${fmtN(n.kcal)}${NB}kcal</b> <span class="muted">et ${n.prot}${NB}g de protéines</span></p>${n.adj ? `<p class="small muted" style="margin-top:4px">Dont ${fmtSigned(n.adj)}${NB}kcal proposées par le coach et acceptées.</p>` : ''}${n.extra ? `<p class="small muted" style="margin-top:4px">${esc(n.extra)}</p>` : ''}</div></section>`;
 }
 function viewHome() {
   const a = db.active;
@@ -1712,7 +1791,7 @@ function exerciseBlock(ei, a, ph, nx, inGroup) {
   const done = ex.sets.length > 0 && ex.sets.every((s) => s.done);
   const isCur = !!nx && nx.ei === ei;
   if (done && !expanded.has(ei)) {
-    return `<section class="ex ${inGroup ? '' : 'card'} done ${justDoneEi === ei ? 'just-done' : ''}" id="ex-${ei}"><button class="ex-sum" data-act="expand" data-e="${ei}" aria-expanded="false"><span class="ex-ok">${I.check}</span>${ex.code ? `<span class="code ghost">${esc(ex.code)}</span>` : ''}<span class="grow"><span class="ex-name" style="display:block">${esc(ex.name)}</span><span class="muted small">${perfText({ type: ex.type, sets: ex.sets })}</span></span>${I.chev}</button></section>`;
+    return `<section class="ex ${inGroup ? '' : 'card'} done ${justDoneEi === ei ? 'just-done' : ''}" id="ex-${ei}"><button class="ex-sum" data-act="expand" data-e="${ei}" aria-expanded="false"><span class="ex-ok">${I.check}</span>${ex.code ? `<span class="code ghost">${esc(ex.code)}</span>` : ''}<span class="grow"><span class="ex-name" style="display:block">${esc(ex.name)}</span><span class="muted small">${perfText({ type: ex.type, sets: ex.sets })}</span></span>${I.chev}</button>${coachExFeel(a, ei)}</section>`;
   }
   const prog = progressionFor(ex, ph, a.startedAt);
   const heads = { charge: [ex.step === 'lest' ? `Lest ${unit()}` : unit(), ex.perSide ? 'Rép./' + ex.perSide : 'Rép.'], reps: [ex.perSide ? 'Rép./' + ex.perSide : 'Rép.'], duree: ['Secondes', ''], cardio: ['km', 'Minutes'] }[ex.type] || [];
@@ -1730,6 +1809,7 @@ function exerciseBlock(ei, a, ph, nx, inGroup) {
       <div class="set head ${cls}" aria-hidden="true"><span></span>${heads.map((h) => `<span>${esc(h)}</span>`).join('')}<span></span></div>
       ${ex.sets.map((s, si) => setRow(ex, ei, s, si, prog, cls, !!nx && nx.ei === ei && nx.si === si)).join('')}
     </div>
+    ${coachExFeel(a, ei)}
     <div class="ex-actions"><button class="link-btn" data-act="add-set" data-e="${ei}">${I.plus} Ajouter une série</button>${ex.sets.length > 1 && lastSet && !lastSet.done && !lastSet.tag ? `<button class="link-btn muted" data-act="del-set" data-e="${ei}">Retirer la dernière</button>` : ''}</div>
   </section>`;
 }
@@ -1794,7 +1874,7 @@ function viewLog() {
   return `<div style="${pvars(l.plate)}"><div class="back-row"><a class="back" href="#/historique">${I.back} Historique</a><a class="btn sm quiet" href="#/historique/${encodeURIComponent(l.id)}/modifier">${I.edit} Modifier</a></div>
   <header class="s-head">${disc(l.plate, l.code || '', 'lg')}<div><h1 class="title sm">${esc(l.name)}</h1><p class="muted">${cap(dfFull.format(new Date(l.startedAt)))} à ${dfTime.format(new Date(l.startedAt))}${l.week ? `, S${l.week}${ph ? ' (' + esc(ph.tag) + ')' : ''}` : ''}</p>${l.updatedAt ? `<p class="faint small" style="margin-top:2px">Modifiée ${relTime(l.updatedAt)}</p>` : ''}</div></header>
   <dl class="stats"><div><dt>Durée</dt><dd>${fmtDur(l.duration)}</dd></div>${l.kind === 'cross' ? '' : `<div><dt>Séries</dt><dd>${countSets(l)}</dd></div>`}${v ? `<div><dt>Volume</dt><dd>${fmtN(Math.round(v))}${NB}${unit()}</dd></div>` : ''}</dl>
-  ${l.exercises.map((e) => `<section class="card sec"><div class="ex-top">${e.code ? `<span class="code">${esc(e.code)}</span>` : ''}<h2 class="ex-name grow">${esc(e.name)}</h2></div><ol class="logsets">${e.sets.map((s, i) => `<li><span class="set-n" aria-hidden="true">${s.tag === 'backoff' ? 'B' : i + 1}</span><span class="lv">${setText(e.type, s)}</span></li>`).join('')}</ol></section>`).join('')}
+  ${l.exercises.map((e) => `<section class="card sec"><div class="ex-top">${e.code ? `<span class="code">${esc(e.code)}</span>` : ''}<h2 class="ex-name grow">${esc(e.name)}</h2></div><ol class="logsets">${e.sets.map((s, i) => `<li><span class="set-n" aria-hidden="true">${s.tag === 'backoff' ? 'B' : i + 1}</span><span class="lv">${setText(e.type, s)}</span>${feelText(s) ? `<span class="lfeel${s.pain ? ' pain' : ''}">${feelText(s)}</span>` : ''}</li>`).join('')}</ol></section>`).join('')}
   ${l.notes ? `<section class="card sec"><h2 class="h2">Notes</h2><p class="notes-text">${esc(l.notes)}</p></section>` : ''}
   ${coachBilanSection(l)}
   <div class="stack" style="margin-top:24px"><a class="btn quiet" href="#/historique/${encodeURIComponent(l.id)}/modifier">Modifier la séance</a><button class="btn danger-line" data-act="del-log" data-id="${esc(l.id)}">Supprimer cette séance</button></div></div>`;
@@ -2094,7 +2174,10 @@ function viewSettings() {
 /* ============ Coach IA ============ */
 /* Claude (Anthropic) appelé directement depuis l’app, avec la clé API de l’utilisateur.
    - La clé vit dans sa propre entrée de stockage (carnet.coach) : jamais dans db, donc ni export, ni versions de secours, ni fichier GitHub.
-   - Conversations et bilans restent sur cet appareil (carnet.coach.fils). Seul l’objectif (db.settings.coachGoal) est synchronisé.
+   - Conversations, bilans, propositions, journal et prescriptions restent sur cet appareil (carnet.coach.fils).
+     Sont synchronisés : l’objectif, le profil, le carnet de notes du coach et l’ajustement de calories (db.settings).
+   - Le coach propose, l’utilisateur valide, l’app applique : Claude n’agit que par des outils, dont chaque appel devient
+     une proposition bornée par l’app (constat, raison, bénéfice) et appliquée seulement après accord.
    - Sans clé, rien n’est affiché ni envoyé pendant la séance : l’app se comporte comme avant. */
 const COACH_KEY = 'carnet.coach', COACH_FILS_KEY = 'carnet.coach.fils', COACH_SYS_KEY = 'carnet.coach.sys';
 const COACH_URL = 'https://api.anthropic.com/v1/messages', COACH_MODEL = 'claude-opus-5-5', COACH_BETA = 'server-side-fallback-2026-07-01';
@@ -2103,39 +2186,90 @@ const COACH_PRICE = { inp: 4, cw5: 5, cw1: 8, cr: 0.2, out: 20 };
 /* une demande automatique trop vieille n’est plus envoyée ; durée maximale d’une demande, par type */
 const COACH_TTL = { plan: 10 * 60000, set: 90000, ex: 90000 };
 const COACH_LIMIT = { plan: 90000, set: 45000, ex: 45000, bilan: 150000, q: 180000, chat: 300000 };
+/* en séance : attente du ressenti avant d’envoyer la série, puis attente de Claude avant la règle locale */
+const COACH_FEEL_MS = 6000, COACH_RULE_MS = 8000;
 const COACH_AUTO = [
-  ['plan', 'Plan au démarrage de la séance', 'Une intention pour la séance et une ligne par exercice.'],
-  ['set', 'Conseil après chaque série', 'Seulement s’il y a quelque chose à changer pour la suite.'],
-  ['ex', 'Retour à la fin de chaque exercice', 'Ce qu’il faut retenir pour la prochaine fois.'],
-  ['bilan', 'Bilan après la séance', 'Rangé avec la séance dans l’historique.'],
+  ['plan', 'Point et plan au démarrage', 'Trois taps sur ta forme, puis un plan chiffré à valider.'],
+  ['set', 'Réglages après chaque série', 'Une proposition à valider quand il faut changer quelque chose.'],
+  ['ex', 'Retour à la fin de chaque exercice', 'Ce qu’il faut retenir avant de passer au suivant.'],
+  ['bilan', 'Bilan et changements après la séance', 'Le bilan, puis les changements à cocher pour la prochaine fois.'],
 ];
 const COACH_ASKS = {
   week: ['Bilan de ma semaine', `Fais le bilan de ma semaine d’entraînement${NB}: ce qui a progressé, ce qui stagne, mon poids face au repère, et une à trois priorités pour la semaine prochaine.`],
-  next: ['Préparer ma prochaine séance', `Prépare ma prochaine séance${NB}: charges et répétitions à viser exercice par exercice, et les points à surveiller.`],
+  next: ['Préparer ma prochaine séance', `Prépare ma prochaine séance${NB}: propose-moi les charges et les répétitions à viser exercice par exercice, pour que je les valide, et dis-moi les points à surveiller.`],
   goal: ['Où j’en suis face à mon objectif', `Où j’en suis face à mon objectif${NB}? Dis-moi ce qui avance bien, ce qui me freine et ce que je devrais changer.`],
   improve: ['Quoi améliorer en priorité', `Qu’est-ce que je devrais améliorer en priorité (entraînement, récupération, nutrition, régularité)${NB}? Donne-moi des actions concrètes.`],
 };
 const COACH_QUICK = [`La machine est prise${NB}: je remplace par quoi${NB}?`, `Je suis fatigué aujourd’hui${NB}: j’adapte comment${NB}?`, `J’ai une gêne sur cet exercice${NB}: je fais quoi${NB}?`];
-const COACH_RULES = `Tu es le coach de musculation personnel intégré à « Carnet », l’app de suivi d’entraînement de l’athlète. Tu lui parles directement, en français, en le tutoyant.
+const COACH_RULES = `Tu es le coach de musculation personnel intégré à « Carnet », l’app de suivi d’entraînement de l’athlète. Tu lui parles directement, en français, en le tutoyant, comme un coach debout à côté de lui à la salle : tu regardes ce qu’il vient de faire, tu dis ce que tu as vu, tu proposes un réglage quand il en faut un, et tu dis pourquoi.
 
-Ce que tu sais : tout ce qui suit sous « DONNÉES DE L’ATHLÈTE » vient de l’app (objectif et profil écrits par l’athlète, programme, séances, charges, répétitions, pesées, sommeil, mensurations). Le programme ne se limite pas aux séances : sa feuille de route, sa méthode de nutrition, ses compléments et ses règles de sommeil y figurent aussi. Tu ne vois pas ses mouvements : pour la technique, appuie-toi sur les consignes du programme, sur ses notes et sur ce que les chiffres laissent deviner (répétitions qui chutent, charge qui stagne, repos trop courts), et dis-le quand c’est une hypothèse.
+Ce que tu sais : tout ce qui suit sous « DONNÉES DE L’ATHLÈTE » vient de l’app (objectif et profil écrits par l’athlète, ton carnet de notes sur lui, programme, séances, charges, répétitions, reps en réserve qu’il déclare après chaque série, pesées, sommeil, mensurations, changements déjà acceptés). Le programme ne se limite pas aux séances : sa feuille de route, sa méthode de nutrition, ses compléments et ses règles de sommeil y figurent aussi. Tu ne vois pas ses mouvements : pour la technique, appuie-toi sur les consignes du programme, sur ses notes et sur ce que les chiffres laissent deviner, et dis-le quand c’est une hypothèse.
+
+Tu proposes, l’athlète décide, l’app applique :
+- Tout changement concret passe par un outil, jamais seulement par du texte. L’app affiche ta proposition avec tes trois lignes (constat, raison, bénéfice) et ne l’applique que s’il l’accepte. N’écris donc jamais qu’un changement est fait, et ne répète pas dans ton texte une proposition faite par un outil : l’app l’affiche déjà.
+- proposer_reglage : pendant une séance, pour la suite de la séance en cours (repos d’un exercice, charge et répétitions des séries à venir, une série en plus ou en moins, exercice remplacé ou arrêté).
+- prescrire_prochaine_seance : la charge et les répétitions à viser la prochaine fois sur un exercice. L’app les met en place au démarrage de sa prochaine séance.
+- proposer_programme : un changement durable du programme (repos, nombre de séries, fourchette de répétitions, RIR, consignes, exercice remplacé) ou l’ajustement de ses calories.
+- retenir : une chose durable que tu apprends sur lui (une articulation sensible, un repos qui lui réussit, une machine absente de sa salle, une préférence). L’app l’ajoute à ton carnet sans validation : n’y mets que du durable et du vérifié, une idée par note, jamais ce qui figure déjà dans ton carnet.
+- constat : SES chiffres, précis (charge, répétitions, repos pris, reps en réserve, écart avec la série d’avant ou avec la dernière séance). raison : pourquoi ce réglage, en une phrase simple. benefice : ce qu’il y gagne pour SON objectif et SA situation (son objectif écrit, son profil, sa phase, sa semaine), jamais une généralité valable pour tout le monde. 25 mots maximum par ligne.
+- Ne propose que ce qui change vraiment quelque chose. Quand tout se passe comme prévu, ne propose rien.
+- L’app borne tes propositions : repos de 30 à 300 s, charge à 15 % près de ce qui était prévu, une série en plus ou en moins à la fois, exercices existants seulement.
+- L’app te rapporte ensuite ce qu’il a décidé (acceptée, refusée, restée sans réponse). Une proposition refusée ne se refait pas dans la même séance, sauf fait nouveau. Ce qui a été accepté est en place : tiens-en compte.
 
 Comment répondre :
-- Adapte chaque conseil à SES données et à SON objectif : cite les chiffres précis (charges, répétitions, dates, semaines) qui justifient ce que tu dis. Pas de généralités valables pour tout le monde.
-- Toute proposition d’amélioration ou de modification (charge, exercice, volume, repos, planning, nutrition) part de trois choses : son objectif, son programme (règles, phase en cours, cibles) et son historique. Dis en quelques mots sur lesquelles elle s’appuie. Si l’objectif n’est pas renseigné, dis-le et demande-le avant de proposer un changement de fond.
-- Reste dans le cadre du programme (double progression, RIR, phases, décharges, feuille de route, méthode de nutrition, sommeil, compléments) : pars de ce qu’il prévoit avant toute recommandation générale. Si tu proposes de t’en écarter, explique pourquoi et ce que ça change.
-- Tes bilans de séance précédents figurent dans les données : reste cohérent avec ce que tu as déjà conseillé, et vérifie si ça a été appliqué.
-- Sois concret et priorisé : quoi faire, à quelle charge, combien de répétitions, quand. Une à trois actions valent mieux qu’une liste de dix.
-- Sois honnête : s’il manque des données (pas de pesée, séances manquantes, objectif non renseigné), dis-le au lieu d’inventer. Ne suppose jamais une valeur absente.
-- Tu n’es pas médecin : en cas de douleur articulaire, de blessure ou de symptôme inhabituel, conseille de lever le pied et de consulter, sans poser de diagnostic.
-- Format : texte simple, lisible sur un téléphone. Paragraphes courts, listes à tirets, **gras** pour l’essentiel. Pas de titres, pas de tableaux, pas de liens. Va droit au but, sans préambule ni reformulation de la question. Utilise les unités de l’app.
+- Adapte chaque phrase à SES données et à SON objectif : cite les chiffres précis (charges, répétitions, dates, semaines) qui justifient ce que tu dis. Pas de généralités.
+- Reste dans le cadre du programme (double progression, RIR, phases, décharges, feuille de route, nutrition, sommeil, compléments) : pars de ce qu’il prévoit. Si tu proposes de t’en écarter, dis pourquoi et ce que ça change.
+- Tes bilans précédents, ton carnet et les changements déjà acceptés figurent dans les données : reste cohérent avec eux, et vérifie s’ils ont porté leurs fruits.
+- Sois honnête : s’il manque des données (pas de pesée, ressenti non renseigné, objectif non écrit), dis-le au lieu d’inventer. Ne suppose jamais une valeur absente. Si l’objectif n’est pas renseigné, demande-le avant un changement de fond.
+- Tu n’es pas médecin : douleur articulaire, blessure ou symptôme inhabituel, on lève le pied (alternative du programme ou arrêt de l’exercice) et tu conseilles de consulter si ça dure, sans poser de diagnostic.
+- Format du texte : simple, lisible sur un téléphone. Paragraphes courts, listes à tirets, **gras** pour l’essentiel. Pas de titres, pas de tableaux, pas de liens. Droit au but, sans préambule. Unités de l’app.
 
-Pendant une séance, l’app t’envoie des messages automatiques qui commencent par une balise. Tu réponds toujours uniquement au DERNIER message ; les messages plus anciens restés sans réponse sont du contexte.
-- [PLAN] : la séance démarre (ou l’athlète redemande le plan en cours de séance). Réponds exactement sous cette forme, sans rien d’autre : une ligne « GÉNÉRAL : … » (une ou deux phrases : l’intention de la séance vu la phase, la forme du jour et les dernières séances), puis une ligne par exercice « E1 : … », « E2 : … », dans l’ordre donné (charge et répétitions à viser aujourd’hui, et un seul point d’attention ; 25 mots maximum par ligne).
-- [SÉRIE] : une série vient d’être validée. S’il n’y a rien à changer, réponds exactement « OK », rien d’autre. Sinon, une seule phrase (25 mots maximum) pour la suite de cet exercice : ajuster la charge, les répétitions visées, le repos ou un point technique. Ne félicite pas pour le plaisir et n’explique pas la règle : dis quoi faire.
-- [EXERCICE] : la dernière série d’un exercice vient d’être validée. Une seule phrase (30 mots maximum) : ce qu’il faut retenir et quoi faire la prochaine fois sur cet exercice (monter, garder, corriger). « OK » seul s’il n’y a vraiment rien à dire.
-- [QUESTION] : l’athlète te pose une question en pleine séance. Réponds en deux à cinq phrases, applicables tout de suite.
-- [BILAN] : la séance est terminée et enregistrée. Fais le bilan en 120 à 200 mots : ce qui a progressé (avec les chiffres), ce qui a coincé et l’explication la plus probable, puis une à trois actions précises pour la prochaine fois (charges à viser, récupération, nutrition). Commence directement par le constat.`;
+Pendant une séance, l’app t’envoie des messages automatiques qui commencent par une balise. Tu réponds toujours uniquement au DERNIER message ; les plus anciens restés sans réponse sont du contexte. Dans ces messages, chaque exercice porte un numéro (E1, E2…) : c’est lui que proposer_reglage attend.
+- [PLAN] : la séance démarre. Texte : deux ou trois phrases (60 mots maximum) qui posent l’intention du jour pour lui, à partir de sa dernière séance de ce type, de son point d’avant-séance (forme, temps disponible, gêne), de sa nuit et de son objectif. Outils : un proposer_reglage de type cible par exercice à charge ou à répétitions, avec la charge et les répétitions de chaque série, même quand tu confirmes ce que l’app prévoit : il doit voir ton plan complet. Temps trop court ou forme basse : propose aussi de retirer une série ou d’arrêter les exercices les moins prioritaires (règle du programme : paires A et B, puis première isolation). Gêne signalée : remplace ou arrête l’exercice concerné.
+- [SÉRIE] : une série vient d’être validée. L’app a déjà affiché le constat chiffré : ne le répète pas. Texte : UNE phrase (18 mots maximum) pour la série suivante, un repère concret tiré de ses chiffres, de ses notes ou des consignes de l’exercice. Pas de félicitation creuse. Outil : un seul proposer_reglage, et seulement s’il faut changer quelque chose pour la suite de cet exercice. Repères : repos écourté et répétitions en baisse, il reprend le repos prévu (dis-le dans ta phrase, sans outil) ; répétitions en baisse de 20 % ou plus malgré le repos complet, ou moins de reps en réserve que prévu, repos allongé de 30 à 60 s ; sous la fourchette, charge baissée de 5 à 10 % ; haut de fourchette avec plus de marge que le RIR prévu, charge au pas supérieur ; douleur, alternative du programme ou arrêt.
+- [EXERCICE] : la dernière série d’un exercice vient d’être validée. Texte : une phrase (25 mots maximum) sur ce qu’il retient de cet exercice aujourd’hui. Outil : seulement si la suite de la séance doit changer (fatigue nette, temps qui manque, douleur). Ce qui concerne la prochaine séance attend le bilan.
+- [QUESTION] : il te pose une question en pleine séance. Réponds en deux à cinq phrases, applicables tout de suite. Si ta réponse revient à changer la séance (machine prise, fatigue, gêne), fais-en la proposition par proposer_reglage.
+- [BILAN] : la séance est terminée et enregistrée. Texte : 100 à 160 mots, en commençant par le constat : ce qui a progressé (chiffres), ce qui a coincé et l’explication la plus probable (charge, repos, ressenti, sommeil, nutrition), puis le lien avec son objectif. Outils, sans les annoncer dans le texte (l’app les liste sous le bilan, avec des cases à cocher) : prescrire_prochaine_seance pour les exercices de cette séance dont tu fixes la cible de la prochaine fois ; proposer_programme pour zéro à trois changements durables, seulement s’ils reposent sur plusieurs séances ou sur un fait net de celle-ci ; retenir pour zéro à deux notes.
+
+Hors séance (message sans balise) : quand ta réponse débouche sur un changement concret, propose-le par proposer_programme ou prescrire_prochaine_seance : l’app l’affiche sous ta réponse, avec une case à cocher. Les exercices du programme y sont désignés par leur identifiant, donné entre crochets dans les données (par exemple [ua-a1]).`;
+const COACH_NOTOOLS = '\n\nLes outils sont indisponibles pour cette demande : décris tes propositions dans ton texte, avec le constat, la raison et le bénéfice. L’athlète les appliquera lui-même.';
+
+/* Outils donnés à Claude. Il ne modifie rien lui-même : chaque appel devient une proposition que l’app borne, affiche et n’applique qu’après accord.
+   Schémas stricts : tous les champs sont requis, une valeur absente vaut null. La liste ne change jamais d’une demande à l’autre (elle ouvre le préfixe mis en cache). */
+const coachOpt = (type, description) => ({ anyOf: [{ type }, { type: 'null' }], description });
+const coachTool = (name, description, properties) => ({ name, description, strict: true, input_schema: { type: 'object', additionalProperties: false, required: Object.keys(properties), properties } });
+const COACH_WHY = {
+  constat: { type: 'string', description: 'Les chiffres de l’athlète qui motivent la proposition : charge, répétitions, repos pris, reps en réserve, écart avec la série d’avant ou avec la dernière séance. 25 mots maximum.' },
+  raison: { type: 'string', description: 'Pourquoi ce réglage, en une phrase simple. 25 mots maximum.' },
+  benefice: { type: 'string', description: 'Ce que l’athlète y gagne pour son objectif et sa situation à lui. 25 mots maximum.' },
+};
+const COACH_TOOLS = [
+  coachTool('proposer_reglage', 'Propose un réglage de la séance en cours. L’app l’affiche à l’athlète avec le constat, la raison et le bénéfice, et ne l’applique que s’il l’accepte. À utiliser seulement pendant une séance (messages [PLAN], [SÉRIE], [EXERCICE], [QUESTION]), une fois par réglage.', {
+    exercice: { type: 'integer', description: 'Numéro de l’exercice dans la séance en cours : 1 pour E1, 2 pour E2, etc.' },
+    type: { type: 'string', enum: ['repos', 'cible', 'ajouter_serie', 'retirer_serie', 'remplacer', 'arreter'], description: 'repos : changer le repos entre les séries de cet exercice. cible : fixer la charge et les répétitions des séries qui restent. ajouter_serie ou retirer_serie : une série de plus ou de moins. remplacer : faire un autre exercice à la place, pour les séries qui restent. arreter : ne pas faire les séries qui restent.' },
+    repos_secondes: coachOpt('integer', 'Pour repos : le nouveau repos de cet exercice, en secondes, de 30 à 300. Sinon null.'),
+    charge: coachOpt('number', 'Pour cible : la charge des séries qui restent, dans l’unité de l’app. null pour garder la charge prévue, ou pour un exercice sans charge.'),
+    repetitions: coachOpt('string', 'Pour cible : les répétitions visées sur les séries qui restent, dans l’ordre, séparées par des virgules, par exemple 9, 8, 8. Un seul nombre ne vaut que pour la prochaine série. null pour garder ce qui est prévu.'),
+    remplacant: coachOpt('string', 'Pour remplacer : le nom de l’exercice de remplacement, de préférence l’alternative prévue par le programme. Sinon null.'),
+    ...COACH_WHY,
+  }),
+  coachTool('proposer_programme', 'Propose un changement durable du programme de l’athlète, ou l’ajustement de ses calories. L’app l’affiche avec une case à cocher et ne modifie le programme que s’il l’accepte ; il peut l’annuler ensuite. À utiliser dans un bilan de séance ou hors séance, pour un changement qui repose sur plusieurs séances ou sur un fait net.', {
+    exercice_id: coachOpt('string', 'Identifiant de l’exercice du programme, tel qu’il figure entre crochets dans les données, par exemple ua-a1. null pour le champ calories.'),
+    champ: { type: 'string', enum: ['repos', 'series', 'series_bloc2', 'repetitions', 'rir', 'consignes', 'remplacer', 'calories'], description: 'Ce qui change : le repos, le nombre de séries du bloc 1 ou du bloc 2, la fourchette de répétitions, le RIR, les consignes, l’exercice lui-même (remplacer), ou les calories par jour.' },
+    valeur: { type: 'string', description: 'La nouvelle valeur, en texte. repos : secondes, par exemple 120. series et series_bloc2 : un nombre, une série de plus ou de moins au maximum. repetitions : une fourchette, par exemple 8-10. rir : par exemple 1-2. consignes : les consignes complètes de l’exercice. remplacer : le nom du nouvel exercice. calories : l’écart total par jour par rapport aux calories du programme, signé, par exemple +200, -200, ou 0 pour revenir au programme.' },
+    ...COACH_WHY,
+  }),
+  coachTool('prescrire_prochaine_seance', 'Prescrit la charge et les répétitions à viser à la prochaine séance sur un exercice du programme. L’app l’affiche avec une case à cocher ; si l’athlète l’accepte, ces valeurs sont déjà en place quand il démarre la séance suivante. À utiliser dans un bilan de séance, ou hors séance pour préparer la suivante.', {
+    exercice_id: { type: 'string', description: 'Identifiant de l’exercice du programme, tel qu’il figure entre crochets dans les données, par exemple ua-a1.' },
+    charge: coachOpt('number', 'La charge à utiliser, dans l’unité de l’app. null pour un exercice sans charge ou pour laisser faire la règle de progression de l’app.'),
+    repetitions: coachOpt('string', 'Les répétitions visées série par série, séparées par des virgules, par exemple 8, 8, 7. null pour laisser faire l’app.'),
+    repos_secondes: coachOpt('integer', 'Le repos à prendre ce jour-là sur cet exercice, en secondes, seulement s’il doit changer. Sinon null.'),
+    ...COACH_WHY,
+  }),
+  coachTool('retenir', 'Ajoute une note durable à ton carnet sur l’athlète. Elle te sera redonnée dans toutes les conversations suivantes, et il peut la lire et l’effacer. Pour un fait durable et vérifié seulement, jamais pour le compte rendu d’une séance.', {
+    note: { type: 'string', description: 'La note, en une phrase courte, par exemple : Épaule droite sensible sur les développés au-dessus de 40 kg.' },
+  }),
+];
 
 class CoachError extends Error {
   constructor(kind, status, detail, wait) { super(detail || kind); this.kind = kind; this.status = status || 0; this.detail = detail || ''; this.wait = wait || 0; }
@@ -2143,7 +2277,8 @@ class CoachError extends Error {
 
 /* ============ Coach : réglages et stockage ============ */
 function coachLoadCfg() {
-  const c = { key: '', auto: { plan: true, set: true, ex: true, bilan: true }, usage: { m: '', inp: 0, cw5: 0, cw1: 0, cr: 0, out: 0, n: 0 }, fb: true, err: null };
+  /* tl : outils acceptés par l’API (2 = schémas stricts, 1 = sans « strict », 0 = aucun outil), retenté en strict après 3 jours */
+  const c = { key: '', auto: { plan: true, set: true, ex: true, bilan: true }, usage: { m: '', inp: 0, cw5: 0, cw1: 0, cr: 0, out: 0, n: 0 }, fb: true, tl: 2, tlAt: 0, err: null };
   try {
     const s = JSON.parse(store.get(COACH_KEY) || 'null');
     if (s && typeof s === 'object') {
@@ -2151,6 +2286,7 @@ function coachLoadCfg() {
       if (s.auto && typeof s.auto === 'object') for (const k of Object.keys(c.auto)) if (typeof s.auto[k] === 'boolean') c.auto[k] = s.auto[k];
       if (s.usage && typeof s.usage === 'object') { for (const k of Object.keys(c.usage)) if (k !== 'm' && isFinite(+s.usage[k])) c.usage[k] = +s.usage[k]; c.usage.m = String(s.usage.m || ''); }
       c.fb = s.fb !== false;
+      if ((s.tl === 0 || s.tl === 1) && Date.now() - (+s.tlAt || 0) < 3 * DAY) { c.tl = s.tl; c.tlAt = +s.tlAt || 0; }
       if (s.err && typeof s.err === 'object' && s.err.t) c.err = { k: String(s.err.k || ''), t: String(s.err.t), at: +s.err.at || 0 };
     }
   } catch (e) { /* entrée illisible : réglages par défaut */ }
@@ -2158,29 +2294,37 @@ function coachLoadCfg() {
 }
 function coachSaveCfg() { store.set(COACH_KEY, JSON.stringify(coachCfg)); }
 function coachLoadFils() {
-  const out = { fils: [], bilans: {} };
+  /* journal : changements acceptés (programme, calories, prescriptions), du plus récent au plus ancien ; next : prescriptions en attente, par exercice */
+  const out = { fils: [], bilans: {}, journal: [], next: {} };
   try {
     const s = JSON.parse(store.get(COACH_FILS_KEY) || 'null');
     if (s && Array.isArray(s.fils)) {
-      out.fils = s.fils.filter((f) => f && f.id && Array.isArray(f.msgs)).map((f) => Object.assign({ kind: 'chat', title: 'Conversation', at: 0, up: 0, aid: '', logId: '', t0: 0, plan: null, tips: {}, tip: null, fails: 0, mute: '', muteNet: false, hold: '', berr: '', bilan: 0, tries: 0, retryAt: 0, sysAt: 0 }, f, {
+      out.fils = s.fils.filter((f) => f && f.id && Array.isArray(f.msgs)).map((f) => Object.assign({ kind: 'chat', title: 'Conversation', at: 0, up: 0, aid: '', logId: '', t0: 0, plan: null, tips: {}, tip: null, ck: null, lastOk: '', fails: 0, mute: '', muteNet: false, hold: '', berr: '', bilan: 0, tries: 0, retryAt: 0, sysAt: 0 }, f, {
         msgs: f.msgs.filter((m) => m && (m.r === 'u' || m.r === 'a') && typeof m.t === 'string'),
         tips: f.tips && typeof f.tips === 'object' ? f.tips : {},
+        props: Array.isArray(f.props) ? f.props.filter((x) => x && x.id && x.scope && x.k && typeof x.titre === 'string') : [],
       }));
     }
     if (s && s.bilans && typeof s.bilans === 'object') for (const [k, v] of Object.entries(s.bilans)) if (v && typeof v.t === 'string') out.bilans[k] = { t: v.t, at: +v.at || 0, fil: String(v.fil || ''), seen: !!v.seen };
+    if (s && Array.isArray(s.journal)) out.journal = s.journal.filter((j) => j && j.id && j.k && typeof j.label === 'string').slice(0, 80);
+    if (s && s.next && typeof s.next === 'object') for (const [k, v] of Object.entries(s.next)) if (v && typeof v === 'object' && typeof v.titre === 'string') out.next[k] = v;
   } catch (e) { /* entrée illisible : on repart de zéro */ }
   return out;
 }
 let coachCfg = coachLoadCfg();
 let coachStore = coachLoadFils();
 let coachSysMem = null, coachDraft = '', coachGoSettings = false, coachShown = null;
+/* en séance : série dont on attend le ressenti, minuteries d’envoi et de règle locale, point d’avant-séance ouvert ou à ouvrir */
+let coachFeelFor = null, coachFeelT = null, coachRuleT = null, coachCk = null, coachCkDue = '', coachSnapAt = 0;
+/* propositions décochées dans une liste à cocher (cochées par défaut) */
+const coachOff = new Set();
 const coachRuns = new Map();
 const coachFil = (id) => coachStore.fils.find((f) => f.id === id) || null;
 const coachSeanceFil = (a) => (a ? coachStore.fils.find((f) => f.aid === a.id) || null : null);
 const coachLogFil = (logId) => coachStore.fils.find((f) => f.logId === logId) || null;
 const coachBusy = (fil) => { const r = fil && coachRuns.get(fil.id); return !!r && (r.k === 'chat' || r.k === 'q'); };
 const coachIsOk = (t) => /^[\s«"'“]*ok[\s»"'”.!…]*$/i.test(String(t || ''));
-const coachPlain = (s) => String(s == null ? '' : s).replace(/[  ]/g, ' ');
+const coachPlain = (s) => String(s == null ? '' : s).replace(/[\u00A0\u202F]/g, ' ');
 const dfCoach = DF({ weekday: 'short', day: 'numeric', month: 'short' });
 const coachDay = (ts) => dfCoach.format(new Date(ts));
 /* Conversation qu’on peut retirer pour faire de la place : ni la séance en cours, ni une demande en vol, ni un bilan attendu */
@@ -2196,6 +2340,7 @@ function coachSaveFils() {
   while (S.fils.length > 24 && dropOldest()) { /* */ }
   const keys = Object.keys(S.bilans);
   if (keys.length > 120) keys.sort((a, b) => S.bilans[a].at - S.bilans[b].at).slice(0, keys.length - 120).forEach((k) => { delete S.bilans[k]; });
+  if (S.journal.length > 80) S.journal.length = 80;
   let json = JSON.stringify(S);
   while (json.length > 400000 && dropOldest()) json = JSON.stringify(S);
   if (!store.set(COACH_FILS_KEY, json)) { store.del(COACH_SYS_KEY); coachSysMem = null; store.set(COACH_FILS_KEY, json); }
@@ -2212,7 +2357,9 @@ function coachAbortAll() { for (const r of coachRuns.values()) { r.why = 'new'; 
 function coachWipe() {
   coachAbortAll();
   store.del(COACH_KEY); store.del(COACH_FILS_KEY); store.del(COACH_SYS_KEY);
-  coachCfg = coachLoadCfg(); coachStore = { fils: [], bilans: {} }; coachSysMem = null; coachDraft = '';
+  clearTimeout(coachFeelT); clearTimeout(coachRuleT);
+  coachCfg = coachLoadCfg(); coachStore = { fils: [], bilans: {}, journal: [], next: {} }; coachSysMem = null; coachDraft = '';
+  coachFeelFor = null; coachCk = null; coachCkDue = ''; coachOff.clear();
 }
 function coachUsageNow() {
   const m = isoDay().slice(0, 7);
@@ -2279,11 +2426,17 @@ function coachDigestBuild(o, maxHist, maxJournal) {
   L.push(`- Poids de départ : ${fmtN(p.startWeight)} kg. Séances visées par semaine : ${db.settings.weeklyGoal}, cross compris. Charges en ${u}.`);
   L.push(`- Date du jour : ${dfFull.format(new Date(asOf))}. ${cur ? `Semaine S${cur} du programme, phase ${ph.label} : ${ph.desc}` : 'Le programme n’a pas encore commencé.'}`);
 
+  const notes = coachNotes();
+  L.push('', '## Ton carnet de notes sur lui (ce que tu as retenu au fil des séances ; il peut les lire et les effacer)');
+  if (notes.length) for (const n of notes) L.push(`- ${n}`); else L.push('Encore vide.');
+
   L.push('', '## Règles du programme');
   for (const [t, d] of RULES) L.push(`- ${t} : ${d}`);
   L.push('- Phases : S1 prise en main (RIR 3 partout), S2 à S5 bloc 1, S6 décharge, S7 à S11 bloc 2 (séries du bloc 2, drop set sur la dernière série des isolations, isolations à RIR 0), S12 décharge et bilan complet.');
   const n1 = nutritionFor(1, 'muscu'), n1r = nutritionFor(1, 'repos'), n2 = nutritionFor(3, 'muscu'), n2r = nutritionFor(3, 'repos');
   L.push(`- Nutrition : palier 1 (S1-S2) ≈ ${n1.kcal} kcal les jours d’entraînement et ${n1r.kcal} au repos ; palier 2 (dès S3) ≈ ${n2.kcal} et ${n2r.kcal}. Protéines ${n2.prot} g les jours d’entraînement, ${n2r.prot} g au repos. Jour de cross : +300 kcal après la séance. Créatine : 5 g par jour.`);
+  const adj = +db.settings.kcalAdjust || 0;
+  if (adj) L.push(`- Ajustement de calories accepté par l’athlète sur ta proposition : ${fmtSigned(adj)} kcal par jour, en plus des chiffres ci-dessus. La carte nutrition de l’app l’inclut déjà.`);
   L.push('- Repère de poids affiché par l’app dans le bilan hebdo : poids de départ +0,6 kg par semaine en S1-S2, puis +0,25 kg par semaine. Cible du programme dès S3 : +0,2 à +0,35 kg par semaine.');
 
   L.push('', '## Le reste du programme : feuille de route, logique, nutrition, compléments, sommeil, suivi');
@@ -2328,12 +2481,13 @@ function coachDigestBuild(o, maxHist, maxJournal) {
   const histLines = (list, max) => {
     const skip = Math.max(0, list.length - max);
     if (skip) L.push(`  (${skip} séance${skip > 1 ? 's' : ''} plus ancienne${skip > 1 ? 's' : ''} non détaillée${skip > 1 ? 's' : ''} ; la première, ${coachDay(list[0].log.startedAt)} : ${perfText(list[0].ex)})`);
-    for (const h of list.slice(skip)) L.push(`  - ${h.log.week ? `S${h.log.week} ` : ''}${coachDay(h.log.startedAt)} : ${perfText(h.ex)}`);
+    for (const h of list.slice(skip)) L.push(`  - ${h.log.week ? `S${h.log.week} ` : ''}${coachDay(h.log.startedAt)} : ${perfText(h.ex)}${coachFeelOf(h.ex)}`);
     let best = null, bh = null;
     for (const h of list) { const b = bestOf(h.ex); if (b && better(b, best)) { best = b; bh = h; } }
     if (best && list.length > 1) L.push(`  Record : ${best.text}, ${coachDay(bh.log.startedAt)}.`);
   };
   L.push('', '## Séances du programme : cibles de la phase en cours et historique de chaque exercice');
+  L.push('L’identifiant de chaque exercice est entre crochets devant son nom. Après une série, l’athlète déclare ses reps en réserve (0, 1, 2, 3+) et une éventuelle douleur : elles suivent les séries, entre crochets.');
   for (const s of p.sessions) {
     L.push('', `### ${s.code} · ${s.name}${s.optional ? ' (séance en option)' : ''}${s.focus ? ` : ${s.focus}` : ''}${s.kind === 'muscu' ? `, ≈ ${s.minutes} min` : ''}`);
     if (s.notes) L.push(`Note du programme : ${s.notes}`);
@@ -2345,7 +2499,7 @@ function coachDigestBuild(o, maxHist, maxJournal) {
     if (!s.exercises.length) { L.push('Aucun exercice.'); continue; }
     for (const e of s.exercises) {
       const st = STEPS[e.step] || STEPS.machine;
-      L.push(`- ${e.code ? e.code + ' ' : ''}${e.name} : ${coachTargetOf(e, ph)}${e.sets2 && e.sets2 !== e.sets ? ` (${e.sets} séries en bloc 1, ${e.sets2} en bloc 2)` : ''}. Progression : ${st.text}.${e.weight != null ? ` Charge visée : ${fmtN(e.weight)} ${u}.` : ''}${e.start ? ` Repère de départ : ${e.start}.` : ''}${e.cues ? ` Consignes : ${e.cues}` : ''}${e.alt ? ` Alternative : ${e.alt}.` : ''}${e.notes ? ` Note : ${e.notes}` : ''}`);
+      L.push(`- ${e.code ? e.code + ' ' : ''}[${e.id}] ${e.name} : ${coachTargetOf(e, ph)}${e.sets2 && e.sets2 !== e.sets ? ` (${e.sets} séries en bloc 1, ${e.sets2} en bloc 2)` : ''}. Progression : ${st.text}.${e.weight != null ? ` Charge visée : ${fmtN(e.weight)} ${u}.` : ''}${e.start ? ` Repère de départ : ${e.start}.` : ''}${e.cues ? ` Consignes : ${e.cues}` : ''}${e.alt ? ` Alternative : ${e.alt}.` : ''}${e.notes ? ` Note : ${e.notes}` : ''}`);
       const list = hist.get('p:' + e.id) || [];
       if (!list.length) { L.push('  Jamais fait.'); continue; }
       histLines(list, maxHist);
@@ -2406,6 +2560,18 @@ function coachDigestBuild(o, maxHist, maxJournal) {
   }
   if (!nd) L.push('Aucune saisie.');
 
+  /* ce que le coach a déjà fait changer : journal des changements acceptés, prescriptions en attente */
+  const jr = coachStore.journal.filter((j) => j.at <= asOf).slice(0, 12);
+  if (jr.length) {
+    L.push('', '## Changements que tu as proposés et qu’il a acceptés, du plus récent au plus ancien');
+    for (const j of jr) L.push(`- ${coachDay(j.at)} : ${j.label}${j.undone ? ' (annulé par lui depuis)' : ''}${j.raison ? ` ; ta raison : ${j.raison}` : ''}`);
+  }
+  const nx = Object.values(coachStore.next).sort((x, y) => (x.at || 0) - (y.at || 0));
+  if (nx.length) {
+    L.push('', '## Tes prescriptions acceptées, en place pour sa prochaine séance');
+    for (const n of nx) L.push(`- ${n.titre}`);
+  }
+
   /* ce que le coach a déjà conseillé : ses trois derniers bilans de séance, pour rester cohérent d’une fois sur l’autre */
   const done = logs.filter((l) => coachStore.bilans[l.id]).slice(-3);
   if (done.length) {
@@ -2439,19 +2605,62 @@ function coachBody(fil, sys, n) {
     model: COACH_MODEL, max_tokens: 64000, stream: true,
     output_config: { effort: 'medium' },
     cache_control: { type: 'ephemeral' },
+    /* outils : choix laissé au modèle (ce modèle refuse l’usage forcé) ; coachFetch les retire ou les assouplit si l’API les refuse */
+    tools: COACH_TOOLS,
     system: [{ type: 'text', text: COACH_RULES }, { type: 'text', text: sys, cache_control: fil.kind === 'seance' ? { type: 'ephemeral', ttl: '1h' } : { type: 'ephemeral' } }],
     messages,
   };
+}
+const coachRirTxt = (v) => (v >= 3 ? '3 ou plus' : String(v));
+/* Reps en réserve et douleur d’un exercice enregistré, pour le modèle : « [reps en réserve 2, 1, 0 ; douleur signalée] » */
+function coachFeelOf(ex) {
+  const t = [];
+  if (ex.sets.some((x) => x.rir != null)) t.push(`reps en réserve ${ex.sets.map((x) => (x.rir == null ? '?' : x.rir >= 3 ? '3+' : x.rir)).join(', ')}`);
+  if (ex.sets.some((x) => x.pain)) t.push('douleur signalée');
+  return t.length ? ` [${t.join(' ; ')}]` : '';
+}
+/* Point d’avant-séance, en clair. temps : minutes, 999 = pas de limite ; gene : '' (non dit), 'aucune' ou la zone */
+function coachCkText(ck, sess) {
+  if (!ck) return 'non renseigné';
+  const b = [];
+  if (ck.forme) b.push(`forme du jour ${ck.forme}/5`);
+  if (ck.temps) b.push(ck.temps >= 999 ? 'pas de limite de temps' : `temps disponible ${ck.temps} min${sess ? ` (séance prévue ≈ ${sess.minutes} min)` : ''}`);
+  if (ck.gene) b.push(ck.gene === 'aucune' ? 'aucune gêne' : `gêne signalée : ${ck.gene}`);
+  return b.length ? b.join(' ; ') : 'non renseigné';
+}
+/* Ce que l’app prévoit pour les séries qui restent d’un exercice : ce que ✓ reprendrait, série par série */
+function coachPlanned(a, ei) {
+  const ex = a.exercises[ei];
+  if (!ex || (ex.type !== 'charge' && ex.type !== 'reps')) return null;
+  const prog = progressionFor(ex, activePhase(a), a.startedAt), sets = [];
+  ex.sets.forEach((x, k) => { if (x.done || x.tag === 'backoff') return; const h = placeholders(ex, k, prog); sets.push({ k, w: x.w != null ? x.w : h.w, r: x.r != null ? x.r : h.r }); });
+  if (!sets.length) return null;
+  const w = ex.type === 'charge' ? sets[0].w : null;
+  const reps = sets.some((x) => x.r != null) ? sets.map((x) => (x.r != null ? fmtN(x.r) : '?')).join(', ') : '';
+  const txt = w != null ? `${fmtN(w)}${NB}${unit()}${reps ? `${NB}×${NB}${reps}` : ''}` : reps ? `${reps} reps` : '';
+  return { sets, w, txt };
+}
+const coachStTxt = (st) => ({ ok: 'acceptée, appliquée par l’app', non: 'refusée', annule: 'acceptée puis annulée par lui' })[st] || 'restée sans réponse';
+/* Décisions prises depuis le dernier message envoyé : le modèle ne revoit pas ses appels d’outils, l’app les lui résume */
+function coachDecisions(fil) {
+  const L = [];
+  for (const p of fil.props || []) {
+    if (p.told || p.st === 'info' || p.st === 'attente') continue;
+    L.push(`- ${p.src === 'regle' ? '(règle locale de l’app) ' : ''}« ${p.titre} » : ${coachStTxt(p.st)}.`);
+    p.told = 1;
+  }
+  return L.length ? `Depuis ton dernier message, ses décisions sur les propositions :\n${L.join('\n')}` : '';
 }
 function coachPrevSetAt(a, s) {
   let t = 0;
   for (const e of a.exercises) for (const x of e.sets) if (x !== s && x.done && x.at && x.at <= s.at && x.at > t) t = x.at;
   return t;
 }
-function coachPlanText(a, again) {
+function coachPlanText(a, again, fil) {
   const ph = PHASES[a.phase] || phaseOf(a.week);
   const d = db.daily[isoDay(a.startedAt)];
   const lines = [`[PLAN] ${again ? 'Séance en cours' : 'La séance démarre'} : ${a.name}${a.code ? ` (${a.code})` : ''}, ${a.week ? `semaine S${a.week}, ` : ''}phase ${ph.label}, ${dfLong.format(new Date(a.startedAt))} à ${hhmm(a.startedAt)}.`];
+  lines.push(`Point d’avant-séance : ${coachCkText(fil && fil.ck, findSession(a.sessionId))}.`);
   if (d) {
     const b = [];
     if (d.w != null) b.push(`poids ${fmtN(d.w)} kg`);
@@ -2460,40 +2669,58 @@ function coachPlanText(a, again) {
     if (d.ap) b.push(`appétit ${d.ap}/5`);
     if (b.length) lines.push(`Ce matin : ${b.join(', ')}.`);
   }
-  lines.push('Exercices prévus :');
+  lines.push('Exercices prévus (le numéro E est celui que proposer_reglage attend) :');
   a.exercises.forEach((ex, i) => {
     const prog = progressionFor(ex, ph, a.startedAt);
-    const done = ex.sets.filter((s) => s.done);
-    lines.push(`E${i + 1} : ${ex.code ? ex.code + ' ' : ''}${ex.name}, ${coachActiveTarget(ex)}.${done.length ? ` Déjà fait aujourd’hui : ${done.map((s) => setText(ex.type, s)).join(' ; ')}.` : ''}${prog.text ? ` ${prog.text}` : ''}`);
+    const done = ex.sets.filter((s) => s.done), pl = coachPlanned(a, i);
+    lines.push(`E${i + 1} : ${ex.exId ? `[${ex.exId}] ` : ''}${ex.code ? ex.code + ' ' : ''}${ex.name}, ${coachActiveTarget(ex)}.${done.length ? ` Déjà fait aujourd’hui : ${done.map((s) => setText(ex.type, s)).join(' ; ')}.` : ''}${pl && pl.txt ? ` Prévu par l’app pour les séries qui restent : ${pl.txt}.` : ''}${ex.presc ? ` Cible déjà en place, prescrite par toi au dernier bilan : ${ex.presc.t}.` : ''}${prog.text ? ` ${prog.text}` : ''}${ex.alt ? ` Alternative du programme : ${ex.alt}.` : ''}`);
   });
+  const dec = fil ? coachDecisions(fil) : '';
+  if (dec) lines.push(dec);
   return coachPlain(lines.join('\n'));
 }
-function coachSetText(a, ei, si, nxt, last) {
+function coachSetText(a, ei, si, nxt, last, fil) {
   const ex = a.exercises[ei], s = ex.sets[si];
   const done = ex.sets.filter((x) => x.done);
   const prev = coachPrevSetAt(a, s), gap = prev ? Math.round((s.at - prev) / 1000) : 0;
+  const one = (x) => `${setText(ex.type, x)}${feelText(x) ? ` (${feelText(x)})` : ''}`;
   const lines = [`${last ? '[EXERCICE]' : '[SÉRIE]'} E${ei + 1} ${ex.name} : série ${si + 1} sur ${ex.sets.length} validée${s.tag === 'backoff' ? ' (back-off)' : ''} : ${setText(ex.type, s)}.`];
-  lines.push(`Cible : ${coachActiveTarget(ex)}.${gap > 0 && gap < 1800 ? ` Temps écoulé depuis la série précédente : ${fmtRest(gap)}.` : ''}`);
-  if (done.length > 1) lines.push(`Séries faites sur cet exercice : ${ex.sets.map((x, i) => (x.done ? `${i + 1}) ${setText(ex.type, x)}` : '')).filter(Boolean).join(' ; ')}.`);
-  lines.push(last ? 'Exercice terminé.' : `Il reste ${ex.sets.length - done.length} série${ex.sets.length - done.length > 1 ? 's' : ''} sur cet exercice.`);
+  lines.push(`Ressenti : ${[s.pain ? 'douleur signalée' : '', s.rir != null ? `${coachRirTxt(s.rir)} en réserve` : ''].filter(Boolean).join(', ') || 'non renseigné'}.`);
+  if (s.rb && s.rb.p > 0) lines.push(`Repos avant cette série : ${fmtRest(s.rb.t)} pris, ${fmtRest(s.rb.p)} prévus.`);
+  else if (gap > 0 && gap < 1800) lines.push(`Temps écoulé depuis la série précédente : ${fmtRest(gap)}.`);
+  const cst = coachConstat(a, ei, si);
+  if (cst) lines.push(`Constat déjà affiché par l’app : ${cst}.`);
+  lines.push(`Cible : ${coachActiveTarget(ex)}.`);
+  if (done.length > 1) lines.push(`Séries faites sur cet exercice : ${ex.sets.map((x, i) => (x.done ? `${i + 1}) ${one(x)}` : '')).filter(Boolean).join(' ; ')}.`);
+  const left = ex.sets.length - done.length, pl = coachPlanned(a, ei);
+  lines.push(last ? 'Exercice terminé.' : `Il reste ${left} série${left > 1 ? 's' : ''} sur cet exercice${pl && pl.txt ? `, prévue${left > 1 ? 's' : ''} à ${pl.txt}` : ''}.`);
   if (nxt && a.exercises[nxt.ei]) lines.push(`Série suivante : E${nxt.ei + 1} ${a.exercises[nxt.ei].name}, série ${nxt.si + 1}${nxt.ei === ei ? '' : ' (autre exercice)'}.`);
   else lines.push('C’était la dernière série de la séance.');
+  const dec = fil ? coachDecisions(fil) : '';
+  if (dec) lines.push(dec);
   return coachPlain(lines.join('\n'));
 }
-function coachBilanText(l) {
+function coachBilanText(l, fil) {
   const ph = (l.phase && PHASES[l.phase]) || phaseOf(l.week || 0);
   const v = Math.round(volumeOf(l.exercises));
   const lines = [`[BILAN] Séance terminée et enregistrée : ${l.name}, ${dfLong.format(new Date(l.startedAt))} à ${hhmm(l.startedAt)}${l.week ? `, semaine S${l.week}` : ''}, phase ${ph.label}. Durée ${fmtDur(l.duration)}, ${countSets(l)} séries${v ? `, tonnage ${fmtN(v)} ${unit()}` : ''}.`];
+  if (fil && fil.ck) lines.push(`Point d’avant-séance : ${coachCkText(fil.ck, findSession(l.sessionId))}.`);
   for (const e of l.exercises) {
     const prev = perfHistory(e.exId, e.name, l.startedAt, 1, l.id)[0];
     const hb = historicBest(e.exId, e.name, e.type, l.startedAt), b = bestOf(e);
-    lines.push(`- ${e.code ? e.code + ' ' : ''}${e.name} : ${perfText(e)}${prev ? ` (fois précédente, ${coachDay(prev.log.startedAt)} : ${perfText(prev.ex)})` : ' (première fois)'}${hb && b && better(b, hb) ? ' → nouveau record' : ''}`);
+    lines.push(`- ${e.exId && findProgramEx(e.exId) ? `[${e.exId}] ` : ''}${e.code ? e.code + ' ' : ''}${e.name} : ${perfText(e)}${coachFeelOf(e)}${prev ? ` (fois précédente, ${coachDay(prev.log.startedAt)} : ${perfText(prev.ex)}${coachFeelOf(prev.ex)})` : ' (première fois)'}${hb && b && better(b, hb) ? ' → nouveau record' : ''}`);
   }
   const s = findSession(l.sessionId);
   const missing = s ? s.exercises.filter((pe) => !matchEx(l, pe.id, pe.name)) : [];
-  if (missing.length) lines.push(`Exercices du programme non faits : ${missing.map((x) => x.name).join(', ')}.`);
+  if (missing.length) lines.push(`Exercices du programme non faits : ${missing.map((x) => `[${x.id}] ${x.name}`).join(', ')}.`);
+  /* tout ce qui a été proposé pendant la séance, et ce qu’il en a fait */
+  const all = fil ? (fil.props || []).filter((p) => p.scope === 'seance' && p.st !== 'info') : [];
+  if (all.length) {
+    lines.push('Propositions faites pendant la séance, et ses décisions :');
+    for (const p of all) { lines.push(`- ${p.src === 'regle' ? '(règle locale de l’app) ' : ''}« ${p.titre} » : ${coachStTxt(p.st)}.`); p.told = 1; }
+  }
   if (l.notes) lines.push(`Notes de l’athlète : « ${l.notes} »`);
-  lines.push('Fais le bilan de cette séance.');
+  lines.push('Fais le bilan de cette séance, puis tes propositions pour la prochaine fois.');
   return coachPlain(lines.join('\n'));
 }
 
@@ -2542,21 +2769,33 @@ async function coachFetch(body, fb, signal, run, key) {
   const headers = { 'content-type': 'application/json', authorization: 'Bearer ' + (key || coachCfg.key), 'anthropic-version': '2026-10-21', 'anthropic-dangerous-direct-browser-access': 'true' };
   /* repli : si un filtre de sécurité refuse la demande à tort, l’API la repasse d’elle-même à un autre modèle Claude */
   if (fb) headers['anthropic-beta'] = COACH_BETA;
-  const b = fb ? Object.assign({}, body, { fallbacks: 'default' }) : body;
+  const b = Object.assign({}, body);
+  if (fb) b.fallbacks = 'default';
+  if (b.tools && coachCfg.tl === 1) b.tools = b.tools.map((t) => { const c = Object.assign({}, t); delete c.strict; return c; });
+  else if (b.tools && coachCfg.tl < 1) {
+    /* outils refusés par l’API : le coach décrit alors ses propositions dans son texte */
+    delete b.tools;
+    b.system = b.system.map((x, i) => (i === 0 ? Object.assign({}, x, { text: x.text + COACH_NOTOOLS }) : x));
+  }
   try { return await fetch(COACH_URL, { method: 'POST', headers, body: JSON.stringify(b), signal, cache: 'no-store' }); } catch (e) { throw coachNetErr(e, run); }
 }
-/* Envoie la demande ; si l’en-tête bêta du repli est refusé, un seul nouvel essai sans lui */
+/* Envoie la demande. Deux refus se rattrapent par un nouvel essai : l’en-tête bêta du repli, puis les outils
+   (d’abord sans « strict », ensuite sans outil du tout). Le niveau retenu est gardé quelques jours. */
 async function coachOpen(body, signal, run, key) {
-  let res = await coachFetch(body, coachCfg.fb !== false, signal, run, key);
-  if (res.ok) return res;
-  let j = await coachReadErr(res);
-  if (res.status === 400 && coachCfg.fb !== false && /fallback|beta/i.test(j.msg)) {
-    coachCfg.fb = false; coachSaveCfg();
-    res = await coachFetch(body, false, signal, run, key);
+  for (let i = 0; i < 4; i++) {
+    const res = await coachFetch(body, coachCfg.fb !== false, signal, run, key);
     if (res.ok) return res;
-    j = await coachReadErr(res);
+    const j = await coachReadErr(res), err = coachErrOf(res.status, j, res);
+    if (res.status !== 400 || err.kind !== 'bad') throw err;
+    if (coachCfg.fb !== false && /fallback|beta/i.test(j.msg)) { coachCfg.fb = false; coachSaveCfg(); continue; }
+    if (body.tools && coachCfg.tl > 0 && /strict|tool|input_schema|schema/i.test(j.msg)) {
+      coachCfg.tl = coachCfg.tl === 2 && /strict|schema/i.test(j.msg) ? 1 : 0;
+      coachCfg.tlAt = Date.now(); coachSaveCfg();
+      continue;
+    }
+    throw err;
   }
-  throw coachErrOf(res.status, j, res);
+  throw new CoachError('bad', 400, 'demande refusée');
 }
 async function coachCall(fil, run) {
   if (navigator.onLine === false) throw new CoachError('offline');
@@ -2564,14 +2803,28 @@ async function coachCall(fil, run) {
   return coachStream(res, run);
 }
 async function coachStream(res, run) {
-  const out = { text: '', stop: '', usage: {} };
+  const out = { text: '', stop: '', usage: {}, tools: [] };
+  /* appels d’outils : l’entrée JSON arrive par fragments, bloc par bloc ; un bloc n’est retenu qu’une fois complet */
+  const blocks = {};
   const feed = (line) => {
     if (line.slice(0, 5) !== 'data:') return;
     let j = null;
     try { j = JSON.parse(line.slice(5)); } catch (e) { return; }
     if (!j || typeof j !== 'object') return;
     if (j.type === 'message_start') { if (j.message && j.message.usage) Object.assign(out.usage, j.message.usage); }
-    else if (j.type === 'content_block_delta') { if (j.delta && j.delta.type === 'text_delta') { out.text += j.delta.text || ''; run.text = out.text; coachLive(run); } }
+    else if (j.type === 'content_block_start') { const cb = j.content_block; if (cb && cb.type === 'tool_use') blocks[j.index] = { name: String(cb.name || ''), json: '', input: cb.input }; }
+    else if (j.type === 'content_block_delta') {
+      if (j.delta && j.delta.type === 'text_delta') { out.text += j.delta.text || ''; run.text = out.text; coachLive(run); }
+      else if (j.delta && j.delta.type === 'input_json_delta' && blocks[j.index]) blocks[j.index].json += j.delta.partial_json || '';
+    } else if (j.type === 'content_block_stop') {
+      const cb = blocks[j.index];
+      if (cb) {
+        delete blocks[j.index];
+        let inp = null;
+        try { inp = cb.json ? JSON.parse(cb.json) : cb.input; } catch (e) { inp = null; }
+        if (inp && typeof inp === 'object' && !Array.isArray(inp)) out.tools.push({ name: cb.name, input: inp });
+      }
+    }
     else if (j.type === 'message_delta') { if (j.delta && j.delta.stop_reason) out.stop = j.delta.stop_reason; if (j.usage) Object.assign(out.usage, j.usage); }
     else if (j.type === 'error') throw coachErrOf(0, { type: j.error && j.error.type, msg: j.error && j.error.message });
   };
@@ -2599,7 +2852,7 @@ async function coachStream(res, run) {
   if (!out.stop) throw new CoachError('net', 0, 'flux interrompu');
   return out;
 }
-/* Vérifie une clé avec une vraie demande minuscule, de la même forme que les suivantes (flux, cache, effort, repli) :
+/* Vérifie une clé avec une vraie demande minuscule, de la même forme que les suivantes (flux, cache, effort, repli, outils) :
    elle teste d’un coup la clé, le crédit, l’accès au modèle et tout ce que l’app enverra pendant la séance. */
 async function coachTest(key) {
   if (navigator.onLine === false) return { ok: false, error: 'Pas de connexion internet.' };
@@ -2607,7 +2860,8 @@ async function coachTest(key) {
   const timer = setTimeout(() => { run.why = 'timeout'; run.ctrl.abort(); }, 45000);
   const body = {
     model: COACH_MODEL, max_tokens: 2048, stream: true, output_config: { effort: 'medium' }, cache_control: { type: 'ephemeral' },
-    system: [{ type: 'text', text: 'Test de connexion de l’app Carnet.' }, { type: 'text', text: 'Aucune donnée dans ce test : réponds par un seul mot.', cache_control: { type: 'ephemeral', ttl: '1h' } }],
+    tools: COACH_TOOLS,
+    system: [{ type: 'text', text: 'Test de connexion de l’app Carnet.' }, { type: 'text', text: 'Aucune donnée dans ce test : réponds par un seul mot, sans utiliser d’outil.', cache_control: { type: 'ephemeral', ttl: '1h' } }],
     messages: [{ role: 'user', content: 'Réponds seulement : OK' }],
   };
   try {
@@ -2621,7 +2875,7 @@ async function coachTest(key) {
 /* ============ Coach : conversations ============ */
 function coachNewFil(kind, title, extra) {
   const now = Date.now();
-  const f = Object.assign({ id: uid(), kind, title, at: now, up: now, aid: '', logId: '', t0: 0, msgs: [], plan: null, tips: {}, tip: null, fails: 0, mute: '', muteNet: false, hold: '', berr: '', bilan: 0, tries: 0, retryAt: 0, sysAt: 0 }, extra || {});
+  const f = Object.assign({ id: uid(), kind, title, at: now, up: now, aid: '', logId: '', t0: 0, msgs: [], props: [], plan: null, tips: {}, tip: null, ck: null, lastOk: '', fails: 0, mute: '', muteNet: false, hold: '', berr: '', bilan: 0, tries: 0, retryAt: 0, sysAt: 0 }, extra || {});
   coachStore.fils.unshift(f);
   return f;
 }
@@ -2660,7 +2914,7 @@ function coachPump(fil) {
     if (fil.hold || Date.now() < (fil.retryAt || 0) || navigator.onLine === false) return;
     const l = db.logs.find((x) => x.id === fil.logId);
     if (!l || Date.now() - l.endedAt > 7 * DAY && Date.now() - fil.up > 7 * DAY) { fil.bilan = 0; coachSaveFils(); return; }
-    m = coachPush(fil, 'bilan', fil.msgs.some((x) => x.k === 'bilan' && x.r === 'u') ? '[BILAN] Fais maintenant le bilan de cette séance, à partir des données déjà envoyées.' : coachBilanText(l), { d: 'Bilan de la séance demandé' });
+    m = coachPush(fil, 'bilan', fil.msgs.some((x) => x.k === 'bilan' && x.r === 'u') ? '[BILAN] Fais maintenant le bilan de cette séance, à partir des données déjà envoyées, puis tes propositions pour la prochaine fois.' : coachBilanText(l, fil), { d: 'Bilan de la séance demandé' });
   }
   if (m.k === 'plan' || m.k === 'set' || m.k === 'ex') {
     if (fil.mute || Date.now() - m.at > COACH_TTL[m.k]) { m.w = 0; coachSaveFils(); coachPaint(fil); return; }
@@ -2678,7 +2932,7 @@ function coachPumpAll(reset) {
   } catch (e) { /* le coach ne doit jamais bloquer l’app */ }
 }
 async function coachSend(fil, m) {
-  const run = { id: fil.id, k: m.k, ctrl: new AbortController(), text: '', n: fil.msgs.length, why: '', usage: null, raf: 0 };
+  const run = { id: fil.id, k: m.k, ei: m.ei, si: m.si, ctrl: new AbortController(), text: '', n: fil.msgs.length, why: '', usage: null, raf: 0 };
   coachRuns.set(fil.id, run);
   coachPaint(fil);
   const timer = setTimeout(() => { if (!run.why) run.why = 'timeout'; run.ctrl.abort(); }, COACH_LIMIT[m.k] || 120000);
@@ -2694,14 +2948,16 @@ function coachDone(fil, m, run, out, err) {
   const now = Date.now(), user = m.k === 'chat' || m.k === 'q';
   if (out && out.stop === 'refusal') { err = new CoachError('refusal'); out = null; run.text = ''; }
   const text = String((out ? out.text : run.text) || '').trim();
-  if (out && !text) { err = new CoachError('empty'); out = null; }
-  const answer = (cut, why) => { const a = { r: 'a', t: text, k: m.k, at: now }; if (cut) a.cut = 1; if (why) a.why = why; fil.msgs.splice(run.n, 0, a); };
+  const tools = out ? out.tools || [] : [];
+  /* une réponse faite seulement d’appels d’outils est une réponse : vide = ni texte ni outil */
+  if (out && !text && !tools.length) { err = new CoachError('empty'); out = null; }
+  const answer = (cut, why) => { const a = { r: 'a', t: text, k: m.k, at: now }; if (cut) a.cut = 1; if (why) a.why = why; fil.msgs.splice(run.n, 0, a); return a; };
   if (out) {
     m.w = 0; delete m.err;
-    answer(out.stop === 'max_tokens', out.stop === 'max_tokens' ? 'Longueur maximale atteinte.' : '');
+    const ans = answer(out.stop === 'max_tokens', out.stop === 'max_tokens' ? 'Longueur maximale atteinte.' : '');
     fil.fails = 0; fil.up = now;
     if (coachCfg.err) { coachCfg.err = null; coachSaveCfg(); }
-    coachApply(fil, m, text);
+    coachApply(fil, m, text, tools, ans);
   } else if (run.why === 'new') {
     /* remplacée par une demande plus récente : rien à garder */
   } else if (run.why === 'stop') {
@@ -2730,6 +2986,8 @@ function coachDone(fil, m, run, out, err) {
       m.w = 0;
       fil.fails = (fil.fails || 0) + 1;
       if (!soft || fil.fails >= 3) { fil.mute = msg; fil.muteNet = soft; }
+      /* Claude n’a pas répondu pour cette série : la règle locale prend le relais tout de suite */
+      if (m.k === 'set' || m.k === 'ex') coachRuleNow(fil.aid, m.ei, m.si, false);
     }
   }
   coachSaveFils();
@@ -2737,30 +2995,45 @@ function coachDone(fil, m, run, out, err) {
   if (m.k === 'q' && out && !(sheet.open && sheet.querySelector('[data-coach-qa]')) && !(view.name === 'coach' && view.id === fil.id)) toast('Le coach a répondu à ta question');
   coachPump(fil);
 }
-function coachParsePlan(text) {
-  const plan = { g: '', ex: {} }, rest = [];
-  for (const raw of String(text).split('\n')) {
-    const line = raw.replace(/\*\*/g, '').replace(/^[\s\-*•–]+/, '').trim();
-    if (!line) continue;
-    let m = line.match(/^E\s?(\d{1,2})\s*[:.)\-–—]\s*(.+)$/i);
-    if (m) { plan.ex[+m[1] - 1] = cap(m[2].trim()); continue; }
-    m = line.match(/^G[ÉE]N[ÉE]RAL\s*[:\-–—]\s*(.+)$/i);
-    if (m) { plan.g = cap(m[1].trim()); continue; }
-    rest.push(line);
+/* Transforme les appels d’outils d’une réponse en propositions (bornées par l’app) et en notes du carnet */
+function coachTake(fil, m, tools) {
+  const made = { props: [], notes: [] };
+  const a = db.active && fil.aid === db.active.id ? db.active : null;
+  const auto = m.k === 'plan' || m.k === 'set' || m.k === 'ex';
+  const org = { plan: 'plan', set: 'serie', ex: 'serie', q: 'question', bilan: 'bilan' }[m.k] || 'chat';
+  for (const c of tools.slice(0, 24)) {
+    try {
+      const i = c.input;
+      if (c.name === 'retenir') { const n = coachRemember(i && i.note); if (n) made.notes.push(n); continue; }
+      let p = null;
+      if (c.name === 'proposer_reglage') p = a && (auto || m.k === 'q') ? coachMakeReglage(a, i) : null;
+      else if (c.name === 'proposer_programme') p = auto ? null : coachMakeProgramme(i);
+      else if (c.name === 'prescrire_prochaine_seance') p = auto ? null : coachMakeNext(i);
+      if (p) made.props.push(coachAddProp(fil, p, { src: 'ia', org, oe: m.ei == null ? -1 : m.ei, os: m.si == null ? -1 : m.si }));
+    } catch (e) { /* un appel illisible est ignoré : les autres restent valables */ }
   }
-  if (!plan.g && rest.length) plan.g = rest.join(' ');
-  return plan;
+  return made;
 }
-function coachApply(fil, m, text) {
-  if (m.k === 'plan') fil.plan = coachParsePlan(text);
-  else if (m.k === 'set' || m.k === 'ex') {
-    if (coachIsOk(text)) { delete fil.tips[m.ei]; if (fil.tip && fil.tip.ei === m.ei) fil.tip = null; }
-    else { const t = text.replace(/\*\*/g, '').replace(/\s+/g, ' ').slice(0, 400); fil.tips[m.ei] = t; fil.tip = { ei: m.ei, si: m.si, k: m.k, t, at: Date.now() }; }
+function coachApply(fil, m, text, tools, ans) {
+  const made = coachTake(fil, m, tools);
+  if (made.props.length) ans.np = made.props.length;
+  if (made.notes.length) ans.notes = made.notes;
+  const pend = made.props.filter((p) => p.st === 'attente').length;
+  if (m.k === 'plan') {
+    fil.plan = { g: text, at: Date.now() };
+    if (pend) toast(`Plan du jour prêt${NB}: ${plural(pend, 'réglage', 'réglages')} à valider`);
+  } else if (m.k === 'set' || m.k === 'ex') {
+    /* la réponse de Claude fait foi : la proposition de la règle locale pour cette série s’efface (sauf celle née d’une douleur) */
+    if (coachFeelFor && coachFeelFor.ei === m.ei && coachFeelFor.si === m.si) clearTimeout(coachRuleT);
+    fil.props = fil.props.filter((p) => !(p.src === 'regle' && p.st === 'attente' && !p.keep && p.oe === m.ei && p.os === m.si));
+    const t = text.replace(/\*\*/g, '').replace(/\s+/g, ' ').slice(0, 300);
+    if (t) fil.tips[m.ei] = t;
+    fil.tip = { ei: m.ei, si: m.si, k: m.k, t, at: Date.now(), ia: 1 };
   } else if (m.k === 'bilan') {
     fil.bilan = 2; fil.hold = ''; fil.berr = ''; fil.tries = 0; fil.retryAt = 0;
     const here = view.name === 'log' && view.id === fil.logId;
     if (fil.logId) coachStore.bilans[fil.logId] = { t: text, at: Date.now(), fil: fil.id, seen: here };
-    if (!here) toast('Bilan du coach prêt');
+    if (!here) toast(pend ? `Bilan du coach prêt${NB}: ${plural(pend, 'changement', 'changements')} à valider` : 'Bilan du coach prêt');
   }
 }
 function coachStop(fil) { const r = fil && coachRuns.get(fil.id); if (r) { r.why = 'stop'; r.ctrl.abort(); } }
@@ -2777,7 +3050,9 @@ function coachUserSend(fil, v) {
   if (!coachCfg.key) { toast('Active d’abord le coach dans les réglages'); return false; }
   if (coachBusy(fil)) return false;
   const live = fil.kind === 'seance' && !!db.active && fil.aid === db.active.id;
-  coachPush(fil, live ? 'q' : 'chat', live ? `[QUESTION] ${v}` : v, live ? { d: v } : null);
+  /* ses décisions sur les propositions précédentes partent avec la question : le modèle ne les voit pas autrement */
+  const dec = coachPlain(coachDecisions(fil));
+  coachPush(fil, live ? 'q' : 'chat', `${live ? `[QUESTION] ${v}` : v}${dec ? `\n\n[Note de l’app] ${dec}` : ''}`, live || dec ? { d: v } : null);
   coachPaint(fil);
   coachPump(fil);
   return true;
@@ -2815,32 +3090,138 @@ function coachOnStart() {
     const a = db.active;
     if (!a || !coachCfg.key) return;
     const fil = coachSeanceGet(a);
-    if (coachCfg.auto.plan && !fil.mute) coachPush(fil, 'plan', coachPlanText(a, false), { d: 'Plan de séance demandé' });
-    else coachSaveFils();
-    coachPump(fil);
+    coachUsePresc(a);
+    coachSaveFils();
+    /* le plan part après le point d’avant-séance, ouvert une fois l’écran de séance affiché */
+    if (coachCfg.auto.plan && !fil.mute) coachCkDue = a.id;
   } catch (e) { /* */ }
 }
+/* Prescriptions acceptées au dernier bilan : elles deviennent les valeurs grises des séries, et le repos de l’exercice */
+function coachUsePresc(a) {
+  if (activePhase(a).sets === 'deload') return;
+  let n = 0;
+  for (const ex of a.exercises) {
+    const x = ex.exId && coachStore.next[ex.exId];
+    if (!x || Date.now() - (x.at || 0) > 28 * DAY) continue;
+    let k = 0;
+    for (const s of ex.sets) {
+      if (s.tag === 'backoff') continue;
+      if (x.w != null && ex.type === 'charge') s.cw = x.w;
+      if (x.r && x.r.length) s.cr = x.r[Math.min(k, x.r.length - 1)];
+      k++;
+    }
+    if (x.rest) ex.rest = x.rest;
+    ex.presc = { t: String(x.tgt || x.titre || ''), r: String(x.raison || '') };
+    n++;
+  }
+  if (n) save();
+}
+function coachLastDone(a) {
+  let last = null;
+  a.exercises.forEach((e, ei) => e.sets.forEach((s, si) => { if (s.done && s.at && (!last || s.at > last.at)) last = { ei, si, at: s.at }; }));
+  return last;
+}
+/* Série validée : le constat s’affiche tout de suite ; la demande part avec le ressenti, dès qu’il est touché ou après quelques secondes */
 function coachOnSet(ei, si, nxt) {
   try {
     const a = db.active;
     if (!a || !coachCfg.key) return;
     const ex = a.exercises[ei], s = ex && ex.sets[si];
     if (!s || !s.done) return;
-    const last = ex.sets.every((x) => x.done), k = last ? 'ex' : 'set';
+    const fil = coachSeanceGet(a);
+    clearTimeout(coachFeelT); clearTimeout(coachRuleT);
+    coachExpire(fil, a);
+    coachFeelFor = { aid: a.id, ei, si, nxt, last: ex.sets.every((x) => x.done), sent: false };
+    coachSaveFils();
+    coachFeelT = setTimeout(() => coachSendSet(false), COACH_FEEL_MS);
+  } catch (e) { /* */ }
+}
+/* Les propositions nées de la série précédente et restées sans réponse ne valent plus (celles du plan ou d’une question attendent,
+   tant que l’exercice a des séries à faire) ; un changement de structure ne s’annule plus */
+function coachExpire(fil, a) {
+  for (const p of fil.props) {
+    if (p.scope !== 'seance') continue;
+    if (p.st === 'attente' && p.org === 'serie') p.st = 'perime';
+    else if (p.st === 'attente' && a.exercises[p.ei] && !a.exercises[p.ei].sets.some((s) => !s.done)) p.st = 'perime';
+    if (p.undo && p.undo.snap) delete p.undo;
+  }
+}
+function coachSendSet(again) {
+  try {
+    clearTimeout(coachFeelT);
+    const w = coachFeelFor, a = db.active;
+    if (!w || !a || a.id !== w.aid || !coachCfg.key || (w.sent && !again)) return;
+    const ex = a.exercises[w.ei], s = ex && ex.sets[w.si];
+    if (!s || !s.done) return;
+    w.sent = true;
+    const k = w.last ? 'ex' : 'set';
     if (!coachCfg.auto[k]) return;
     const fil = coachSeanceGet(a);
-    if (fil.mute) return;
-    coachPush(fil, k, coachSetText(a, ei, si, nxt, last), { ei, si, d: `${ex.name}, série ${si + 1}${NB}: ${setText(ex.type, s)}` });
+    clearTimeout(coachRuleT);
+    /* règle locale : tout de suite si Claude ne peut pas répondre, sinon seulement s’il tarde */
+    if (fil.mute || navigator.onLine === false) { coachRuleNow(a.id, w.ei, w.si, false); if (fil.mute) return; }
+    else coachRuleT = setTimeout(() => coachRuleNow(a.id, w.ei, w.si, false), COACH_RULE_MS);
+    coachPush(fil, k, coachSetText(a, w.ei, w.si, w.nxt, w.last, fil), { ei: w.ei, si: w.si, d: `${ex.name}, série ${w.si + 1}${NB}: ${setText(ex.type, s)}${feelText(s) ? `, ${feelText(s)}` : ''}` });
     coachPump(fil);
+    coachPaint(fil);
+  } catch (e) { /* */ }
+}
+/* Ressenti touché après une série : v = 0 à 3 (reps en réserve), ou 'pain'. Un second tap sur la même valeur l’efface. */
+function coachOnFeel(ei, si, v) {
+  try {
+    const a = db.active, ex = a && a.exercises[ei], s = ex && ex.sets[si];
+    if (!s || !s.done) return;
+    if (v === 'pain') { if (s.pain) delete s.pain; else s.pain = true; }
+    else { const n = clamp(Math.round(+v) || 0, 0, 3); if (s.rir === n) delete s.rir; else s.rir = n; }
+    save();
+    const fil = coachSeanceFil(a), w = coachFeelFor;
+    if (w && w.aid === a.id && w.ei === ei && w.si === si) {
+      const run = fil && coachRuns.get(fil.id);
+      /* pas encore partie : la série part maintenant, avec le ressenti. Déjà partie : elle repart si une douleur est signalée, ou si Claude n’a pas encore répondu */
+      if (!w.sent) coachSendSet(false);
+      else if ((v === 'pain' && s.pain) || (run && (run.k === 'set' || run.k === 'ex') && run.ei === ei && run.si === si)) coachSendSet(true);
+    }
+    /* une douleur n’attend pas la réponse de Claude */
+    if (v === 'pain' && s.pain) coachRuleNow(a.id, ei, si, true);
+    if (fil) coachPaint(fil); else if (view.name === 'workout') timerUI();
+  } catch (e) { /* */ }
+}
+/* Applique la règle locale à une série. force : même si Claude a déjà répondu (douleur signalée après coup). */
+function coachRuleNow(aid, ei, si, force) {
+  try {
+    const a = db.active;
+    if (!a || a.id !== aid || !coachCfg.key) return;
+    const fil = coachSeanceGet(a);
+    const answered = (fil.tip && fil.tip.ia && fil.tip.ei === ei && fil.tip.si === si) || fil.props.some((p) => p.src === 'ia' && p.org === 'serie' && p.oe === ei && p.os === si);
+    if (answered && !force) return;
+    const r = coachRegle(a, ei, si);
+    if (!r) return;
+    if (r.mot && !(fil.tip && fil.tip.ia && fil.tip.ei === ei && fil.tip.si === si)) fil.tip = { ei, si, k: 'set', t: r.mot, at: Date.now(), ia: 0 };
+    if (r.raw) {
+      const p = coachMakeReglage(a, r.raw);
+      /* pas de doublon avec une proposition du même genre déjà affichée pour cette série */
+      if (p && !fil.props.some((x) => x.st === 'attente' && x.scope === 'seance' && x.ei === p.ei && x.k === p.k)) coachAddProp(fil, p, { src: 'regle', org: 'serie', oe: ei, os: si, keep: a.exercises[ei].sets[si].pain ? 1 : 0 });
+    }
+    coachSaveFils();
+    coachPaint(fil);
   } catch (e) { /* */ }
 }
 function coachOnSave(a, log) {
   try {
-    if (!a || !coachCfg.key) return;
+    clearTimeout(coachFeelT); clearTimeout(coachRuleT); coachFeelFor = null;
+    if (!a) return;
+    /* prescriptions qui ont servi pendant cette séance : elles sortent de la liste d’attente */
+    for (const ex of a.exercises) {
+      if (!ex.presc || !ex.exId || !coachStore.next[ex.exId] || !log.exercises.some((x) => x.exId === ex.exId)) continue;
+      delete coachStore.next[ex.exId];
+      for (const j of coachStore.journal) if (j.k === 'next' && j.exId === ex.exId && !j.undone && !j.used) j.used = Date.now();
+    }
+    if (!coachCfg.key) { coachSaveFils(); return; }
     let fil = coachSeanceFil(a);
-    if (!fil && !coachCfg.auto.bilan) return;
+    if (!fil && !coachCfg.auto.bilan) { coachSaveFils(); return; }
     if (!fil) fil = coachSeanceGet(a);
     for (const m of fil.msgs) if (m.w) m.w = 0;
+    for (const p of fil.props) if (p.scope === 'seance') { if (p.st === 'attente') p.st = 'perime'; delete p.undo; }
     const r = coachRuns.get(fil.id);
     if (r && r.k !== 'q') { r.why = 'new'; r.ctrl.abort(); }
     fil.logId = log.id; fil.mute = ''; fil.muteNet = false; fil.fails = 0; fil.up = Date.now();
@@ -2851,6 +3232,7 @@ function coachOnSave(a, log) {
 }
 function coachOnDiscard(a) {
   try {
+    clearTimeout(coachFeelT); clearTimeout(coachRuleT); coachFeelFor = null; coachCk = null; coachCkDue = '';
     const fil = coachSeanceFil(a);
     if (fil && !fil.logId) coachDelete(fil.id);
   } catch (e) { /* */ }
@@ -2868,8 +3250,9 @@ function coachAskPlan() {
   const fil = coachSeanceGet(a);
   if (coachRuns.has(fil.id)) return;
   fil.mute = ''; fil.muteNet = false; fil.fails = 0;
-  coachPush(fil, 'plan', coachPlanText(a, countDone(a) > 0), { d: 'Plan de séance demandé' });
+  coachPush(fil, 'plan', coachPlanText(a, countDone(a) > 0, fil), { d: 'Plan du jour demandé' });
   coachPump(fil);
+  coachPaint(fil);
   if (navigator.onLine === false) toast('Pas de connexion internet');
 }
 function coachAskBilan(logId) {
@@ -2884,17 +3267,472 @@ function coachAskBilan(logId) {
   coachPaint(fil);
   if (navigator.onLine === false) toast(`Hors ligne${NB}: le bilan arrivera au retour du réseau`);
 }
-function coachExLine(fil, ei) { return (fil && (fil.tips[ei] || (fil.plan && fil.plan.ex[ei]))) || ''; }
-/* Conseil à afficher dans le minuteur de repos : seulement celui né de la série qui a lancé ce repos, la dernière validée */
-function coachTimerTip(a, t) {
+
+/* ============ Coach : ce qu’il voit (constat chiffré, calculé par l’app) ============ */
+/* Faits d’une série validée : la série d’avant sur cet exercice, la même série à la dernière séance, la fourchette, le repos pris */
+function coachSetFacts(a, ei, si) {
+  const ex = a && a.exercises[ei], s = ex && ex.sets[si];
+  if (!s || !s.done) return null;
+  const bo = s.tag === 'backoff', same = (x) => (x.tag === 'backoff') === bo;
+  const rank = ex.sets.slice(0, si).filter(same).length;
+  let prev = null, prevN = 0;
+  for (let j = si - 1; j >= 0; j--) if (ex.sets[j].done && same(ex.sets[j])) { prev = ex.sets[j]; prevN = j + 1; break; }
+  const h = perfHistory(ex.exId, ex.name, a.startedAt, 1)[0];
+  const pool = h ? h.ex.sets.filter(same) : [];
+  const t = ex.target || {};
+  const f = ex.type === 'duree' ? 't' : ex.type === 'cardio' ? 'd' : 'r';
+  return { ex, s, f, v: s[f], prev, prevN, last: pool[rank] || null, rmin: bo ? null : numOrNull(t.rmin), rmax: bo ? null : numOrNull(t.rmax), rir: parseRange(t.rir), rest: s.rb && s.rb.p > 0 ? s.rb : null };
+}
+function coachConstat(a, ei, si) {
   try {
-    if (!coachCfg.key || !t || t.mode !== 'rest') return '';
-    const fil = coachSeanceFil(a), tip = fil && fil.tip;
-    if (!tip || !tip.t) return '';
-    let last = null;
-    a.exercises.forEach((e, ei) => e.sets.forEach((s, si) => { if (s.done && s.at && (!last || s.at > last.at)) last = { ei, si, at: s.at }; }));
-    return last && last.ei === tip.ei && last.si === tip.si ? tip.t : '';
+    const F = coachSetFacts(a, ei, si);
+    if (!F || F.v == null || F.ex.type === 'cardio') return '';
+    const { ex, s, f, v, prev, prevN, last } = F, out = [];
+    const sec = ex.type === 'duree';
+    const n = (d) => (sec ? `${fmtN(Math.abs(d))}${NB}s` : plural(Math.abs(d), 'rep', 'reps'));
+    const sameW = (x) => ex.type !== 'charge' || (x.w || 0) === (s.w || 0);
+    if (prev && prev[f] != null) {
+      if (!sameW(prev)) out.push(`charge passée de ${fmtN(prev.w || 0)} à ${fmtN(s.w || 0)}${NB}${unit()}`);
+      else { const d = v - prev[f]; out.push(d < 0 ? `${n(d)} de moins qu’à la série ${prevN}` : d > 0 ? `${n(d)} de plus qu’à la série ${prevN}` : `comme à la série ${prevN}`); }
+    }
+    if (last && last[f] != null) {
+      if (!sameW(last)) out.push(`dernière séance${NB}: ${setText(ex.type, last)}`);
+      else { const d = v - last[f]; out.push(d < 0 ? `${n(d)} de moins qu’à la dernière séance` : d > 0 ? `${n(d)} de plus qu’à la dernière séance` : 'comme à la dernière séance'); }
+    }
+    if (F.rmin != null && v < F.rmin) out.push(`sous ta fourchette ${ex.target.reps}`);
+    else if (F.rmax != null && v >= F.rmax) out.push(`haut de ta fourchette ${ex.target.reps}`);
+    else if (F.rmin != null && F.rmax != null && !out.length) out.push(`dans ta fourchette ${ex.target.reps}`);
+    if (F.rest && F.rest.t < F.rest.p - 10) out.push(`repos pris ${fmtRest(F.rest.t)} sur ${fmtRest(F.rest.p)}`);
+    else if (F.rest && F.rest.t > F.rest.p + 20) out.push(`repos de ${fmtRest(F.rest.t)} au lieu de ${fmtRest(F.rest.p)}`);
+    if (s.rir != null) out.push(`${coachRirTxt(s.rir)} en réserve${ex.target && ex.target.rir ? ` (RIR prévu${NB}: ${ex.target.rir})` : ''}`);
+    if (s.pain) out.push('douleur signalée');
+    return `${setText(ex.type, s)}${out.length ? `${NB}: ${out.join(' · ')}` : ''}`;
   } catch (e) { return ''; }
+}
+/* Règles locales : ce que l’app propose d’elle-même quand Claude ne répond pas (hors ligne, coach en pause, réponse trop lente).
+   Rend { mot } (une consigne, rien à régler), { raw } (une proposition, au format de l’outil proposer_reglage) ou null. */
+function coachRegle(a, ei, si) {
+  const F = coachSetFacts(a, ei, si);
+  if (!F || F.v == null) return null;
+  const { ex, s, prev, prevN } = F, u = unit(), st = STEPS[ex.step] || STEPS.machine;
+  const raw = (type, o) => ({ raw: Object.assign({ exercice: ei + 1, type, repos_secondes: null, charge: null, repetitions: null, remplacant: null }, o) });
+  if (s.pain) {
+    if (!ex.sets.some((x) => !x.done)) return null;
+    const alt = String(ex.alt || '').trim();
+    const why = { constat: `Douleur signalée sur ${ex.name}, série ${si + 1}.`, raison: 'Une douleur n’est pas de la fatigue : on ne force pas dessus.' };
+    return alt && alt.length <= 60
+      ? raw('remplacer', Object.assign({ remplacant: alt, benefice: 'Tu gardes le travail du jour avec l’alternative du programme, sans aggraver la gêne.' }, why))
+      : raw('arreter', Object.assign({ benefice: 'Tu protèges l’articulation et tu arrives entier à la prochaine séance.' }, why));
+  }
+  if (F.f !== 'r' || !ex.sets.some((x) => !x.done && x.tag !== 'backoff')) return null;
+  const r = s.r, sameW = !!prev && (ex.type !== 'charge' || (prev.w || 0) === (s.w || 0));
+  const drop = sameW && prev.r != null ? prev.r - r : 0;
+  const short = !!F.rest && F.rest.t < F.rest.p - 15;
+  /* 1. repos écourté et reps en baisse : une consigne, rien à régler */
+  if (short && drop >= 1) return { mot: `Repos coupé à ${fmtRest(F.rest.t)} et ${plural(drop, 'rep', 'reps')} de moins${NB}: cette fois, laisse le minuteur aller au bout.` };
+  /* 2. sous la fourchette : la charge est trop lourde pour les séries qui restent */
+  if (F.rmin != null && r < F.rmin && ex.type === 'charge' && s.w > 0) {
+    let w = roundTo(s.w * (F.rmin - r >= 3 ? 0.9 : 0.95), st.round);
+    if (w >= s.w) w = Math.round((s.w - st.round) * 100) / 100;
+    if (w > 0) return raw('cible', { charge: w, constat: `${plural(r, 'rep', 'reps')} à ${fmtN(s.w)} ${u}, sous ta fourchette ${ex.target.reps}.`, raison: 'La charge est trop lourde pour rester dans la fourchette sur les séries qui restent.', benefice: 'Des séries complètes dans la fourchette, donc plus de travail utile que des séries ratées.' });
+  }
+  /* 3. reps en chute de 20 % malgré le repos complet, ou série plus dure que prévu : repos allongé de 30 s */
+  const hard = s.rir != null && F.rir.min != null && s.rir < F.rir.min;
+  if (!short && ex.rest >= 30 && ex.rest < 300 && ex.link !== 'chain' && ((drop >= 2 && r <= prev.r * 0.8) || hard)) {
+    return raw('repos', { repos_secondes: Math.min(300, ex.rest + 30), constat: drop >= 2 && r <= prev.r * 0.8 ? `${plural(r, 'rep', 'reps')} contre ${fmtN(prev.r)} à la série ${prevN}, repos pris en entier.` : `${coachRirTxt(s.rir)} en réserve, pour un RIR prévu de ${ex.target.rir}.`, raison: 'La récupération entre les séries est trop courte pour cette charge.', benefice: 'Plus de reps propres sur les séries qui restent, à la même charge.' });
+  }
+  /* 4. haut de fourchette avec plus de marge que prévu : charge au pas supérieur */
+  const easy = s.rir != null && F.rir.max != null && s.rir > F.rir.max;
+  if (F.rmax != null && r >= F.rmax && easy && ex.type === 'charge') {
+    if (st.inc && (s.w != null || ex.step === 'lest')) {
+      return raw('cible', { charge: Math.round(((s.w || 0) + st.inc) * 100) / 100, constat: `${plural(r, 'rep', 'reps')} à ${fmtN(s.w || 0)} ${u} avec ${coachRirTxt(s.rir)} en réserve, pour un RIR prévu de ${ex.target.rir}.`, raison: 'Haut de fourchette avec de la marge : la charge est devenue trop légère.', benefice: 'Des séries qui stimulent vraiment, et la progression du programme prise dès aujourd’hui.' });
+    }
+    return { mot: `Haut de fourchette avec de la marge${NB}: monte d’un cran sur la série suivante.` };
+  }
+  return null;
+}
+
+/* ============ Coach : propositions (bornées par l’app, appliquées après accord) ============ */
+const coachNotes = () => String(db.settings.coachNotes || '').split('\n').map((x) => x.trim()).filter(Boolean);
+const coachTxt = (v, n) => coachPlain(String(v == null ? '' : v)).replace(/\*\*/g, '').replace(/\s+/g, ' ').trim().slice(0, n || 260);
+const coachWhy = (i) => ({ constat: coachTxt(i.constat), raison: coachTxt(i.raison), benefice: coachTxt(i.benefice) });
+/* « 9, 8, 8 » → [9, 8, 8] ; d’une fourchette écrite par erreur (« 8-10 ») on garde le bas */
+const coachRepsList = (v) => (v == null ? [] : String(v).split(/[,;/]+/).map((x) => parseInt(x, 10)).filter((x) => isFinite(x) && x > 0).map((x) => clamp(x, 1, 60)).slice(0, 12));
+const coachNum = (v) => (v == null || v === '' || !isFinite(+v) ? null : +v);
+const coachExId = (v) => String(v == null ? '' : v).replace(/[[\]\s]/g, '');
+/* Note ajoutée au carnet du coach (synchronisé) ; rend la note retenue, ou '' si elle est vide ou déjà connue */
+function coachRemember(note) {
+  const t = coachTxt(note, 200);
+  if (t.length < 4) return '';
+  const lines = coachNotes();
+  if (lines.some((x) => norm(x) === norm(t))) return '';
+  lines.push(t);
+  db.settings.coachNotes = lines.slice(-30).join('\n');
+  touchSettings(); save();
+  return t;
+}
+/* Réglage de la séance en cours. i : entrée de l’outil proposer_reglage (ou d’une règle locale). Rend la proposition, ou null si elle ne change rien ou ne s’applique pas. */
+function coachMakeReglage(a, i) {
+  if (!i || typeof i !== 'object') return null;
+  const ei = Math.round(+i.exercice) - 1, ex = a.exercises[ei];
+  if (!ex) return null;
+  const pend = [];
+  ex.sets.forEach((s, k) => { if (!s.done) pend.push(k); });
+  const p = Object.assign({ scope: 'seance', ei, exId: ex.exId || '', nom: ex.name }, coachWhy(i));
+  const u = unit(), st = STEPS[ex.step] || STEPS.machine;
+  if (i.type === 'repos') {
+    const n = coachNum(i.repos_secondes);
+    if (n == null || ex.link === 'chain' || !pend.length) return null;
+    const v = clamp(Math.round(n / 5) * 5, 30, 300);
+    if (v === ex.rest) return null;
+    return Object.assign(p, { k: 'repos', v, titre: `Repos à ${fmtRest(v)} sur ${ex.name}`, old: `au lieu de ${fmtRest(ex.rest)}` });
+  }
+  if (i.type === 'cible') {
+    const pl = coachPlanned(a, ei);
+    if (!pl) return null;
+    let w = ex.type === 'charge' ? coachNum(i.charge) : null;
+    if (w != null) {
+      if (w < 0) return null;
+      const ref = pl.w;
+      if (ref != null && ref > 0) w = clamp(w, ref * 0.85, ref * 1.15);
+      w = Math.round(roundTo(Math.min(w, 500), st.round) * 100) / 100;
+    }
+    const r = coachRepsList(i.repetitions).slice(0, pl.sets.length);
+    if (w == null && !r.length) return null;
+    const tgt = w != null ? `${fmtN(w)}${NB}${u}${r.length ? `${NB}×${NB}${r.join(', ')}` : ''}` : `${r.join(', ')} reps`;
+    const same = (w == null || pl.sets.every((x) => x.w === w)) && r.every((x, k) => pl.sets[k].r === x);
+    return Object.assign(p, { k: 'cible', v: { w, r }, tgt, titre: `${ex.name}${NB}: ${tgt}`, old: same || !pl.txt ? '' : `prévu${NB}: ${pl.txt}`, same: same ? 1 : 0 });
+  }
+  if (i.type === 'ajouter_serie') return ex.sets.length >= 12 ? null : Object.assign(p, { k: 'plus', v: 1, titre: `Une série de plus sur ${ex.name}` });
+  if (i.type === 'retirer_serie') return !pend.length || ex.sets.length < 2 ? null : Object.assign(p, { k: 'moins', v: 1, titre: `Une série de moins sur ${ex.name}` });
+  if (i.type === 'remplacer') {
+    const v = coachTxt(i.remplacant, 60);
+    if (!pend.length || v.length < 3 || norm(v) === norm(ex.name)) return null;
+    return Object.assign(p, { k: 'remplacer', v, titre: `Remplacer ${ex.name} par ${v}` });
+  }
+  if (i.type === 'arreter') return pend.length ? Object.assign(p, { k: 'arreter', v: 1, titre: `Arrêter ${ex.name} pour aujourd’hui` }) : null;
+  return null;
+}
+/* Changement durable du programme, ou ajustement des calories. i : entrée de l’outil proposer_programme. */
+function coachMakeProgramme(i) {
+  if (!i || typeof i !== 'object') return null;
+  const p = Object.assign({ scope: 'programme' }, coachWhy(i));
+  const val = coachTxt(i.valeur, 400);
+  if (i.champ === 'calories') {
+    const m = val.replace(/\s/g, '').replace('−', '-').match(/^([+-]?)(\d{1,4})/);
+    if (!m) return null;
+    const v = clamp(Math.round(((m[1] === '-' ? -1 : 1) * +m[2]) / 50) * 50, -600, 800), cur = +db.settings.kcalAdjust || 0;
+    if (v === cur) return null;
+    return Object.assign(p, { k: 'calories', exId: '', v, titre: v ? `Calories${NB}: ${fmtSigned(v)}${NB}kcal par jour par rapport au programme` : `Calories${NB}: retour aux chiffres du programme`, old: cur ? `aujourd’hui ${fmtSigned(cur)}${NB}kcal` : '' });
+  }
+  const e = findProgramEx(coachExId(i.exercice_id));
+  if (!e) return null;
+  Object.assign(p, { exId: e.id, nom: e.name });
+  const int = (lo, hi) => { const n = parseInt(val, 10); return isFinite(n) ? clamp(n, lo, hi) : null; };
+  if (i.champ === 'repos') {
+    const n = int(30, 300);
+    if (n == null) return null;
+    const v = Math.round(n / 5) * 5;
+    return v === e.rest ? null : Object.assign(p, { k: 'repos', v, titre: `${e.name}${NB}: repos ${fmtRest(e.rest)} → ${fmtRest(v)}` });
+  }
+  if (i.champ === 'series' || i.champ === 'series_bloc2') {
+    const b2 = i.champ === 'series_bloc2', cur = b2 ? e.sets2 || e.sets : e.sets, n = int(1, 12);
+    if (n == null) return null;
+    /* une série à la fois */
+    const v = clamp(n, Math.max(1, cur - 1), Math.min(12, cur + 1));
+    return v === cur ? null : Object.assign(p, { k: b2 ? 'series2' : 'series', v, titre: `${e.name}${NB}: ${cur} → ${plural(v, 'série', 'séries')} en bloc ${b2 ? 2 : 1}` });
+  }
+  if (i.champ === 'repetitions') {
+    const m = val.match(/^(\d{1,2})\s*(?:[-–à]\s*(\d{1,2}))?$/);
+    if (!m || e.type === 'duree' || e.type === 'cardio' || (m[2] && +m[2] < +m[1])) return null;
+    const v = m[2] ? `${+m[1]}-${+m[2]}` : String(+m[1]);
+    return v === e.reps ? null : Object.assign(p, { k: 'reps', v, titre: `${e.name}${NB}: fourchette ${e.reps || '?'} → ${v} reps` });
+  }
+  if (i.champ === 'rir') {
+    const m = val.match(/^(\d)\s*(?:[-–à]\s*(\d))?$/);
+    if (!m) return null;
+    const v = m[2] ? `${m[1]}-${m[2]}` : m[1];
+    return v === e.rir ? null : Object.assign(p, { k: 'rir', v, titre: `${e.name}${NB}: RIR ${e.rir || '?'} → ${v}` });
+  }
+  if (i.champ === 'consignes') {
+    const v = val.slice(0, 300);
+    return v.length < 8 || v === e.cues ? null : Object.assign(p, { k: 'cues', v, titre: `${e.name}${NB}: nouvelles consignes`, detail: v });
+  }
+  if (i.champ === 'remplacer') {
+    const v = val.slice(0, 60);
+    return v.length < 3 || norm(v) === norm(e.name) ? null : Object.assign(p, { k: 'remplacer', v, titre: `${e.name} remplacé par ${v} dans le programme` });
+  }
+  return null;
+}
+/* Charge et répétitions à viser à la prochaine séance. i : entrée de l’outil prescrire_prochaine_seance. */
+function coachMakeNext(i) {
+  if (!i || typeof i !== 'object') return null;
+  const e = findProgramEx(coachExId(i.exercice_id));
+  if (!e || (e.type !== 'charge' && e.type !== 'reps')) return null;
+  const st = STEPS[e.step] || STEPS.machine;
+  let w = e.type === 'charge' ? coachNum(i.charge) : null;
+  if (w != null) {
+    if (w < 0) return null;
+    /* bornée à 15 % près de la charge la plus lourde de la dernière séance */
+    const h = perfHistory(e.id, e.name, Date.now() + 1, 1)[0], ref = h ? topWeight(h.ex) : null;
+    if (ref != null && ref > 0) w = clamp(w, ref * 0.85, ref * 1.15);
+    w = Math.round(roundTo(Math.min(w, 500), st.round) * 100) / 100;
+  }
+  const r = coachRepsList(i.repetitions);
+  if (w == null && !r.length) return null;
+  const n = coachNum(i.repos_secondes);
+  let rest = n == null ? null : clamp(Math.round(n / 5) * 5, 30, 300);
+  if (rest === e.rest || e.link === 'chain') rest = null;
+  const tgt = `${w != null ? `${fmtN(w)}${NB}${unit()}${r.length ? `${NB}×${NB}${r.join(', ')}` : ''}` : `${r.join(', ')} reps`}${rest ? `, repos ${fmtRest(rest)}` : ''}`;
+  return Object.assign({ scope: 'prochaine', k: 'next', exId: e.id, nom: e.name, v: { w, r, rest }, tgt, titre: `${e.name}${NB}: vise ${tgt}` }, coachWhy(i));
+}
+function coachAddProp(fil, p, extra) {
+  Object.assign(p, { id: uid(), at: Date.now(), st: 'attente' }, extra || {});
+  /* une seule proposition en attente par sujet : la nouvelle remplace l’ancienne */
+  const key = (x) => [x.scope, x.k, x.scope === 'seance' ? x.ei : x.exId].join('|');
+  fil.props = fil.props.filter((x) => !((x.st === 'attente' || x.st === 'info') && key(x) === key(p)));
+  /* une cible qui confirme ce que l’app prévoit déjà : affichée dans le plan, rien à valider */
+  if (p.same) p.st = 'info';
+  if (fil.logId) p.logId = fil.logId;
+  fil.props.push(p);
+  if (fil.props.length > 60) fil.props.splice(0, fil.props.length - 60);
+  return p;
+}
+function coachProp(id) {
+  for (const fil of coachStore.fils) { const p = (fil.props || []).find((x) => x.id === id); if (p) return { fil, p }; }
+  return null;
+}
+function coachAccept(id) {
+  const hit = coachProp(id);
+  if (!hit || hit.p.st !== 'attente') return false;
+  const { fil, p } = hit;
+  let ok = false;
+  try { ok = p.scope === 'seance' ? coachApplySeance(fil, p) : p.scope === 'programme' ? coachApplyProgramme(fil, p) : coachApplyNext(fil, p); } catch (e) { ok = false; }
+  p.st = ok ? 'ok' : 'perime'; p.dat = Date.now(); p.told = 0;
+  if (ok) fil.lastOk = p.id;
+  coachSaveFils();
+  return ok;
+}
+function coachRefuse(id) {
+  const hit = coachProp(id);
+  if (!hit || hit.p.st !== 'attente') return false;
+  hit.p.st = 'non'; hit.p.dat = Date.now(); hit.p.told = 0;
+  coachSaveFils();
+  return true;
+}
+/* Applique un réglage accepté à la séance en cours ; garde de quoi l’annuler */
+function coachApplySeance(fil, p) {
+  const a = db.active;
+  if (!a || fil.aid !== a.id) return false;
+  const ex = a.exercises[p.ei], t = a.timer;
+  if (!ex || norm(ex.name) !== norm(p.nom)) return false;
+  const pend = [];
+  ex.sets.forEach((s, k) => { if (!s.done) pend.push(k); });
+  if (p.k === 'repos') {
+    p.undo = { rest: ex.rest };
+    ex.rest = p.v;
+    /* le repos en cours sur cet exercice s’allonge ou se raccourcit d’autant */
+    if (t && t.mode === 'rest' && t.from && t.from.ei === p.ei) {
+      const d = p.v - (t.plan || t.total);
+      t.endsAt += d * 1000; t.total = Math.max(1, t.total + d); t.plan = p.v;
+      p.undo.d = d; p.undo.tid = t.id;
+    }
+    return true;
+  }
+  if (p.k === 'cible') {
+    const work = pend.filter((k) => ex.sets[k].tag !== 'backoff');
+    if (!work.length) return false;
+    p.undo = { sets: work.map((k) => { const s = ex.sets[k]; return { k, cw: s.cw == null ? null : s.cw, cr: s.cr == null ? null : s.cr, w: s.w, r: s.r }; }) };
+    work.forEach((k, n) => {
+      const s = ex.sets[k];
+      /* la cible acceptée remplace ce qui était saisi d’avance dans une série pas encore faite */
+      if (p.v.w != null) { s.cw = p.v.w; s.w = null; }
+      if (p.v.r && p.v.r[n] != null) { s.cr = p.v.r[n]; s.r = null; }
+    });
+    return true;
+  }
+  /* changements de structure : annulables d’un bloc, tant qu’aucune série n’a été validée depuis */
+  const snap = JSON.stringify(a.exercises);
+  const refs = [];
+  ex.sets.forEach((s, k) => { if (s.done) refs.push({ s, k }); });
+  if (p.k === 'plus') { if (ex.sets.length >= 12) return false; addSetTo(ex); }
+  else if (p.k === 'moins') { if (!pend.length || ex.sets.length < 2) return false; ex.sets.splice(pend[pend.length - 1], 1); }
+  else if (p.k === 'arreter') { if (!pend.length) return false; ex.sets = ex.sets.filter((s) => s.done); ex.off = 1; }
+  else if (p.k === 'remplacer') {
+    if (!pend.length) return false;
+    /* les séries déjà faites restent au nom de l’ancien exercice (rangées en fin de séance : aucun indice ne bouge) ;
+       le remplaçant n’a pas d’identifiant de programme, son historique se suit par son nom */
+    const done = ex.sets.filter((s) => s.done);
+    if (done.length) a.exercises.push(Object.assign({}, ex, { link: '', sets: done, target: Object.assign({}, ex.target) }));
+    const sets = pend.map((k) => { const b = blankSet(); if (ex.sets[k].tag) b.tag = ex.sets[k].tag; return b; });
+    Object.assign(ex, { exId: null, name: p.v, alt: p.nom, start: '', cues: '', notes: '', sets, swap: p.nom, target: Object.assign({}, ex.target, { weight: null }) });
+    delete ex.presc;
+  } else return false;
+  /* les séries déjà faites ont pu changer de place : ce qui les désigne les suit, et y reviendra si le changement est annulé */
+  const map = { from: p.ei, d: [], to: [] };
+  for (const r of refs) {
+    let at = null;
+    a.exercises.forEach((e, i) => { const k = e.sets.indexOf(r.s); if (k >= 0) at = [i, k]; });
+    if (at && (at[0] !== p.ei || at[1] !== r.k)) { map.d.push(r.k); map.to.push(at); }
+  }
+  p.undo = { snap, done: countDone(a) };
+  if (map.d.length) { p.undo.map = map; coachRemap(fil, a, map, false); }
+  coachRecursor(a);
+  return true;
+}
+/* Suit les séries faites qu’un changement de structure a déplacées : repos en cours, ressenti attendu, mot du coach, demande en vol, origine des propositions */
+function coachRemap(fil, a, map, back) {
+  const mv = (o, ke, ks) => {
+    if (!o) return;
+    for (let n = 0; n < map.d.length; n++) {
+      if (!back && o[ke] === map.from && o[ks] === map.d[n]) { o[ke] = map.to[n][0]; o[ks] = map.to[n][1]; return; }
+      if (back && o[ke] === map.to[n][0] && o[ks] === map.to[n][1]) { o[ke] = map.from; o[ks] = map.d[n]; return; }
+    }
+  };
+  mv(a.timer && a.timer.from, 'ei', 'si');
+  mv(coachFeelFor, 'ei', 'si');
+  mv(fil.tip, 'ei', 'si');
+  mv(coachRuns.get(fil.id), 'ei', 'si');
+  for (const m of fil.msgs) if (m.w) mv(m, 'ei', 'si');
+  for (const x of fil.props) mv(x, 'oe', 'os');
+}
+/* Après un changement de structure : la série suivante, et celle qu’annonce le minuteur de repos */
+function coachRecursor(a) {
+  const ld = coachLastDone(a);
+  a.cursor = ld ? nextPending(ld.ei, ld.si) : nextSet(a);
+  if (a.timer && a.timer.mode === 'rest') a.timer.info = a.cursor;
+}
+function coachCanUndo(fil, p) {
+  if (p.st !== 'ok') return false;
+  if (p.scope !== 'seance') { const j = coachStore.journal.find((x) => x.pid === p.id); return !!j && !j.undone && !j.used; }
+  const a = db.active;
+  if (!a || fil.aid !== a.id || !p.undo) return false;
+  return p.undo.snap ? fil.lastOk === p.id && countDone(a) === p.undo.done : true;
+}
+function coachUndoSeance(fil, p) {
+  if (!coachCanUndo(fil, p)) return false;
+  const a = db.active, ex = a.exercises[p.ei], t = a.timer;
+  if (p.undo.snap) {
+    a.exercises = JSON.parse(p.undo.snap);
+    if (p.undo.map) coachRemap(fil, a, p.undo.map, true);
+    coachRecursor(a);
+  } else if (p.k === 'repos') {
+    if (!ex) return false;
+    ex.rest = p.undo.rest;
+    if (t && t.mode === 'rest' && p.undo.tid === t.id) { t.endsAt -= p.undo.d * 1000; t.total = Math.max(1, t.total - p.undo.d); t.plan = p.undo.rest; }
+  } else if (p.k === 'cible') {
+    if (!ex) return false;
+    for (const u of p.undo.sets) {
+      const s = ex.sets[u.k];
+      if (!s || s.done) continue;
+      if (u.cw == null) delete s.cw; else s.cw = u.cw;
+      if (u.cr == null) delete s.cr; else s.cr = u.cr;
+      s.w = u.w; s.r = u.r;
+    }
+  } else return false;
+  delete p.undo;
+  p.st = 'annule'; p.dat = Date.now(); p.told = 0;
+  return true;
+}
+/* Applique au programme un changement accepté et l’inscrit au journal, avec de quoi l’annuler */
+function coachApplyProgramme(fil, p) {
+  const j = { id: uid(), at: Date.now(), pid: p.id, logId: fil.logId || '', exId: p.exId || '', k: p.k, label: p.titre, raison: p.raison || '' };
+  if (p.k === 'calories') { j.before = +db.settings.kcalAdjust || 0; db.settings.kcalAdjust = p.v; j.after = p.v; touchSettings(); }
+  else {
+    const e = findProgramEx(p.exId);
+    if (!e) return false;
+    /* une version de secours avant de toucher au programme, une seule pour une liste appliquée d’un coup */
+    if (Date.now() - coachSnapAt > 15000) { snapshot('Avant un changement du coach'); coachSnapAt = Date.now(); }
+    if (p.k === 'repos') { j.before = { rest: e.rest, restMax: e.restMax }; e.rest = p.v; if (e.restMax && e.restMax < p.v) e.restMax = null; j.after = e.rest; }
+    else if (p.k === 'series') { j.before = e.sets; e.sets = p.v; j.after = e.sets; }
+    else if (p.k === 'series2') { j.before = e.sets2; e.sets2 = p.v === e.sets ? null : p.v; j.after = e.sets2; }
+    else if (p.k === 'reps') { j.before = e.reps; e.reps = p.v; j.after = e.reps; }
+    else if (p.k === 'rir') { j.before = e.rir; e.rir = p.v; j.after = e.rir; }
+    else if (p.k === 'cues') { j.before = e.cues; e.cues = p.v; j.after = e.cues; }
+    else if (p.k === 'remplacer') {
+      /* nouvel identifiant : l’historique de l’ancien exercice ne se mélange pas avec celui du nouveau */
+      const s = db.program.sessions.find((x) => x.exercises.includes(e));
+      const ne = normEx(Object.assign({}, e, { id: `${s.id}-${uid()}`, name: p.v, alt: e.name, start: '', cues: '', notes: '', weight: null }));
+      s.exercises[s.exercises.indexOf(e)] = ne;
+      j.before = e; j.after = ne.id; j.exId = ne.id;
+    } else return false;
+    touchProgram();
+  }
+  coachStore.journal.unshift(j);
+  save(true);
+  return true;
+}
+function coachApplyNext(fil, p) {
+  if (!findProgramEx(p.exId)) return false;
+  coachStore.next[p.exId] = { w: p.v.w, r: p.v.r, rest: p.v.rest, tgt: p.tgt, titre: p.titre, raison: p.raison || '', at: Date.now(), pid: p.id, logId: fil.logId || '' };
+  coachStore.journal.unshift({ id: uid(), at: Date.now(), pid: p.id, logId: fil.logId || '', exId: p.exId, k: 'next', label: `${p.titre}, à la prochaine séance`, raison: p.raison || '' });
+  return true;
+}
+/* Annule un changement du journal, si rien n’a modifié la même chose depuis */
+function coachUndo(jid) {
+  const j = coachStore.journal.find((x) => x.id === jid);
+  if (!j || j.undone || j.used) return false;
+  const same = (x, y) => canon(x) === canon(y);
+  if (j.k === 'next') {
+    const n = coachStore.next[j.exId];
+    if (!n || n.pid !== j.pid) return false;
+    delete coachStore.next[j.exId];
+  } else if (j.k === 'calories') {
+    if ((+db.settings.kcalAdjust || 0) !== j.after) return false;
+    db.settings.kcalAdjust = j.before; touchSettings();
+  } else {
+    const e = findProgramEx(j.exId);
+    if (!e) return false;
+    if (j.k === 'repos') { if (e.rest !== j.after) return false; e.rest = j.before.rest; e.restMax = j.before.restMax; }
+    else if (j.k === 'series') { if (e.sets !== j.after) return false; e.sets = j.before; }
+    else if (j.k === 'series2') { if (!same(e.sets2, j.after)) return false; e.sets2 = j.before; }
+    else if (j.k === 'reps') { if (e.reps !== j.after) return false; e.reps = j.before; }
+    else if (j.k === 'rir') { if (e.rir !== j.after) return false; e.rir = j.before; }
+    else if (j.k === 'cues') { if (e.cues !== j.after) return false; e.cues = j.before; }
+    else if (j.k === 'remplacer') { const s = db.program.sessions.find((x) => x.exercises.includes(e)); s.exercises[s.exercises.indexOf(e)] = normEx(j.before); }
+    else return false;
+    touchProgram();
+  }
+  j.undone = Date.now();
+  const hit = j.pid ? coachProp(j.pid) : null;
+  if (hit) { hit.p.st = 'annule'; hit.p.dat = Date.now(); hit.p.told = 0; }
+  save(true); coachSaveFils();
+  return true;
+}
+/* Liste à cocher : applique ce qui est coché, refuse le reste. Rend le nombre de changements appliqués. */
+function coachApplyList(fil, org, none) {
+  let n = 0;
+  for (const p of fil.props.filter((x) => x.org === org && x.st === 'attente')) {
+    if (none || coachOff.has(p.id)) coachRefuse(p.id);
+    else if (coachAccept(p.id)) n++;
+    coachOff.delete(p.id);
+  }
+  return n;
+}
+/* Après une décision : sauvegarde, puis l’écran se met à jour (la séance se redessine, ses séries ont pu changer) */
+function coachAfterAct(fil) {
+  save(true); coachSaveFils();
+  if (view.name === 'workout' && db.active && fil.aid === db.active.id) { timerRefresh(); render(true); }
+  coachPaint(fil);
+}
+/* Accepter, refuser ou annuler une proposition, depuis n’importe quel écran */
+function coachDo(what, id) {
+  const hit = coachProp(id);
+  if (!hit) return;
+  const { fil, p } = hit;
+  /* en séance, la carte dit elle-même « Appliqué » ou « Annulé » : pas de message par-dessus les boutons du minuteur */
+  if (what === 'ok') {
+    const ok = coachAccept(id);
+    if (!ok) toast('Cette proposition ne peut plus s’appliquer');
+    else if (p.scope !== 'seance') toast(p.scope === 'prochaine' ? 'Noté pour la prochaine séance' : 'Programme modifié');
+  } else if (what === 'no') coachRefuse(id);
+  else if (what === 'undo') {
+    let ok = false;
+    if (p.scope === 'seance') ok = coachUndoSeance(fil, p);
+    else { const j = coachStore.journal.find((x) => x.pid === p.id); ok = !!j && coachUndo(j.id); }
+    if (!ok) toast(`Modifié depuis${NB}: annulation impossible`); else if (p.scope !== 'seance') toast('Changement annulé');
+  }
+  coachAfterAct(fil);
 }
 
 /* ============ Coach : affichage ============ */
@@ -2936,13 +3774,49 @@ function coachMsgsHTML(fil, opt) {
       if (m.err && i === last) out.push(`<div class="cm-err"><p class="form-error">${esc(m.err)}</p>${retry}</div>`);
     } else {
       if ((m.k === 'set' || m.k === 'ex') && coachIsOk(m.t)) return;
-      out.push(`<div class="cm co"><span class="sr">Coach${NB}: </span><div class="cm-b">${coachFormat(m.t)}</div>${m.cut ? `<p class="cm-note">Réponse interrompue.${m.why ? ' ' + esc(m.why) : ''}</p>${i === last && !run ? retry : ''}` : ''}</div>`);
+      /* réponse faite seulement de propositions : une ligne le dit, les propositions sont listées plus bas */
+      if (m.t.trim()) out.push(`<div class="cm co"><span class="sr">Coach${NB}: </span><div class="cm-b">${coachFormat(m.t)}</div>${m.cut ? `<p class="cm-note">Réponse interrompue.${m.why ? ' ' + esc(m.why) : ''}</p>${i === last && !run ? retry : ''}` : ''}</div>`);
+      else if (m.np) out.push(`<p class="cm ev">Le coach a fait ${plural(m.np, 'proposition', 'propositions')}.</p>`);
+      if (m.notes && m.notes.length) out.push(`<p class="cm ev">Noté dans son carnet${NB}: ${m.notes.map((x) => esc(x)).join(' · ')}</p>`);
     }
   });
   if (run && run.k !== 'set' && run.k !== 'ex' && (!o.filter || run.k === 'q')) out.push(`<div class="cm co"><div class="cm-b" data-coach-live="${esc(fil.id)}">${run.text && run.k !== 'plan' ? coachFormat(run.text) : COACH_DOTS}</div></div>`);
   if (!out.length && !o.filter) out.push('<p class="muted small">Aucun échange pour l’instant.</p>');
   if (!o.filter && fil.msgs.length > 30) out.push(`<p class="cm ev">Conversation longue${NB}: une nouvelle conversation coûtera moins cher.</p>`);
   return out.join('');
+}
+/* ----- propositions : carte à valider, liste à cocher ----- */
+const COACH_ST = { ok: 'Appliqué', non: 'Refusé', perime: 'Sans réponse', annule: 'Annulé', info: 'Déjà prévu' };
+const coachDot = (t) => (/[.!?…]$/.test(t) ? t : t + '.');
+/* mode : où la carte s’affiche, donc quel écouteur reçoit ses boutons (act : #app, tact : minuteur, sact : panneau) */
+const coachBtnAttr = (mode, what, id) => (mode === 'tact' ? `data-tact="prop-${what}"` : mode === 'sact' ? `data-sact="prop${what}"` : `data-act="coach-${what}"`) + ` data-id="${esc(id)}"`;
+function coachPropHTML(fil, p, mode) {
+  const t = esc(p.titre);
+  if (p.st !== 'attente') return `<div class="cprop done"><p class="cprop-s"><span><b>${COACH_ST[p.st] || ''}</b>${NB}: ${t}</span>${coachCanUndo(fil, p) ? `<button class="link-btn" ${coachBtnAttr(mode, 'undo', p.id)} aria-label="Annuler${NB}: ${t}">Annuler</button>` : ''}</p></div>`;
+  const why = [['Constat', p.constat], ['Pourquoi', p.raison], ['Tu y gagnes', p.benefice]].filter((x) => x[1]).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+  return `<div class="cprop"><p class="cprop-k">${p.src === 'regle' ? 'Proposition de l’app' : 'Proposition du coach'}</p><p class="cprop-t">${t}${p.old ? ` <span class="cprop-o">(${esc(p.old)})</span>` : ''}</p>${why ? `<dl class="cprop-w">${why}</dl>` : ''}<div class="cprop-b"><button class="btn sm primary" ${coachBtnAttr(mode, 'ok', p.id)} aria-label="Accepter${NB}: ${t}">Accepter</button><button class="btn sm quiet" ${coachBtnAttr(mode, 'no', p.id)} aria-label="Refuser${NB}: ${t}">Refuser</button></div></div>`;
+}
+function coachListHTML(fil, props, mode) {
+  return `<div class="clist">${props.map((p) => {
+    const why = [p.constat, p.raison].filter(Boolean).map(coachDot).join(' ');
+    const body = `<span class="crow-t">${esc(p.titre)}${p.old ? ` <span class="cprop-o">(${esc(p.old)})</span>` : ''}</span>${p.detail ? `<span class="crow-w">«${NB}${esc(p.detail)}${NB}»</span>` : ''}${why ? `<span class="crow-w">${esc(why)}</span>` : ''}${p.benefice ? `<span class="crow-w"><b>Tu y gagnes${NB}:</b> ${esc(p.benefice)}</span>` : ''}`;
+    if (p.st === 'attente') return `<label class="crow"><input type="checkbox" data-cprop="${esc(p.id)}" ${coachOff.has(p.id) ? '' : 'checked'}><span class="crow-b">${body}</span></label>`;
+    return `<div class="crow done"><span class="crow-b"><span class="crow-st">${COACH_ST[p.st] || ''}</span>${body}${coachCanUndo(fil, p) ? `<button class="link-btn" ${coachBtnAttr(mode, 'undo', p.id)} aria-label="Annuler${NB}: ${esc(p.titre)}">Annuler ce changement</button>` : ''}</span></div>`;
+  }).join('')}</div>`;
+}
+/* Changements proposés hors des réglages de séance (programme, calories, prochaine séance) : liste à cocher et boutons */
+function coachChangesHTML(fil, title, lead) {
+  const props = (fil.props || []).filter((p) => p.scope !== 'seance');
+  if (!props.length) return '';
+  const pend = props.some((p) => p.st === 'attente');
+  return `<div class="cnext"><h3 class="h3">${title}</h3>${pend && lead ? `<p class="muted small">${lead}</p>` : ''}${coachListHTML(fil, props, 'act')}${pend ? `<div class="row-btns"><button class="btn sm primary" data-act="coach-apply" data-id="${esc(fil.id)}">Appliquer la sélection</button><button class="link-btn muted" data-act="coach-none" data-id="${esc(fil.id)}">Tout refuser</button></div>` : ''}</div>`;
+}
+/* Sous une conversation : ce que le coach a proposé, et ce qu’il en est advenu */
+function coachThreadProps(fil) {
+  const se = (fil.props || []).filter((p) => p.scope === 'seance' && p.st !== 'info');
+  const live = fil.kind === 'seance' && !!db.active && fil.aid === db.active.id;
+  const seance = se.length ? `<div class="cnext"><h3 class="h3">Réglages proposés pendant la séance</h3><ul class="cdone">${se.map((p) => `<li><b>${p.st === 'attente' ? 'En attente' : COACH_ST[p.st] || ''}</b>${NB}: ${esc(p.titre)}</li>`).join('')}</ul>${live && se.some((p) => p.st === 'attente') ? '<p class="hint">Ils se valident sur l’écran de la séance.</p>' : ''}</div>` : '';
+  return seance + coachChangesHTML(fil, 'Changements proposés', `Coche ce que tu acceptes${NB}: l’app l’applique, et tu peux l’annuler depuis le journal du coach.`);
 }
 function coachSendBtn(busy) {
   return busy ? `<button class="csend stop" data-act="coach-stop" aria-label="Arrêter la réponse">${I.stop}</button>` : `<button class="csend" data-act="coach-send" aria-label="Envoyer au coach">${I.send}</button>`;
@@ -2958,7 +3832,7 @@ function coachKnowCard() {
   const nM = Object.keys(db.measures).filter((k) => hasMeasure(db.measures[k])).length;
   const rows = [
     ['Programme', `${esc(p.name)}${NB}: ${plural(p.sessions.length, 'séance', 'séances')} et ${plural(nEx, 'exercice', 'exercices')} avec cibles et consignes, les règles et les phases, et le reste du PDF (feuille de route, nutrition, compléments, sommeil)`],
-    ['Historique', db.logs.length ? `${plural(db.logs.length, 'séance', 'séances')}, série par série, avec tes notes` : 'Aucune séance enregistrée pour l’instant'],
+    ['Historique', db.logs.length ? `${plural(db.logs.length, 'séance', 'séances')}, série par série, avec tes notes et tes reps en réserve` : 'Aucune séance enregistrée pour l’instant'],
     ['Suivi', `${plural(nW, 'pesée', 'pesées')}, ${plural(nM, 'mensuration', 'mensurations')}, sommeil, appétit et créatine`],
   ];
   return `<section class="card sec"><h2 class="h2">Ce que le coach sait de toi</h2>
@@ -3037,7 +3911,7 @@ function viewCoach() {
       </section>`
       : `<section class="card">
         <h2 class="h2">Active le coach</h2>
-        <p class="muted small" style="margin-top:6px">Le coach lit tout ton historique et ton objectif, puis te conseille${NB}: bilan de la semaine, plan de séance, conseils pendant la séance, bilan après. Il lui faut une clé API Anthropic, à saisir une fois dans les réglages.</p>
+        <p class="muted small" style="margin-top:6px">Le coach regarde chaque série, te propose des réglages à valider (repos, charge, séries), prépare ta séance selon ta forme et fait évoluer ton programme avec toi. Il lui faut une clé API Anthropic, à saisir une fois dans les réglages.</p>
         <div class="stack"><button class="btn primary" data-act="coach-setup">Configurer le coach</button></div>
       </section>`;
     const fils = coachStore.fils;
@@ -3046,9 +3920,24 @@ function viewCoach() {
     <header class="top"><div><h1 class="title">Coach</h1><p class="muted" style="margin-top:8px">Des conseils tirés de ton historique et de ton objectif.</p></div></header>
     ${ask}
     ${coachKnowCard()}
+    ${coachNotesCard()}
+    ${coachJournalCard()}
     ${coachFactsCard()}
     ${list}`;
   } catch (e) { return notFound('Le coach est indisponible pour le moment.', '#/', 'Retour à l’accueil'); }
+}
+/* Carnet du coach : ce qu’il a retenu de l’utilisateur (outil « retenir »), lisible et effaçable */
+function coachNotesCard() {
+  const notes = coachNotes();
+  return `<section class="card sec" id="coach-notes"><h2 class="h2">Ce que le coach a retenu de toi</h2>${notes.length
+    ? `<ul class="cnotes">${notes.map((n, i) => `<li><span>${esc(n)}</span><button class="icon-btn sm" data-act="coach-note-del" data-i="${i}" aria-label="Effacer la note${NB}: ${esc(n.slice(0, 60))}">${I.x}</button></li>`).join('')}</ul><p class="hint">Il s’en sert dans chaque réponse. Efface ce qui est faux ou dépassé.</p>`
+    : '<p class="muted small" style="margin-top:6px">Rien pour l’instant. Il note ici ce qu’il apprend de toi au fil des séances (une articulation sensible, un repos qui te réussit…), et tu peux tout effacer.</p>'}</section>`;
+}
+/* Journal du coach : chaque changement accepté, sa raison, et de quoi l’annuler */
+function coachJournalCard() {
+  const J = coachStore.journal;
+  if (!J.length) return '<section class="card sec" id="coach-journal"><h2 class="h2">Journal du coach</h2><p class="muted small" style="margin-top:6px">Les changements que tu acceptes (programme, charges prescrites, calories) s’inscrivent ici, avec leur raison et un bouton pour les annuler.</p></section>';
+  return `<section class="card sec" id="coach-journal"><div class="card-head"><h2 class="h2">Journal du coach</h2><p class="muted small">${plural(J.length, 'changement', 'changements')}</p></div><ul class="cjour">${J.slice(0, 15).map((j) => `<li${j.undone ? ' class="off"' : ''}><p class="cjour-t">${esc(j.label)}</p><p class="cjour-w">${cap(relTime(j.at))}${j.raison ? `. ${esc(coachDot(j.raison))}` : '.'}</p>${j.undone ? '<p class="cjour-w">Annulé.</p>' : j.used ? '<p class="cjour-w">Utilisé à la séance suivante.</p>' : `<button class="link-btn" data-act="coach-jundo" data-id="${esc(j.id)}" aria-label="Annuler${NB}: ${esc(j.label)}">Annuler ce changement</button>`}</li>`).join('')}</ul>${J.length > 15 ? `<p class="hint">Les ${plural(J.length - 15, 'changement plus ancien n’est pas affiché', 'changements plus anciens ne sont pas affichés')}.</p>` : ''}</section>`;
 }
 function coachThreadView() {
   const fil = coachFil(view.id);
@@ -3057,6 +3946,7 @@ function coachThreadView() {
   return `<div class="back-row"><a class="back" href="#/coach">${I.back} Coach</a><button class="link-btn muted" data-act="coach-del" data-id="${esc(fil.id)}">Supprimer</button></div>
   <header class="top" style="margin-bottom:6px"><div><p class="kicker">${fil.kind === 'seance' ? 'Séance' : 'Conversation'}, ${relTime(fil.at)}</p><h1 class="title sm ctitle">${esc(fil.title)}</h1></div></header>
   <div class="cmsgs" data-coach-msgs="${esc(fil.id)}">${coachMsgsHTML(fil)}</div>
+  <div data-coach-props>${coachThreadProps(fil)}</div>
   <p class="sr" role="status" data-coach-status></p>
   <div class="cbar float"><label class="sr" for="f-coachmsg">Message au coach</label><textarea class="input" id="f-coachmsg" data-coachmsg rows="1" placeholder="${has ? 'Écris au coach…' : 'Active le coach dans les réglages'}" ${has ? '' : 'disabled'}>${esc(coachDraft)}</textarea>${coachSendBtn(coachBusy(fil))}</div>`;
 }
@@ -3070,10 +3960,12 @@ function coachHomeCard() {
   try {
     const last = db.logs[db.logs.length - 1];
     const b = last && coachStore.bilans[last.id], lf = last ? coachLogFil(last.id) : null;
+    const todo = lf ? lf.props.filter((p) => p.scope !== 'seance' && p.st === 'attente').length : 0;
     let href = '#/coach', sub = 'Bilan de la semaine, prochaine séance, points à améliorer.', dot = false;
-    if (!coachCfg.key) sub = 'Active-le pour des conseils adaptés à ton historique et à ton objectif.';
+    if (!coachCfg.key) sub = 'Active-le pour des réglages à valider pendant la séance et un programme qui évolue avec toi.';
     else if (coachCfg.err) sub = coachCfg.err.t;
-    else if (b && !b.seen) { href = `#/historique/${encodeURIComponent(last.id)}`; sub = `Le bilan de ta séance ${last.name} est prêt.`; dot = true; }
+    else if (b && !b.seen) { href = `#/historique/${encodeURIComponent(last.id)}`; sub = `Le bilan de ta séance ${last.name} est prêt${todo ? `, avec ${plural(todo, 'changement', 'changements')} à valider` : ''}.`; dot = true; }
+    else if (b && todo) { href = `#/historique/${encodeURIComponent(last.id)}`; sub = `${plural(todo, 'changement proposé', 'changements proposés')} après ta séance ${last.name}${NB}: à valider.`; dot = true; }
     else if (lf && lf.bilan === 1) { href = `#/historique/${encodeURIComponent(last.id)}`; sub = lf.hold ? `Bilan de ${last.name} en attente.` : `Bilan de ${last.name} en attente du réseau.`; }
     return `<a class="card sec coach-card" href="${href}" data-coach-home><span class="ic">${I.coach}${dot ? '<i></i>' : ''}</span><span class="grow"><span class="h3">Coach</span><span class="muted small">${esc(sub)}</span></span>${I.chev}</a>`;
   } catch (e) { return ''; }
@@ -3084,7 +3976,7 @@ function coachSettingsCard() {
     if (!c.key) {
       return `<section class="card sec" id="coach">
       <h2 class="h2">Coach IA</h2>
-      <p class="muted small" style="margin-top:6px">Un coach qui lit tout ton historique, tes pesées et ton objectif${NB}: bilan de la semaine, plan de séance, conseils pendant la séance, bilan après. Il passe par Claude (Anthropic) avec ta propre clé API${NB}: tu paies à l’usage, quelques centimes par question.</p>
+      <p class="muted small" style="margin-top:6px">Un coach qui lit tout ton historique, tes pesées et ton objectif. Il regarde chaque série, te propose des réglages à valider, prépare ta séance selon ta forme et fait évoluer ton programme avec toi. Il passe par Claude (Anthropic) avec ta propre clé API${NB}: tu paies à l’usage, de l’ordre de quelques dizaines de centimes pour une séance suivie série par série.</p>
       <label class="field"><span>Clé API Anthropic</span><input class="input" id="f-coachkey" type="password" placeholder="sk-ant-…" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"></label>
       <p class="hint">En la créant chez Anthropic, choisis l’expiration «${NB}Never${NB}» et rattache-la à un espace de travail («${NB}Workspace${NB}»).</p>
       <p class="hint">La clé reste sur cet appareil${NB}: elle n’est ni exportée, ni envoyée sur GitHub. À chaque question, ton historique d’entraînement est envoyé à Anthropic.</p>
@@ -3099,31 +3991,109 @@ function coachSettingsCard() {
       <div style="margin-top:16px">${coachGoalField()}</div>
       <p class="h3" style="margin-top:22px">Pendant et après la séance</p>
       ${COACH_AUTO.map(([k, t, d]) => `<label class="switch-row"><span><strong>${t}</strong><span class="muted small">${d}</span></span><input type="checkbox" role="switch" class="switch" id="f-coach-${k}" data-coachauto="${k}" ${c.auto[k] ? 'checked' : ''}></label>`).join('')}
-      <p class="hint" style="margin-top:18px">Dépense estimée ce mois-ci${NB}: <b>≈${NB}${fmtN(Math.round(coachCost(u) * 100) / 100)}${NB}$</b> pour ${plural(u.n, 'demande', 'demandes')}. Le montant exact est sur ton compte Anthropic.</p>
+      <p class="hint" style="margin-top:18px">Dépense estimée ce mois-ci${NB}: <b>≈${NB}${fmtN(Math.round(coachCost(u) * 100) / 100)}${NB}$</b> pour ${plural(u.n, 'demande', 'demandes')}. Le montant exact est sur ton compte Anthropic. Une demande part après chaque série${NB}: pour dépenser moins, coupe «${NB}Réglages après chaque série${NB}» et garde le plan et le bilan.</p>
       <div class="stack"><a class="btn quiet" href="#/coach">Ouvrir le coach</a><a class="btn ghost" href="https://platform.claude.com/settings/billing" target="_blank" rel="noopener">Crédit et limite de dépense ${I.ext}</a><button class="link-btn muted" data-act="coach-off" style="justify-self:center">Retirer la clé</button></div>
     </section>`;
   } catch (e) { return ''; }
 }
-/* Carte « Coach » en tête de la séance en cours : plan, pause éventuelle, bouton pour poser une question */
+/* Carte « Coach » en tête de la séance en cours. Sa hauteur ne change pas quand une réponse arrive : rien ne bouge sous le doigt. */
 function coachWorkoutCard(a) {
   try {
     if (!coachCfg.key) return '';
     const fil = coachSeanceFil(a), run = fil ? coachRuns.get(fil.id) : null;
+    const plan = fil ? fil.props.filter((p) => p.org === 'plan') : [];
+    const pend = plan.filter((p) => p.st === 'attente').length;
     let txt, btn = '';
-    if (fil && fil.mute) { txt = `En pause${NB}: ${esc(fil.mute)}`; btn = '<button class="link-btn" data-act="coach-resume">Réessayer</button>'; }
-    else if (run && run.k === 'plan') txt = 'Le coach prépare ton plan de séance…';
-    else if (fil && fil.plan && fil.plan.g) txt = esc(fil.plan.g);
-    else { txt = 'Pas de plan pour cette séance.'; btn = '<button class="link-btn" data-act="coach-plan">Demander le plan</button>'; }
-    const tip = fil && fil.tip && fil.tip.k === 'ex' && a.exercises[fil.tip.ei] ? `<p class="wcoach-fb"><b>${esc(a.exercises[fil.tip.ei].name)}</b>${NB}: ${esc(fil.tip.t)}</p>` : '';
-    return `<section class="card wcoach" data-coach-card><div class="wcoach-head"><span class="ic">${I.coach}</span><h2 class="h3 grow">Coach</h2><button class="btn sm quiet" data-act="coach-q">Poser une question</button></div><p class="wcoach-txt">${txt}</p>${tip}${btn}</section>`;
+    if (fil && fil.mute) { txt = `En pause${NB}: ${esc(fil.mute)}`; btn = '<button class="btn sm quiet" data-act="coach-resume">Réessayer</button>'; }
+    else if ((coachCk && coachCk.aid === a.id) || coachCkDue === a.id) txt = 'Dis-lui d’abord comment tu te sens.';
+    else if (run && run.k === 'plan') txt = 'Il prépare ton plan du jour…';
+    else if (pend) { txt = `Plan du jour prêt${NB}: ${plural(pend, 'réglage', 'réglages')} à valider.`; btn = '<button class="btn sm primary" data-act="coach-plansheet">Voir le plan</button>'; }
+    else if (fil && fil.plan) { txt = plan.length ? 'Plan du jour validé.' : 'Plan du jour prêt.'; btn = '<button class="btn sm quiet" data-act="coach-plansheet">Revoir le plan</button>'; }
+    else { txt = 'Pas de plan pour cette séance.'; btn = '<button class="btn sm quiet" data-act="coach-plan">Demander le plan</button>'; }
+    /* objectif ou profil vides : le coach ne peut pas personnaliser, on le dit ici plutôt que de le laisser rester général */
+    const miss = !String(db.settings.coachGoal || '').trim() ? 'ton objectif' : !String(db.settings.coachProfile || '').trim() ? 'ce qu’il doit savoir de toi' : '';
+    return `<section class="card wcoach" data-coach-card><div class="wcoach-head"><span class="ic">${I.coach}</span><div class="grow"><h2 class="h3">Coach</h2><p class="wcoach-txt">${txt}</p></div></div><div class="wcoach-btns">${btn}<button class="btn sm quiet" data-act="coach-q">Poser une question</button></div>${miss ? `<p class="wcoach-fb">Il te connaît mal${NB}: écris ${miss} dans <a href="#/coach">l’écran Coach</a> pour des réglages vraiment à toi.</p>` : ''}</section>`;
   } catch (e) { return ''; }
 }
+/* Au-dessus des séries d’un exercice : ce qui est en place à la demande du coach (ne change qu’après une action, donc avec un rendu complet) */
 function coachExHint(a, ei) {
   try {
     if (!coachCfg.key) return '';
-    const t = coachExLine(coachSeanceFil(a), ei);
-    return `<p class="hint-line coach" data-coach-ex="${ei}"${t ? '' : ' hidden'}>${I.coach}<span>${esc(t)}</span></p>`;
+    const fil = coachSeanceFil(a), ex = a.exercises[ei], out = [];
+    const line = (t) => `<p class="hint-line coach">${I.coach}<span>${t}</span></p>`;
+    if (ex.swap) out.push(line(`Remplace ${esc(ex.swap)} aujourd’hui, sur proposition du coach.`));
+    if (ex.off) out.push(line('Exercice arrêté pour aujourd’hui, sur proposition du coach.'));
+    const cib = fil ? [...fil.props].reverse().find((p) => p.scope === 'seance' && p.k === 'cible' && p.ei === ei && p.st === 'ok') : null;
+    if (cib) out.push(line(`<b>Cible du coach${NB}:</b> ${esc(cib.tgt || '')}${cib.raison ? `. ${esc(coachDot(cib.raison))}` : ''}`));
+    else if (ex.presc && ex.presc.t) out.push(line(`<b>Prescrit par le coach${NB}:</b> ${esc(ex.presc.t)}${ex.presc.r ? `. ${esc(coachDot(ex.presc.r))}` : ''}`));
+    return out.join('');
   } catch (e) { return ''; }
+}
+const coachFeels = (ex) => !!ex && (ex.type === 'charge' || ex.type === 'reps');
+/* Boutons de ressenti d’une série validée ; attr(v) donne les attributs du bouton selon l’endroit (page ou minuteur) */
+function coachFeelHTML(s, attr) {
+  const b = (v, label, aria) => `<button type="button" class="${s.rir === v ? 'on' : ''}" ${attr(v)} aria-pressed="${s.rir === v}" aria-label="${aria}">${label}</button>`;
+  return `<div class="feel" role="group" aria-label="Répétitions en réserve">${b(0, '0', 'Aucune répétition en réserve')}${b(1, '1', '1 répétition en réserve')}${b(2, '2', '2 répétitions en réserve')}${b(3, '3+', '3 répétitions en réserve ou plus')}<button type="button" class="pain${s.pain ? ' on' : ''}" ${attr('pain')} aria-pressed="${!!s.pain}">Douleur</button></div>`;
+}
+/* Sous les séries d’un exercice : constat et ressenti de la dernière série validée, mot du coach, propositions à valider.
+   Seule cette zone est remplacée quand une réponse arrive : les séries au-dessus ne bougent pas. */
+function coachExFeel(a, ei) {
+  try {
+    if (!coachCfg.key) return '';
+    const fil = coachSeanceFil(a), ex = a.exercises[ei], ld = coachLastDone(a), out = [];
+    if (ld && ld.ei === ei) {
+      const s = ex.sets[ld.si], cst = coachConstat(a, ei, ld.si);
+      if (cst) out.push(`<p class="cst">${esc(cst)}</p>`);
+      if (coachFeels(ex)) out.push(`<p class="feel-q">Série ${ld.si + 1}${NB}: il t’en restait combien${NB}?</p>${coachFeelHTML(s, (v) => `data-act="coach-feel" data-e="${ei}" data-s="${ld.si}" data-v="${v}"`)}`);
+    }
+    if (fil) {
+      if (fil.tips[ei] && ex.sets.some((x) => !x.done)) out.push(`<p class="hint-line coach">${I.coach}<span>${esc(fil.tips[ei])}</span></p>`);
+      /* à valider : toujours ; déjà appliquée et annulable : seulement celles nées de la dernière série validée, sinon elles s’empilent */
+      for (const p of fil.props) {
+        if (p.scope !== 'seance' || p.org === 'plan' || p.ei !== ei) continue;
+        if (p.st === 'attente' || (ld && p.oe === ld.ei && p.os === ld.si && coachCanUndo(fil, p))) out.push(coachPropHTML(fil, p, 'act'));
+      }
+    }
+    return `<div class="cex" data-coach-ex="${ei}">${out.join('')}</div>`;
+  } catch (e) { return ''; }
+}
+/* Dans le panneau de repos : la série qui vient d’être validée, vue par le coach */
+function coachTimerHTML(a, t) {
+  if (!coachCfg.key || !t || t.mode !== 'rest' || !t.from) return '';
+  const ei = t.from.ei, si = t.from.si, ex = a.exercises[ei], s = ex && ex.sets[si];
+  if (!s || !s.done) return '';
+  const fil = coachSeanceFil(a), run = fil ? coachRuns.get(fil.id) : null, out = [];
+  const cst = coachConstat(a, ei, si);
+  if (cst) out.push(`<p class="cst">${esc(cst)}</p>`);
+  const tip = fil && fil.tip && fil.tip.ei === ei && fil.tip.si === si ? fil.tip.t : '';
+  if (tip) out.push(`<p class="tmot"><b>Coach</b>${esc(tip)}</p>`);
+  else if (run && (run.k === 'set' || run.k === 'ex') && run.ei === ei && run.si === si) out.push(`<p class="tmot"><b>Coach</b>${COACH_DOTS}</p>`);
+  if (coachFeels(ex)) out.push(`<div><p class="feel-q">Il t’en restait combien${NB}?</p>${coachFeelHTML(s, (v) => `data-tact="feel" data-v="${v}"`)}</div>`);
+  if (fil) for (const p of fil.props) if (p.scope === 'seance' && p.org === 'serie' && p.oe === ei && p.os === si && p.st !== 'perime' && p.st !== 'info') out.push(coachPropHTML(fil, p, 'tact'));
+  return out.join('');
+}
+/* Appelée à chaque battement du minuteur : la zone n’est réécrite que si son contenu a changé */
+function coachTimerPaint(tc, a, t) {
+  try {
+    const h = coachTimerHTML(a, t);
+    if (tc._h === h) return;
+    /* le focus (VoiceOver, clavier) retrouve le même bouton après le remplacement */
+    const ae = document.activeElement;
+    const had = ae && tc.contains(ae) && ae.dataset.tact ? `[data-tact="${ae.dataset.tact}"]${ae.dataset.v != null ? `[data-v="${ae.dataset.v}"]` : ''}` : '';
+    tc.innerHTML = h; tc._h = h; tc.hidden = !h;
+    const panel = tc.closest('.tpanel');
+    /* coach : anneau réduit et boutons du minuteur collés en bas ; prop : une proposition attend, l’anneau se réduit encore */
+    if (panel) { panel.classList.toggle('coach', !!h); panel.classList.toggle('prop', h.includes('cprop-b')); }
+    if (had) { const nb = tc.querySelector(had) || tsheet.querySelector('.tbtns .btn.primary'); if (nb) try { nb.focus({ preventScroll: true }); } catch (e) { /* */ } }
+  } catch (e) { /* le coach ne doit jamais bloquer le minuteur */ }
+}
+function coachTimerAct(act, b) {
+  try {
+    const a = db.active, t = a && a.timer;
+    if (!t) return;
+    if (act === 'feel') { if (t.from) coachOnFeel(t.from.ei, t.from.si, b.dataset.v); return; }
+    coachDo(act.slice(5), b.dataset.id);
+  } catch (e) { /* */ }
 }
 function coachBilanSection(l) {
   try {
@@ -3133,13 +4103,18 @@ function coachBilanSection(l) {
     const head = (sub) => `<div class="card-head"><h2 class="h2">Bilan du coach</h2>${sub ? `<p class="muted small">${sub}</p>` : ''}</div>`;
     const ask = (label) => `<div class="row-btns"><button class="btn sm quiet" data-act="coach-bilan" data-id="${esc(l.id)}">${label}</button></div>`;
     if (run && run.k === 'bilan') return `<section class="card sec" id="coach-bilan">${head('En cours…')}<div class="cm-b" data-coach-live="${esc(fil.id)}">${run.text ? coachFormat(run.text) : COACH_DOTS}</div></section>`;
-    if (b) return `<section class="card sec" id="coach-bilan">${head(cap(relTime(b.at)))}<div class="cm-b">${coachFormat(b.t)}</div>${fil ? `<div class="row-btns"><a class="btn sm quiet" href="#/coach/${encodeURIComponent(fil.id)}">Continuer avec le coach</a></div>` : ''}</section>`;
+    if (b) {
+      const ans = fil ? [...fil.msgs].reverse().find((m) => m.r === 'a' && m.k === 'bilan') : null;
+      const notes = ans && ans.notes && ans.notes.length ? `<p class="hint">Noté dans son carnet${NB}: ${ans.notes.map((x) => esc(x)).join(' · ')}</p>` : '';
+      const changes = fil ? coachChangesHTML(fil, 'Pour la prochaine fois', `Coche ce que tu acceptes${NB}: l’app l’applique à ton programme, et tu peux l’annuler depuis le journal du coach.`) : '';
+      return `<section class="card sec" id="coach-bilan">${head(cap(relTime(b.at)))}${b.t ? `<div class="cm-b">${coachFormat(b.t)}</div>` : ''}${notes}${changes}${fil ? `<div class="row-btns"><a class="btn sm quiet" href="#/coach/${encodeURIComponent(fil.id)}">Continuer avec le coach</a></div>` : ''}</section>`;
+    }
     if (!coachCfg.key) return none;
     if (fil && fil.bilan === 1) {
       const why = fil.hold || (navigator.onLine === false ? 'Le bilan arrivera dès que le téléphone retrouve Internet.' : fil.berr ? `${fil.berr} Nouvel essai automatique.` : 'Le bilan arrive.');
       return `<section class="card sec" id="coach-bilan">${head('En attente')}<p class="muted small">${esc(why)}</p>${ask('Réessayer maintenant')}</section>`;
     }
-    return `<section class="card sec" id="coach-bilan">${head('')}<p class="muted small">Le coach peut analyser cette séance${NB}: progrès, points faibles et actions pour la prochaine fois.</p>${ask('Demander le bilan')}</section>`;
+    return `<section class="card sec" id="coach-bilan">${head('')}<p class="muted small">Le coach peut analyser cette séance${NB}: progrès, points faibles, et les changements qu’il te propose pour la prochaine fois.</p>${ask('Demander le bilan')}</section>`;
   } catch (e) { return '<div id="coach-bilan" hidden></div>'; }
 }
 /* Remplace un bloc hors de render(), en gardant le focus (VoiceOver, clavier) */
@@ -3174,6 +4149,8 @@ function coachPaint(fil) {
     if (view.name === 'coach' && view.id === fil.id) {
       const box = app.querySelector('[data-coach-msgs]'), busy = coachBusy(fil);
       if (box) coachPinned(() => { box.innerHTML = coachMsgsHTML(fil); });
+      const pr = app.querySelector('[data-coach-props]');
+      if (pr) { const fk = focusKey(document.activeElement); coachPinned(() => { pr.innerHTML = coachThreadProps(fil); }); restoreFocus(fk); }
       const b = app.querySelector('.csend');
       if (b && b.classList.contains('stop') !== busy) {
         const had = document.activeElement === b;
@@ -3186,14 +4163,20 @@ function coachPaint(fil) {
       else if (st && st.dataset.b) { delete st.dataset.b; st.textContent = 'Réponse du coach affichée.'; }
     }
     if (view.name === 'workout' && db.active && fil.aid === db.active.id) {
-      coachSwap('[data-coach-card]', coachWorkoutCard(db.active));
-      $$('[data-coach-ex]', app).forEach((el) => { const t = coachExLine(fil, +el.dataset.coachEx), sp = el.querySelector('span'); if (sp && sp.textContent !== t) sp.textContent = t; el.hidden = !t; });
+      const a = db.active;
+      coachSwap('[data-coach-card]', coachWorkoutCard(a));
+      $$('[data-coach-ex]', app).forEach((el) => { const fk = focusKey(document.activeElement); el.outerHTML = coachExFeel(a, +el.dataset.coachEx); restoreFocus(fk); });
+      timerUI();
     }
-    const qa = sheet.open ? sheet.querySelector('[data-coach-qa]') : null;
-    if (qa && qa.dataset.coachQa === fil.id) {
-      coachPinned(() => { qa.innerHTML = coachQHTML(fil); });
-      const foot = sheet.querySelector('[data-coach-qfoot]');
-      if (foot) { const had = foot.contains(document.activeElement); foot.innerHTML = coachQFoot(fil); if (had) { const nb = foot.querySelector('button'); if (nb) nb.focus({ preventScroll: true }); } }
+    if (sheet.open) {
+      const qa = sheet.querySelector('[data-coach-qa]');
+      if (qa && qa.dataset.coachQa === fil.id) {
+        coachPinned(() => { qa.innerHTML = coachQHTML(fil); });
+        const foot = sheet.querySelector('[data-coach-qfoot]');
+        if (foot) { const had = foot.contains(document.activeElement); foot.innerHTML = coachQFoot(fil); if (had) { const nb = foot.querySelector('button'); if (nb) nb.focus({ preventScroll: true }); } }
+      }
+      const pl = sheet.querySelector('[data-coach-plan]');
+      if (pl && pl.dataset.coachPlan === fil.id) pl.innerHTML = coachPlanBody(fil);
     }
     if (view.name === 'log' && fil.logId && fil.logId === view.id) coachSwap('#coach-bilan', coachBilanSection(db.logs.find((l) => l.id === view.id)));
     if (view.name === 'home') { coachSwap('[data-coach-home]', coachHomeCard()); coachSwap('.coach-pill', coachHomePill()); }
@@ -3208,6 +4191,16 @@ function coachAfterRender() {
     coachShown = cur;
     if (cur) coachGrow($('#f-coachmsg'));
     if (coachGoSettings && view.name === 'settings') { coachGoSettings = false; setTimeout(() => { const el = document.getElementById('coach'); if (el) el.scrollIntoView({ block: 'start' }); }, 80); }
+    /* séance qui vient de démarrer : le point d’avant-séance s’ouvre une fois l’écran en place (un changement d’écran ferme les panneaux) */
+    if (coachCkDue && view.name === 'workout' && db.active && db.active.id === coachCkDue) {
+      const id = coachCkDue;
+      setTimeout(() => {
+        if (coachCkDue !== id) return;
+        coachCkDue = '';
+        if (db.active && db.active.id === id && view.name === 'workout' && !sheet.open) coachOpenCheckin();
+        else { coachCk = { aid: id, st: {} }; coachCheckinClosed(); }
+      }, 350);
+    }
   } catch (e) { /* le coach ne doit jamais bloquer l’app */ }
 }
 function coachGrow(t) {
@@ -3219,7 +4212,9 @@ function coachGrow(t) {
 /* ============ Coach : question pendant la séance ============ */
 /* Échanges de la séance ; tant qu’il n’y en a pas, des questions toutes prêtes à toucher */
 function coachQHTML(fil) {
-  return coachMsgsHTML(fil, { sheet: true, filter: (m) => m.k === 'q' })
+  const cards = (fil.props || []).filter((p) => p.org === 'question' && (p.st === 'attente' || coachCanUndo(fil, p))).map((p) => coachPropHTML(fil, p, 'sact')).join('');
+  const msgs = coachMsgsHTML(fil, { sheet: true, filter: (m) => m.k === 'q' });
+  return msgs ? msgs + cards : cards
     || `<p class="muted small">Machine prise, fatigue, doute sur une charge${NB}: le coach connaît ta séance en cours et tes dernières séances.</p><div class="chips" style="margin-top:6px">${COACH_QUICK.map((q, i) => `<button type="button" class="chip txt" data-sact="sug" data-i="${i}">${q}</button>`).join('')}</div>`;
 }
 function coachQFoot(fil) {
@@ -3243,8 +4238,77 @@ function coachOpenQuestion() {
     },
     stop: () => coachStop(fil),
     retry: () => coachRetry(fil),
+    propok: (b) => coachDo('ok', b.dataset.id),
+    propno: (b) => coachDo('no', b.dataset.id),
+    propundo: (b) => coachDo('undo', b.dataset.id),
   });
   if (fil.msgs.some((m) => m.k === 'q')) sheet.scrollTop = sheet.scrollHeight;
+}
+
+/* ============ Coach : point d’avant-séance et plan du jour ============ */
+const COACH_CK_TIME = [[45, `45${NB}min`], [60, `1${NB}h`], [75, `1${NB}h${NB}15`], [999, 'Pas de limite']];
+const COACH_CK_ZONES = ['Aucune', 'Épaule', 'Coude', 'Poignet', 'Dos', 'Hanche', 'Genou'];
+/* Trois taps avant la première série : forme, temps disponible, gêne. « Passer » ou fermer le panneau envoie le plan sans eux. */
+function coachOpenCheckin() {
+  const a = db.active;
+  if (!a || !coachCfg.key) return;
+  const st = { forme: 0, temps: 0, gene: '' };
+  coachCk = { aid: a.id, st };
+  const sess = findSession(a.sessionId);
+  const chip = (k, v, label) => `<button type="button" class="chip txt" data-sact="pick" data-k="${k}" data-v="${esc(String(v))}" aria-pressed="false">${label}</button>`;
+  openSheet(`<div class="sheet-head"><h2 class="sheet-title">Avant de commencer</h2><button class="link-btn muted" data-sact="cancel">Passer</button></div>
+    <p class="muted small">Trois taps, et le coach règle la séance sur ta forme du jour${sess ? ` (prévue${NB}: ≈${NB}${sess.minutes}${NB}min)` : ''}.</p>
+    <div class="field"><span id="ck-forme">Forme du jour</span><div class="rate" role="group" aria-labelledby="ck-forme">${[1, 2, 3, 4, 5].map((n) => `<button type="button" data-sact="pick" data-k="forme" data-v="${n}" aria-pressed="false" aria-label="Forme${NB}: ${n} sur 5">${n}</button>`).join('')}</div><p class="hint">1${NB}: à plat. 5${NB}: en pleine forme.</p></div>
+    <div class="field"><span>Temps disponible</span><div class="chips" style="margin-top:8px">${COACH_CK_TIME.map(([v, l]) => chip('temps', v, l)).join('')}</div></div>
+    <div class="field"><span>Une gêne quelque part${NB}?</span><div class="chips" style="margin-top:8px">${COACH_CK_ZONES.map((z) => chip('gene', z === 'Aucune' ? 'aucune' : z.toLowerCase(), z)).join('')}</div></div>
+    <div class="sheet-foot"><button class="btn primary" data-sact="cancel">C’est parti</button></div>`, {
+    cancel: closeSheet,
+    pick: (b) => {
+      const k = b.dataset.k, v = k === 'gene' ? b.dataset.v : +b.dataset.v;
+      st[k] = st[k] === v ? (k === 'gene' ? '' : 0) : v;
+      $$(`[data-k="${k}"]`, sheet).forEach((x) => {
+        const on = String(st[k]) === x.dataset.v;
+        x.setAttribute('aria-pressed', String(on));
+        if (k === 'forme') x.className = on ? `on v${x.dataset.v}` : ''; else x.classList.toggle('on', on);
+      });
+    },
+  });
+}
+/* Le panneau du point d’avant-séance s’est fermé (C’est parti, Passer, tap à côté, changement d’écran) : le plan part */
+function coachCheckinClosed() {
+  try {
+    const c = coachCk;
+    if (!c || sheet.open) return;
+    coachCk = null;
+    const a = db.active;
+    if (!a || a.id !== c.aid || !coachCfg.key) return;
+    const fil = coachSeanceGet(a), st = c.st || {};
+    fil.ck = st.forme || st.temps || st.gene ? { forme: st.forme || 0, temps: st.temps || 0, gene: st.gene || '', at: Date.now() } : null;
+    if (coachCfg.auto.plan && !fil.mute) coachPush(fil, 'plan', coachPlanText(a, false, fil), { d: 'Plan du jour demandé' });
+    else coachSaveFils();
+    coachPump(fil);
+    coachPaint(fil);
+  } catch (e) { /* */ }
+}
+function coachPlanBody(fil) {
+  const plan = fil.props.filter((p) => p.org === 'plan'), pend = plan.some((p) => p.st === 'attente');
+  return `<div class="sheet-head"><h2 class="sheet-title">Plan du jour</h2><button class="link-btn muted" data-sact="cancel">Fermer</button></div>
+    ${fil.ck ? `<p class="muted small">Ton point d’avant-séance${NB}: ${esc(coachCkText(fil.ck, null))}.</p>` : ''}
+    ${fil.plan && fil.plan.g ? `<div class="cm-b" style="margin-top:10px">${coachFormat(fil.plan.g)}</div>` : ''}
+    ${plan.length ? `${pend ? `<p class="muted small" style="margin-top:14px">Décoche ce que tu ne veux pas. Les charges acceptées deviennent les valeurs grises de tes séries${NB}: un tap sur ✓ suffit.</p>` : ''}${coachListHTML(fil, plan, 'sact')}` : '<p class="muted small" style="margin-top:12px">Le coach n’a proposé aucun réglage pour cette séance.</p>'}
+    ${pend ? '<div class="sheet-foot"><button class="btn primary" data-sact="apply">Appliquer le plan</button><button class="btn ghost" data-sact="none">Tout refuser</button></div>' : ''}`;
+}
+function coachOpenPlan() {
+  const a = db.active, fil = a ? coachSeanceFil(a) : null;
+  if (!fil) return;
+  const done = (n, none) => { closeSheet(); coachAfterAct(fil); toast(none ? 'Plan refusé' : n ? `Plan appliqué${NB}: ${plural(n, 'réglage', 'réglages')}` : 'Rien à appliquer'); };
+  openSheet(`<div data-coach-plan="${esc(fil.id)}">${coachPlanBody(fil)}</div>`, {
+    cancel: closeSheet,
+    change: (e) => { coachChange(e.target); },
+    apply: () => done(coachApplyList(fil, 'plan', false), false),
+    none: () => done(coachApplyList(fil, 'plan', true), true),
+    propundo: (b) => coachDo('undo', b.dataset.id),
+  });
 }
 
 /* ============ Coach : actions et saisies ============ */
@@ -3291,7 +4355,36 @@ const COACH_ACT = {
   'coach-plan': coachAskPlan,
   'coach-resume': coachResume,
   'coach-bilan': (b) => coachAskBilan(b.dataset.id),
+  /* propositions : accepter, refuser, annuler ; ressenti d’une série ; plan du jour ; listes à cocher ; carnet et journal */
+  'coach-ok': (b) => coachDo('ok', b.dataset.id),
+  'coach-no': (b) => coachDo('no', b.dataset.id),
+  'coach-undo': (b) => coachDo('undo', b.dataset.id),
+  'coach-feel': (b) => coachOnFeel(+b.dataset.e, +b.dataset.s, b.dataset.v),
+  'coach-plansheet': coachOpenPlan,
+  'coach-apply': (b) => coachListAct(b.dataset.id, false),
+  'coach-none': (b) => coachListAct(b.dataset.id, true),
+  'coach-note-del': (b) => {
+    const lines = coachNotes(), i = +b.dataset.i;
+    if (!(i >= 0 && i < lines.length)) return;
+    lines.splice(i, 1);
+    db.settings.coachNotes = lines.join('\n');
+    touchSettings(); save(); render(true); toast('Note effacée');
+  },
+  'coach-jundo': (b) => { toast(coachUndo(b.dataset.id) ? 'Changement annulé' : `Modifié depuis${NB}: annulation impossible`); render(true); },
 };
+/* Liste à cocher d’une conversation ou d’un bilan : tout ce qui n’est pas un réglage de séance */
+function coachListAct(filId, none) {
+  const fil = coachFil(filId);
+  if (!fil) return;
+  let n = 0;
+  for (const p of fil.props.filter((x) => x.scope !== 'seance' && x.st === 'attente')) {
+    if (none || coachOff.has(p.id)) coachRefuse(p.id);
+    else if (coachAccept(p.id)) n++;
+    coachOff.delete(p.id);
+  }
+  coachAfterAct(fil);
+  toast(none ? 'Changements refusés' : n ? `${plural(n, 'changement appliqué', 'changements appliqués')}` : 'Rien à appliquer');
+}
 /* Branches des écouteurs input et change de #app : renvoient true quand la saisie était pour le coach */
 function coachInput(t) {
   try {
@@ -3313,6 +4406,8 @@ function coachInput(t) {
 }
 function coachChange(t) {
   try {
+    /* case d’une liste de propositions : cochée par défaut, on ne retient que ce qui est décoché */
+    if (t.dataset.cprop) { if (t.checked) coachOff.delete(t.dataset.cprop); else coachOff.add(t.dataset.cprop); return true; }
     if (!t.dataset.coachauto) return false;
     if (t.dataset.coachauto in coachCfg.auto) { coachCfg.auto[t.dataset.coachauto] = !!t.checked; coachSaveCfg(); }
     return true;
@@ -3332,7 +4427,10 @@ function coachInit() {
       m.w = 0; changed = true;
       if ((m.k === 'chat' || m.k === 'q') && i === f.msgs.length - 1) m.err = 'Réponse interrompue.';
     });
+    /* propositions de séance restées en attente dans une séance qui n’est plus en cours : elles ne valent plus */
+    for (const f of coachStore.fils) for (const p of f.props) if (p.scope === 'seance' && p.st === 'attente' && f.aid !== live) { p.st = 'perime'; changed = true; }
     if (changed || coachStore.fils.length !== n) coachSaveFils();
+    sheet.addEventListener('close', coachCheckinClosed);
     /* clavier ouvert : la barre de saisie remonte au-dessus (iOS ne redimensionne pas la page) */
     const vv = window.visualViewport;
     if (vv) {
@@ -3365,7 +4463,8 @@ const activePhase = (a) => PHASES[a.phase] || phaseOf(a.week);
 function checkSet(ei, si) {
   const a = db.active, ex = a && a.exercises[ei], s = ex && ex.sets[si];
   if (!s) return;
-  if (s.done) { s.done = false; a.cursor = { ei, si }; expanded.add(ei); save(); render(true); return; }
+  /* validation annulée : le ressenti noté pour cette série part avec elle */
+  if (s.done) { s.done = false; delete s.rir; delete s.pain; a.cursor = { ei, si }; expanded.add(ei); save(); render(true); return; }
   const prog = progressionFor(ex, activePhase(a), a.startedAt);
   const plh = placeholders(ex, si, prog);
   const fields = { charge: ['w', 'r'], reps: ['r'], duree: ['t'], cardio: ['d', 't'] }[ex.type] || ['r'];
@@ -3377,12 +4476,14 @@ function checkSet(ei, si) {
     toast(ex.type === 'duree' ? 'Indique la durée de la série' : ex.type === 'cardio' ? 'Indique la distance ou la durée' : 'Indique le nombre de répétitions');
     return;
   }
+  /* série validée pendant que le repos tournait encore : il est noté tel qu’il a été pris */
+  if (a.timer && a.timer.mode === 'rest') noteRest(a, a.timer, true);
   s.done = true; s.at = Date.now();
   justChecked = ei + ':' + si; scrollToNext = true;
   const nxt = nextPending(ei, si);
   a.cursor = nxt;
   if (ex.sets.every((x) => x.done)) { justDoneEi = ei; expanded.delete(ei); if (nxt && nxt.ei !== ei) scrollToEi = nxt.ei; }
-  if (ex.rest > 0 && nxt) startTimer('rest', ex.rest, nxt);
+  if (ex.rest > 0 && nxt) startTimer('rest', ex.rest, nxt, { from: { ei, si } });
   else { if (!nxt) a.timer = null; save(); if (!nxt) toast('Toutes les séries sont validées'); }
   coachOnSet(ei, si, nxt);
   render(true);
@@ -3914,7 +5015,7 @@ async function ghPutFile(text, sha, message) {
   if (res.status === 409 || res.status === 422) return false;
   throw await ghFail(res);
 }
-const SYNC_SETTINGS = ['unit', 'weeklyGoal', 'sound', 'defaultRest', 'coachGoal', 'coachProfile'];
+const SYNC_SETTINGS = ['unit', 'weeklyGoal', 'sound', 'defaultRest', 'coachGoal', 'coachProfile', 'coachNotes', 'kcalAdjust'];
 function coreOf(d) {
   const st = {};
   SYNC_SETTINGS.forEach((k) => { st[k] = d.settings[k]; });
@@ -4122,10 +5223,32 @@ let builtFor = null, lastTick = null, holdSheet = false, flashT = null;
 function startTimer(mode, secs, info, extra) {
   const a = db.active;
   if (!a) return;
-  a.timer = Object.assign({ id: uid(), mode, total: secs, endsAt: Date.now() + secs * 1000, info, expanded: true }, extra || {});
+  /* plan : durée prévue au départ (total bouge avec ±15 s) ; from, dans extra : la série qui a lancé ce repos */
+  a.timer = Object.assign({ id: uid(), mode, total: secs, plan: secs, endsAt: Date.now() + secs * 1000, info, expanded: true }, extra || {});
   save();
   holdSheet = false; clearTimeout(flashT);
   timerUI();
+}
+/* Repos réellement pris avant une série : noté sur la série qui suit ({ p: prévu, t: pris }), pour le constat du coach */
+function noteRest(a, t, early) {
+  const ex = t.info && a.exercises[t.info.ei], s = ex && ex.sets[t.info.si];
+  if (!s || s.done || !t.plan) return;
+  const took = early ? Math.round(t.total - Math.max(0, (t.endsAt - Date.now()) / 1000)) : t.total;
+  s.rb = { p: t.plan, t: Math.max(0, took) };
+}
+/* Le panneau du minuteur est reconstruit : la série annoncée ou le repos ont changé sous lui */
+function timerRefresh() { builtFor = null; timerUI(); }
+/* Ajout et retrait d’une série dans la séance en cours : boutons de l’exercice et propositions du coach */
+function addSetTo(ex) {
+  const bo = ex.sets.findIndex((s) => s.tag === 'backoff'), ns = blankSet();
+  if (bo >= 0) ex.sets.splice(bo, 0, ns); else ex.sets.push(ns);
+  return ns;
+}
+function dropLastSet(ex) {
+  const l = ex.sets[ex.sets.length - 1];
+  if (!(ex.sets.length > 1 && l && !l.done && !l.tag)) return false;
+  ex.sets.pop();
+  return true;
 }
 /* Charge et reps prévues pour une série : ce qui est saisi, sinon ce que ✓ reprendrait */
 function setPlanText(a, info) {
@@ -4154,7 +5277,7 @@ function buildTimer(t, a) {
     btns = `<button class="btn quiet" data-tact="cancel">Annuler</button><button class="btn quiet" data-tact="plus">+15${NB}s</button><button class="btn primary" data-tact="skip">Valider</button>`;
   }
   const st = pvars(a.plate);
-  tsheet.innerHTML = `<div class="tscrim" data-tact="min"></div><div class="tpanel float" style="${st}"><button class="tgrab" data-tact="min" aria-label="Réduire le minuteur"></button><p class="tlabel">${esc(label)}</p><div class="tring"><svg viewBox="0 0 240 240" aria-hidden="true"><defs><filter id="tglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="ttrack" cx="120" cy="120" r="${RR}"/><circle class="tprog" id="tprog" cx="120" cy="120" r="${RR}" filter="url(#tglow)" style="stroke-dasharray:${RC.toFixed(1)};stroke-dashoffset:0"/><circle class="tcap" id="tcap" cx="${120 + RR}" cy="120" r="5"/></svg><div class="tnum" id="tnum" role="timer"></div></div><p class="tnext">${esc(next)}</p>${load ? `<p class="tload">${esc(load)}</p>` : ''}${t.mode === 'rest' ? '<p class="tcoach" data-tcoach data-v="" aria-live="polite" hidden><b>Coach</b><span></span></p>' : ''}<div class="tbtns ${two ? 'two' : ''}">${btns}</div></div>`;
+  tsheet.innerHTML = `<div class="tscrim" data-tact="min"></div><div class="tpanel float" style="${st}"><button class="tgrab" data-tact="min" aria-label="Réduire le minuteur"></button><p class="tlabel">${esc(label)}</p><div class="tring"><svg viewBox="0 0 240 240" aria-hidden="true"><defs><filter id="tglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><circle class="ttrack" cx="120" cy="120" r="${RR}"/><circle class="tprog" id="tprog" cx="120" cy="120" r="${RR}" filter="url(#tglow)" style="stroke-dasharray:${RC.toFixed(1)};stroke-dashoffset:0"/><circle class="tcap" id="tcap" cx="${120 + RR}" cy="120" r="5"/></svg><div class="tnum" id="tnum" role="timer"></div></div><p class="tnext">${esc(next)}</p>${load ? `<p class="tload">${esc(load)}</p>` : ''}${t.mode === 'rest' ? '<div class="tcoach" data-tcoach hidden></div>' : ''}<div class="tbtns ${two ? 'two' : ''}">${btns}</div></div>`;
   const pl = t.mode === 'rest' ? 'Repos' : t.mode === 'prep' ? 'Prépare-toi' : 'Chrono';
   const pb = t.mode === 'rest' ? 'Passer' : t.mode === 'prep' ? 'Commencer' : 'Valider';
   tpill.innerHTML = `<button class="tp-main" data-tact="max"><span class="sr">Agrandir le minuteur, </span><svg class="tp-ring" viewBox="0 0 36 36" aria-hidden="true"><circle class="tp-track" cx="18" cy="18" r="14"/><circle class="tp-prog" id="tpprog" cx="18" cy="18" r="14" style="stroke-dasharray:${PCIRC.toFixed(1)};stroke-dashoffset:0"/></svg><span class="tp-label">${pl}</span><span class="tp-num" id="tpnum"></span></button><button class="tp-skip" data-tact="skip">${pb}</button>`;
@@ -4207,8 +5330,8 @@ function timerUI() {
   if (p2) p2.style.strokeDashoffset = (PCIRC * (1 - frac)).toFixed(1);
   if (capEl) { const th = frac * 2 * Math.PI; capEl.setAttribute('cx', (120 + RR * Math.cos(th)).toFixed(1)); capEl.setAttribute('cy', (120 + RR * Math.sin(th)).toFixed(1)); capEl.style.opacity = frac > 0.004 ? '1' : '0'; }
   if (t.mode === 'rest') { const tl = tsheet.querySelector('.tload'), v = setPlanText(a, t.info); if (tl && tl.textContent !== v) tl.textContent = v; }
-  /* conseil du coach pour la suite, arrivé pendant ce repos */
-  if (t.mode === 'rest') { const tc = tsheet.querySelector('[data-tcoach]'), v = coachTimerTip(a, t); if (tc && tc.dataset.v !== v) { tc.dataset.v = v; tc.querySelector('span').textContent = v; tc.hidden = !v; } }
+  /* le coach pendant ce repos : constat de la série, ressenti à toucher, proposition à valider */
+  if (t.mode === 'rest') { const tc = tsheet.querySelector('[data-tcoach]'); if (tc) coachTimerPaint(tc, a, t); }
   if (inWk) {
     const wasShown = tsheet.classList.contains('show');
     tsheet.classList.toggle('show', !!t.expanded);
@@ -4241,7 +5364,7 @@ function completeWork(t, early) {
   a.cursor = nxt;
   if (marked) coachOnSet(t.info.ei, t.info.si, nxt);
   if (ex && ex.sets.every((x) => x.done)) { justDoneEi = t.info.ei; if (nxt && nxt.ei !== t.info.ei) scrollToEi = nxt.ei; }
-  if (ex && ex.rest > 0 && nxt) startTimer('rest', ex.rest, nxt);
+  if (ex && ex.rest > 0 && nxt) startTimer('rest', ex.rest, nxt, { from: { ei: t.info.ei, si: t.info.si } });
   else { if (!nxt) a.timer = null; save(); timerUI(); }
   if (view.name === 'workout') render(true);
 }
@@ -4263,6 +5386,7 @@ function timerDone() {
   const late = Date.now() - t.endsAt > 4000;
   if (t.mode === 'prep') { a.timer = null; if (!late) beep('go'); startTimer('work', t.work, t.info, { endsAt: t.endsAt + t.work * 1000 }); return; }
   if (t.mode === 'work') { if (!late) beep('end'); completeWork(t, false); return; }
+  noteRest(a, t, false);
   a.timer = null; save();
   const pillShown = tpill.classList.contains('show');
   if (!late) flashDone();
@@ -4285,8 +5409,10 @@ document.addEventListener('click', (e) => {
   else if (act === 'minus') { t.endsAt -= 15000; t.total = Math.max(1, t.total - 15); }
   else if (act === 'plus') { t.endsAt += 15000; t.total += 15; }
   else if (act === 'cancel') a.timer = null;
+  /* ressenti et propositions du coach, affichés dans le panneau de repos */
+  else if (act === 'feel' || act === 'prop-ok' || act === 'prop-no' || act === 'prop-undo') { coachTimerAct(act, b); return; }
   else if (act === 'skip') {
-    if (t.mode === 'rest') a.timer = null;
+    if (t.mode === 'rest') { noteRest(a, t, true); a.timer = null; }
     else if (t.mode === 'prep') { a.timer = null; startTimer('work', t.work, t.info); return; }
     else { completeWork(t, true); return; }
   }
@@ -4337,8 +5463,8 @@ const ACT = {
   play: (b) => { unlockAudio(); playSet(+b.dataset.e, +b.dataset.s); },
   expand: (b) => { expanded.add(+b.dataset.e); render(true); },
   collapse: (b) => { expanded.delete(+b.dataset.e); render(true); },
-  'add-set': (b) => { const ex = db.active.exercises[+b.dataset.e]; const bo = ex.sets.findIndex((s) => s.tag === 'backoff'); const ns = blankSet(); if (bo >= 0) ex.sets.splice(bo, 0, ns); else ex.sets.push(ns); save(); render(true); },
-  'del-set': (b) => { const ex = db.active.exercises[+b.dataset.e]; const l = ex.sets[ex.sets.length - 1]; if (ex.sets.length > 1 && l && !l.done && !l.tag) { ex.sets.pop(); save(); render(true); } },
+  'add-set': (b) => { addSetTo(db.active.exercises[+b.dataset.e]); save(); render(true); },
+  'del-set': (b) => { if (dropLastSet(db.active.exercises[+b.dataset.e])) { save(); render(true); } },
   finish: openFinish,
   'w-add-ex': () => openExerciseEditor(db.active.sessionId, -1, 'workout'),
   'ci-cr': () => { const e = dayEntry(isoDay()); ciUpdate('cr', !(e && e.cr), true); },
